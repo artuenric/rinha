@@ -93,10 +93,10 @@ public class Galo {
         this.ataques = ataques;
     }
     
-    // Principais métodos
+    ////////////////// Principais métodos //////////////////
     
-    // Definir valor, defesa e ataque em função do nível do galo
     public void defineValor() {
+        // Define o valor em função do nível e da raridade.
         switch (this.raridade) {
             case "Raro":
                 this.valor = 50 * this.nivel;
@@ -113,29 +113,47 @@ public class Galo {
     }
     
     public void defineDefesa(){
+        // Define a defesa em função do nível e da raridade. 
         Random random = new Random();
-   
         switch (this.raridade) {
             case "Raro":
-                this.defesa = random.nextInt(16) + this.nivel;
+                // 1: 1 - 16 ; 2: 2 - 17 ; 3: 3 - 18 ; 4: 4 - 19 ; 5: 5 - 20
+                this.defesa = random.nextInt(16) + this.nivel; 
                 break;
             case "Epico":
-                // Vai de 30 a 40, sendo o máximo atingido com o nível 5
-                // REVISAR o número pode ser 25, mas o valor mínimo esperado para defesa é 30
-                this.defesa = random.nextInt(11) + 25  + this.nivel;
+                // 1: 26 - 36 ; 2: 27 - 37 ; 3: 28 - 38 ; 4: 29 - 39 ; 5: 30 - 40
+                this.defesa = random.nextInt(11) + 25 + this.nivel; 
                 break;
             case "Lendario":
-                this.defesa = random.nextInt() + 45 + this.nivel;
+                // 1: 46 - 56 ; 2: 47 - 57 ; 3: 48 - 58  4: 49 - 59 ; 5: 50 - 60
+                this.defesa = random.nextInt(11) + 45 + this.nivel; 
                 break;
             default:
                 break;
         }
-        
-        int aleatorio = random.nextInt(10) + 20;
-        
-        
     }
     
+   
+    public void defineAtaque(){
+        // Define o ataque em função do nível e da raridade. 
+        Random random = new Random();
+        switch (this.raridade) {
+            case "Raro":
+                // 1: 1 - 16 ; 2: 2 - 17 ; 3: 3 - 18 ; 4: 4 - 19 ; 5: 5 - 20
+                this.defesa = random.nextInt(16) + this.nivel; 
+                break;
+            case "Epico":
+                // 1: 26 - 36 ; 2: 27 - 37 ; 3: 28 - 38 ; 4: 29 - 39 ; 5: 30 - 40
+                this.defesa = random.nextInt(11) + 25 + this.nivel; 
+                break;
+            case "Lendario":
+                // 1: 46 - 56 ; 2: 47 - 57 ; 3: 48 - 58  4: 49 - 59 ; 5: 50 - 60
+                this.defesa = random.nextInt(11) + 45 + this.nivel; 
+                break;
+            default:
+                break;
+        }
+    }
     
     
     public void atacar(){
