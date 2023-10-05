@@ -1,15 +1,31 @@
 package game.rinha.galos;
-
 import game.rinha.Galo;
+// Galo Raro
 
 public class GaloItaipava extends Galo{
     
-      public GaloItaipava(int nivel){
-          this.nivel = nivel;
-          defineValor();
-          
+    public GaloItaipava(int nivel){
+        // Definindo informações básicas
+        setNome("Galo Itaipava");
+        setRaridade("Raro");
+        setNivel(nivel);
+        String[] ataques = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};
+        setAtaques(ataques);
+        
+        // Definindo a partir das informações dadas 
+        defineInformacoes();
+        defineValor();
+        defineDefesa();
+        defineForca();
+        defineVida();
       }
           
 }
     
-
+/* 
+Nota:
+Chamar o método defineValor()- e provavelmente qualquer método da função main, desde que não seja privado -
+pode ser feito com, ou sem, o this. Isso pq o escopo da função na main já atribui os valores nos locais corretos.
+No entanto, chamar a função sem a raridade definida, dá erro. Deve ser por causa do switch.
+Na verdade, acredito que seja por não haver nada para o switch escolher.
+*/
