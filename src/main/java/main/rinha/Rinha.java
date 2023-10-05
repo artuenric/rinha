@@ -1,5 +1,5 @@
-package game.rinha;
-import game.rinha.galos.GaloItaipava;
+package main.rinha;
+import main.rinha.galos.GaloItaipava;
 import java.util.Arrays;
 
 public class Rinha {

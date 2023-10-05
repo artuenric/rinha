@@ -1,6 +1,4 @@
-package game.rinha.galos;
-import game.rinha.Galo;
-// Galo Raro
+package main.rinha.galos;
 
 public class GaloItaipava extends Galo{
     

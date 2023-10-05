@@ -1,4 +1,4 @@
-package game.rinha;
+package main.rinha.galos;
 import java.util.Random;
 import java.util.Arrays;
 

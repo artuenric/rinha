@@ -1,4 +1,7 @@
-package game.rinha;
+package main.rinha.batalha;
+
+import main.rinha.galos.Galo;
+
 public class Batalha {
     private Galo jogador;
     private Galo maquina;

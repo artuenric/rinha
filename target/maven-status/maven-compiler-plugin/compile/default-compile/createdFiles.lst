@@ -1,8 +1,8 @@
-game\rinha\galos\GaloCego.class
-game\rinha\galos\GaloBMW.class
-game\rinha\galos\GaloItaipava.class
-game\rinha\Rinha.class
-game\rinha\galos\GaloCiborg.class
-game\rinha\Batalha.class
-game\rinha\Galo.class
-game\rinha\galos\GaloPolicialFederal.class
+main\rinha\batalha\Batalha.class
+main\rinha\galos\Galo.class
+main\rinha\galos\GaloPolicialFederal.class
+main\rinha\galos\GaloItaipava.class
+main\rinha\galos\GaloCiborg.class
+main\rinha\galos\GaloCego.class
+main\rinha\galos\GaloBMW.class
+main\rinha\Rinha.class

@@ -1,6 +1,4 @@
-package game.rinha.galos;
-
-import game.rinha.Galo;
+package main.rinha.galos;
 
 public class GaloCiborg extends Galo {
     
