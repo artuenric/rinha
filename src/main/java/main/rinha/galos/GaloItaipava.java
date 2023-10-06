@@ -11,7 +11,6 @@ public class GaloItaipava extends Galo{
         setAtaques(ataques);
         
         // Definindo a partir das informações dadas 
-        defineInformacoes();
         defineValor();
         defineDefesa();
         defineForca();
