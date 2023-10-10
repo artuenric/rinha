@@ -1,23 +1,27 @@
-package main.rinha.galos;
+package com.rinha.galos;
 import java.util.Random;
-import java.util.Arrays;
 
 public class Galo {
     
     // Propriedades do Galo - 03/10/2023
-    protected String nome;            // Galo Alguma Coisa // Ver depois possibilidade de nomear um galo
-    protected String raridade;        // Lendário, Épico, Comum
-    protected int nivel;              // ⭐⭐⭐
-    protected String tipo;            // 3 tipos: A, B e C
-    protected int valor;              // Preço de venda
-    protected int forca;              // 1 - 100
-    protected int defesa;             // 1 -  100
-    protected int vida;               // 10 - 1.000
-    protected String[] ataques;       // Lista com os nomes dos ataques
-    protected boolean inGaloDex;      // Está ou não na sua GaloDex
+    protected String nome;             // Galo Alguma Coisa // Ver depois possibilidade de nomear um galo
+    protected String raridade;         // Lendário, Épico, Comum
+    protected int nivel;               // ⭐⭐⭐
+    protected String tipo;             // 3 tipos: A, B e C
+    protected String vantagem;   // A bate em B, B bate em C, C bate em A
+    protected int valor;               // Preço de venda
+    protected int forca;               // 1 - 100
+    protected int defesa;              // 1 -  100
+    protected int agilidade;           // 1 -  100
+    protected int vida;                // 10 - 1.000
+    protected String[] ataques;        // Lista com os nomes dos ataques
+    protected boolean inGaloDex;       // Está ou não na sua GaloDex
     
 
-    ////////////// Acessores e Modificadores ///////////////
+    /*
+    Métodos Acessores e Modificadores:
+    Esses métodos pegam e alteram, obviamente, as propriedades dos galos.
+    */
     
     public String getAtaque(int x){
         return this.ataques[x];
@@ -42,6 +46,14 @@ public class Galo {
     }
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     public int getValor() {
@@ -71,12 +83,15 @@ public class Galo {
         } else{
             this.vida = vida;
         }
-        
     }
 
-    public String[] getAtaques() {
-        return ataques;
+    public String getAtaques(){
+       return       "\n Ataquei 1: " + this.ataques[0] +
+                      "\n Ataquei 2: " + this.ataques[1] +
+                      "\n Ataquei 3: " + this.ataques[2] +
+                      "\n Ataquei 4: " + this.ataques[3];
     }
+    
     public void setAtaques(String[] ataques) {
         this.ataques = ataques;
     }
@@ -88,13 +103,6 @@ public class Galo {
         this.inGaloDex = inGaloDex;
     }
     
-    public String infoAtaques(){
-       return       "\n Ataquei 1: " + this.ataques[0] +
-                      "\n Ataquei 2: " + this.ataques[1] +
-                      "\n Ataquei 3: " + this.ataques[2] +
-                      "\n Ataquei 4: " + this.ataques[3];
-    }
-
     public String getStatus(){
         return      "\n Nome do Galo: " + this.nome +
                       "\n Raridade: " + this.raridade +
@@ -109,7 +117,11 @@ public class Galo {
                       "\n Ataquei 4: " + this.ataques[3];
     }
     
-    ////////////////// Principais métodos //////////////////
+    /*
+    Métodos para definição dos atributos:
+    Esses métodos são responsáveis por definir a vida, a força, a defesa, de acordo com a raridade e nível do galo.   
+    */
+    
     public void defineValor() {
         // Define o valor em função do nível e da raridade.
         // Nível: Mínimo - Máximo
@@ -181,12 +193,63 @@ public class Galo {
         this.vida =  random.nextInt(51) + 50;
     }
     
-       
     
-    // Escolher um dos 4 ataques
-    // protected  void defender();  // Random de acordo com a defesa
-    //protected  void regenerar(); // Com itens comprados na loja
-    //protected  void evoluir();   // Itens comprados na loja
-    //protected  void comer();     // Com itens da loja para evoluir
+    /* 
+    Métodos para a batalha:
+    Esses métodos definem a lógica das ações realizadas no combate, que serão utilizadas na classe Batalha.
+    */
     
+    public void atacar(Galo adversario, int ataque){
+        // Tira um certo dano da vida do galo adversário de acordo com o ataque escolhido.
+        Random random = new Random();
+        int dano = 0;
+        int bonus = 0;
+        
+        // Informações do oponente
+        int vida_adversario = adversario.getVida();
+        String tipo_adversario = adversario.getTipo();
+        
+        // Escolha do ataque
+        switch (ataque) {
+            case 0:
+                // Ataque básico baseado em força             
+                dano = (this.forca * (this.nivel/10) + this.forca) - (adversario.getDefesa()/2);           
+                break;
+            case 1:
+                // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
+                dano = (this.forca * (this.nivel/10) + this.forca) - (adversario.getDefesa());
+                if (tipo_adversario.equals(this.vantagem)){
+                    dano += ((random.nextInt(26) + 50) / 100) * this.forca;
+                }
+                break;
+            case 2:
+                // Ataque baseado na agilidade, mesma lógica do baseado em força
+                dano = (this.agilidade * (this.nivel/10) + this.agilidade) - (adversario.getDefesa()/2);
+                break;
+            case 3:
+                dano = (((random.nextInt(121) + 100) / 100) * this.forca) - (adversario.getDefesa()/3);
+                break;
+            default:
+                System.out.println("O ataque fornecido para " + getNome() + " não está de acordo aos valores aceitos.");
+                break;
+        }
+        
+        // Bonus pela raridade do Galo
+        switch (this.raridade) {
+            case "Raro":
+                
+                break;
+            case "Epico":
+                
+                break;
+            case "Lendario":
+                
+                break;
+            default:
+                System.out.println("A raridade fornecida para " + getStatus() + " não está de acordo aos valores aceitos.");
+                break;
+        }
+        
+        adversario.setVida(vida_adversario - dano);  
+    }    
 }

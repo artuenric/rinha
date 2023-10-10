@@ -1,7 +1,7 @@
-package main.rinha;
-import main.rinha.batalha.Batalha;
-import main.rinha.galos.GaloItaipava;
-import main.rinha.galos.GaloBMW;
+package com.rinha.main;
+import com.rinha.batalha.Batalha;
+import com.rinha.galos.GaloItaipava;
+import com.rinha.galos.GaloBMW;
 import java.util.Arrays;
 
 

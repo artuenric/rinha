@@ -1,4 +1,4 @@
-package main.rinha.galos;
+package com.rinha.galos;
 
 public class GaloCego extends Galo{
     

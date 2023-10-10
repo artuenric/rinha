@@ -1,5 +1,5 @@
-package main.rinha.batalha;
-import main.rinha.galos.Galo;
+package com.rinha.batalha;
+import com.rinha.galos.Galo;
 import java.util.Random;
 import java.util.Scanner;
 

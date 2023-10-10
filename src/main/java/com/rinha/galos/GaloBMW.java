@@ -1,4 +1,4 @@
-package main.rinha.galos;
+package com.rinha.galos;
 
 public class GaloBMW extends Galo {
         // Definindo informações básicas
