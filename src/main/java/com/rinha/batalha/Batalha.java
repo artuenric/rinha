@@ -4,25 +4,25 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Batalha {
-    private Galo jogador;
+    private Galo player;
     private Galo maquina;
     private String vencedor;
     private int premio;
     
-    public Batalha(Galo jogador, Galo maquina){
-        this.jogador = jogador;
+    public Batalha(Galo player, Galo maquina){
+        this.player = player;
         this.maquina = maquina;
     }
     
     Scanner sc = new Scanner(System.in);
     
     // Modificadores e Acessores
-    public Galo getJogador() {
-        return jogador;
+    public Galo getPlayer() {
+        return player;
     }
 
-    public void setJogador(Galo jogador) {
-        this.jogador = jogador;
+    public void setPlayer(Galo player) {
+        this.player = player;
     }
 
     public Galo getMaquina() {
@@ -35,11 +35,11 @@ public class Batalha {
 
     public void setVencedor() {
         
-        if (this.jogador.getVida() <= 0){
+        if (this.player.getVida() <= 0){
             this.vencedor = this.maquina.getNome();
         } 
         else if (this.maquina.getVida() <= 0){
-            this.vencedor = this.jogador.getNome();
+            this.vencedor = this.player.getNome();
         } else {
             this.vencedor = null;
         }
@@ -63,35 +63,35 @@ public class Batalha {
         int decidirAtaques;
         int turno = random.nextInt(2);
        
-        while ((this.getVencedor() != this.jogador.getNome()) && (this.getVencedor() != this.maquina.getNome())){
+        while ((this.getVencedor() != this.player.getNome()) && (this.getVencedor() != this.maquina.getNome())){
             
             if (turno ==  0){
-                System.out.print("\nAtaques disponiveis: " + this.jogador.infoAtaques() + "\n Escolha um ataque: ");
+                System.out.print("\nAtaques disponiveis: " + this.player.getAtaques() + "\n Escolha um ataque: ");
                 decidirAtaques = sc.nextInt();
 
                   switch (decidirAtaques) {
                         case 1:
-                            this.maquina.setVida(this.maquina.getVida() - 10);
-                            System.out.println("\nO Galo: " + this.jogador.getNome() + " efetuou o ataque: " + this.jogador.getAtaque(0) + " efetuando 10 de dano");      
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            player.atacar(maquina,0);
+                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(0) + " efetuando 10 de dano");      
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         case 2:                      
-                            this.maquina.setVida(this.maquina.getVida() - 20);
-                            System.out.println("\nO Galo: " + this.jogador.getNome() + " efetuou o ataque: " + this.jogador.getAtaque(1) + " efetuando 20 de dano");        
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            player.atacar(maquina, 1);
+                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(1) + " efetuando 20 de dano");        
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         case 3:                        
-                            this.maquina.setVida(this.maquina.getVida() - 30);
-                            System.out.println("\nO Galo: " + this.jogador.getNome() + " efetuou o ataque: " + this.jogador.getAtaque(2) + " efetuando 30 de dano");            
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            player.atacar(maquina, 2);
+                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(2) + " efetuando 30 de dano");            
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         case 4:
-                            this.maquina.setVida(this.maquina.getVida() - 40);
-                            System.out.println("\nO Galo: " + this.jogador.getNome() + " efetuou o ataque: " + this.jogador.getAtaque(3) + " efetuando 40 de dano");                       
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            player.atacar(maquina, 3);
+                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(3) + " efetuando 40 de dano");                       
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         default:
@@ -104,27 +104,27 @@ public class Batalha {
 
                 switch (ataqueAleatorio) {
                         case 1:
-                            this.jogador.setVida(this.jogador.getVida() - 10);
+                            maquina.atacar(player, 0);
                             System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(0) + " efetuando 10 de dano");
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         case 2:                      
-                            this.jogador.setVida(this.jogador.getVida() - 20);
+                            maquina.atacar(player, 1);
                             System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(1) + " efetuando 20 de dano");
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         case 3:                        
-                            this.jogador.setVida(this.jogador.getVida() - 30);
+                            maquina.atacar(player, 2);
                             System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(2) + " efetuando 30 de dano");
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         case 4:
-                            this.jogador.setVida(this.jogador.getVida() - 40);
+                            maquina.atacar(player, 3);
                             System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(3) + " efetuando 40 de dano");
-                            System.out.println("Vida de Galo: " + this.jogador.getNome() + ": " + this.jogador.getVida());
+                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
                             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
                             break;
                         default:

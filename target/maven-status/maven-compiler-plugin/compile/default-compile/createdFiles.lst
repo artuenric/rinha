@@ -1,5 +1,10 @@
-com\rinha\galos\GaloPolicialFederal.class
-com\rinha\galos\Galo.class
-com\rinha\galos\GaloCego.class
+com\rinha\galos\GaloItaipava.class
 com\rinha\galos\GaloBMW.class
 com\rinha\galos\GaloCiborg.class
+com\rinha\galos\GaloPolicialFederal.class
+com\rinha\gui\Botao2.class
+com\rinha\galos\Galo.class
+com\rinha\gui\Screen.class
+com\rinha\galos\GaloCego.class
+com\rinha\main\Rinha.class
+com\rinha\batalha\Batalha.class

@@ -6,17 +6,14 @@ public class GaloBMW extends Galo {
        public GaloBMW(int nivel){
             setNome("Galo BMW");
             setRaridade("Epico");
+            setTipo("A");
             setNivel(nivel);
+            
+            // Nomes para os ataques
             String[] ataques = {"Atropelamento", "VrumVrumGatinha", "Gasolina de Milho", "Freio da Blazer"};
             setAtaques(ataques);
         
             // Definindo a partir das informações dadas 
-            defineValor();
-            defineDefesa();
-            defineForca();
-            defineVida();
-           
+            defineAtributos();  
        }
-    
 }
-

@@ -6,15 +6,16 @@ public class GaloItaipava extends Galo{
         // Definindo informações básicas
         setNome("Galo Itaipava");
         setRaridade("Raro");
+        setTipo("B");
+        setVantagem();
         setNivel(nivel);
+        
+        // Nomes para os ataques
         String[] ataques = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};
         setAtaques(ataques);
         
         // Definindo a partir das informações dadas 
-        defineValor();
-        defineDefesa();
-        defineForca();
-        defineVida();
+        defineAtributos();
       }
           
 }
