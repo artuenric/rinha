@@ -1,19 +1,28 @@
 package com.rinha.galos;
 
+import com.rinha.galos.raridade.Epico;
+
 public class GaloBMW extends Galo {
+       
+       public GaloBMW(int nivel, String apelido){
         // Definindo informações básicas
-    
-       public GaloBMW(int nivel){
-            setNome("Galo BMW");
-            setRaridade("Epico");
-            setTipo("A");
-            setNivel(nivel);
-            
-            // Nomes para os ataques
-            String[] ataques = {"Atropelamento", "VrumVrumGatinha", "Gasolina de Milho", "Freio da Blazer"};
-            setAtaques(ataques);
+        setApelido(apelido);
+        setNome("Galo BMW");
+        setNivel(nivel);
+        setTipo("B");
+        setVantagem();
         
-            // Definindo a partir das informações dadas 
-            defineAtributos();  
-       }
+        // Raridade e atributos
+        Epico raridade = new Epico(nivel);
+        this.raridade = raridade.getTipoRaridade();
+        this.valor = raridade.getValor();
+        this.forca = raridade.getForca();
+        this.defesa = raridade.getDefesa();
+        this.agilidade = raridade.getAgilidade();
+        this.vida = raridade.getVida();
+
+        // Nomes para os ataques
+        String[] atcks = {"Atropelamento", "VrumVrumGatinha", "Gasolina de Milho", "Freio da Blazer"};
+        setAtaques(atcks);
+    }     
 }

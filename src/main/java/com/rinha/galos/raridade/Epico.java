@@ -4,10 +4,11 @@ import java.util.Random;
 
 public class Epico extends Raridade {
     
-    //Ver depois
-    //Cogitar a ideia de passar o galo no construtor
     public Epico(int nivel){
         Random random = new Random();
+        // Tipo de raridade
+        this.tipoRaridade = "Epico";
+        
         // Valor
         // De 100 a 500
         this.valor = 100 * nivel;

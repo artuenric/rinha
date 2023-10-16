@@ -49,6 +49,36 @@ public class Batalha {
         return this.vencedor;
     }
     
+    public void infoTurno(int turn, int ataqueId){
+        
+        int dano = 0;
+        
+        if (turn == 0){
+            
+            if (this.maquina.esquivar()){
+                System.out.println("\nMinha nossa! " + this.maquina.getApelido() + " esquivou!");
+            } else {
+                dano = this.player.atacar(this.maquina,ataqueId);
+                this.maquina.setVida(this.maquina.getVida() - dano);
+            }
+            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(ataqueId - 1) + ", o dano foi de " + dano);
+            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
+            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
+            
+        } else if(turn == 1){
+            
+            if (this.player.esquivar()){
+                  System.out.println("\nMinha nossa! " + this.player.getApelido() + " esquivou!");
+            } else {
+                  dano = this.maquina.atacar(this.player,ataqueId);
+                  this.player.setVida(this.player.getVida() - dano);
+            }
+            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(ataqueId - 1) + ", o dano foi de " + dano);
+            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
+            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
+        }
+    }
+    
     // Métodos principais
     
     public void batalhar(){
@@ -62,76 +92,20 @@ public class Batalha {
         
         int decidirAtaques;
         int turno = random.nextInt(2);
-       
+        
         while ((this.getVencedor() != this.player.getNome()) && (this.getVencedor() != this.maquina.getNome())){
             
             if (turno ==  0){
                 System.out.print("\nAtaques disponiveis: " + this.player.getAtaques() + "\n Escolha um ataque: ");
                 decidirAtaques = sc.nextInt();
-
-                  switch (decidirAtaques) {
-                        case 1:
-                            player.atacar(maquina,0);
-                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(0) + " efetuando 10 de dano");      
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        case 2:                      
-                            player.atacar(maquina, 1);
-                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(1) + " efetuando 20 de dano");        
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        case 3:                        
-                            player.atacar(maquina, 2);
-                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(2) + " efetuando 30 de dano");            
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        case 4:
-                            player.atacar(maquina, 3);
-                            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(3) + " efetuando 40 de dano");                       
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        default:
-                            System.out.println("\nErro ao atacar");
-                            break;
-                   }
-                  turno = 1;
+                
+                infoTurno(turno, decidirAtaques);
+                turno = 1;
             } else {
-                int ataqueAleatorio = random.nextInt(4) + 1; //se adicionar +1 existe a possibilidade de erro ao atacar.
+                    int ataqueAleatorio = random.nextInt(4) +  1; 
 
-                switch (ataqueAleatorio) {
-                        case 1:
-                            maquina.atacar(player, 0);
-                            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(0) + " efetuando 10 de dano");
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        case 2:                      
-                            maquina.atacar(player, 1);
-                            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(1) + " efetuando 20 de dano");
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        case 3:                        
-                            maquina.atacar(player, 2);
-                            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(2) + " efetuando 30 de dano");
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        case 4:
-                            maquina.atacar(player, 3);
-                            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(3) + " efetuando 40 de dano");
-                            System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
-                            System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
-                            break;
-                        default:
-                            System.out.println("Erro ao atacar");
-                            break;
-                   }
-               turno = 0;
+                infoTurno(turno, ataqueAleatorio);
+                turno = 0;
           } 
           
           this.setVencedor();
@@ -141,3 +115,13 @@ public class Batalha {
     
     
 }
+
+/*
+        // Bonus pela raridade do Galo
+        switch (this.raridade) {
+            case "Raro" -> bonus = 3 * this.nivel;
+            case "Epico" -> bonus = 5 * this.nivel;
+            case "Lendario" -> bonus = 7 * this.nivel;
+            default -> System.out.println("A raridade fornecida para " + getStatus() + " não está de acordo aos valores aceitos.");
+        }
+*/

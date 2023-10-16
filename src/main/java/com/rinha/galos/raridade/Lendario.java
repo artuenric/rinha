@@ -6,6 +6,9 @@ public class Lendario extends Raridade {
     
     public Lendario(int nivel){
         Random random = new Random();
+        // Tipo de raridade
+        this.tipoRaridade = "Lendario";
+
         // Valor
         // De 200 a 1000
         this.valor = 200 * nivel;

@@ -1,21 +1,30 @@
 package com.rinha.galos;
 
+import com.rinha.galos.raridade.Lendario;
+
 public class GaloItaipava extends Galo{
     
-    public GaloItaipava(int nivel){
+    public GaloItaipava(int nivel, String apelido){
         // Definindo informações básicas
+        setApelido(apelido);
         setNome("Galo Itaipava");
-        setRaridade("Raro");
+        setNivel(nivel);
         setTipo("B");
         setVantagem();
-        setNivel(nivel);
         
+        // Raridade e atributos
+        Lendario raridade = new Lendario(nivel);
+        this.raridade = raridade.getTipoRaridade();
+        this.valor = raridade.getValor();
+        this.forca = raridade.getForca();
+        this.defesa = raridade.getDefesa();
+        this.agilidade = raridade.getAgilidade();
+        this.vida = raridade.getVida();
+        
+
         // Nomes para os ataques
-        String[] ataques = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};
-        setAtaques(ataques);
-        
-        // Definindo a partir das informações dadas 
-        defineAtributos();
+        String[] atcks = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};
+        setAtaques(atcks);
       }
           
 }

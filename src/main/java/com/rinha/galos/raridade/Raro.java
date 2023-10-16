@@ -5,8 +5,10 @@ import java.util.Random;
 public class Raro extends Raridade{
     
     public Raro(int nivel) {
-        
         Random random = new Random();
+        // Tipo de raridade
+        this.tipoRaridade = "Raro";
+        
         // Valor
         // De 50 a 250
         this.valor = 50 * nivel;
