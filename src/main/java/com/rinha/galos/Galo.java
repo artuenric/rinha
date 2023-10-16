@@ -86,14 +86,17 @@ public class Galo {
         // B bate em C
         // C bate em A
         switch(this.tipo){
-            case "A" -> {
+            case "A": {
                 this.vantagem = "B";
+            break;
             }
-            case "B" ->{
+            case "B": {
                 this.vantagem = "C";
+            break;
             }
-            case "C" -> {
+            case "C": {
                 this.vantagem = "A";
+            break;
             }
         }
     }
@@ -165,29 +168,35 @@ public class Galo {
         
         // Escolha do ataque
         switch (ataque) {
-            case 1 -> {
+            case 1: {
                 // Ataque básico baseado em força
                 dano = (this.forca * (this.nivel/10) + this.forca) - (adversario.getDefesa()/2);
+            break;
             }
             
-            case 2 -> {
+            case 2 : {
                 // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
                 dano = (this.forca * (this.nivel/10) + this.forca) - (adversario.getDefesa());
                 if (tipo_adversario.equals(this.vantagem)){
                     dano += ((random.nextInt(26) + 50) / 100) * this.forca;
+            break;    
                 }
             }
             
-            case 3 -> { 
+            case 3: { 
                 // Ataque baseado na agilidade, mesma lógica do baseado em força
                 dano =  (this.agilidade * (this.nivel/10) + this.agilidade) - (adversario.getDefesa()/2);
+            break;
             }
             
-            case 4 -> {
+            case 4: {
                 dano = (((random.nextInt(121) + 100) / 100) * this.forca) - (adversario.getDefesa()/3);
+            break;
             }
             
-            default -> System.out.println("O ataque fornecido para " + getNome() + " não está de acordo aos valores aceitos.");
+            default:
+                System.out.println("O ataque fornecido para " + getNome() + " não está de acordo aos valores aceitos.");
+            break;
         }
         
         // Existe a chance de um galo fraco não conseguir gerar danos o suficiente para subtrarir da defesa, nesse caso, o resultado das operações para definir o dano serão negativos
