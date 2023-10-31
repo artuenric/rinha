@@ -1,10 +1,8 @@
-com\rinha\gui\RinhaMainFrame$5.class
-com\rinha\gui\RinhaMainFrame$2.class
-com\rinha\gui\RinhaMainFrame$4.class
+com\rinha\gui\mainFrame.class
+com\rinha\gui\mainFrame$2.class
 com\rinha\player\Perfil.class
-com\rinha\gui\RinhaMainFrame.class
-com\rinha\gui\RinhaMainFrame$1.class
+com\rinha\gui\mainFrame$4.class
 com\rinha\player\GaloDex.class
-com\rinha\gui\RinhaMainFrame$6.class
-com\rinha\gui\RinhaMainFrame$3.class
+com\rinha\gui\mainFrame$1.class
 com\rinha\player\Carteira.class
+com\rinha\gui\mainFrame$3.class
