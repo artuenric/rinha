@@ -39,12 +39,14 @@ public class RinhaMainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jButton1 = new javax.swing.JButton();
+        jDialog1 = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
         painelPrincipal = new javax.swing.JPanel();
         telaInicial = new javax.swing.JPanel();
-        menu = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         telaLoja = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -60,6 +62,27 @@ public class RinhaMainFrame extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
+        jDialog1.setTitle("Olá");
+
+        jLabel3.setText("Bem-vindo, desafiante!");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -70,19 +93,27 @@ public class RinhaMainFrame extends javax.swing.JFrame {
         painelPrincipal.setMinimumSize(getMinimumSize());
         painelPrincipal.setLayout(new java.awt.CardLayout());
 
+        telaInicial.setMaximumSize(new java.awt.Dimension(720, 480));
+        telaInicial.setMinimumSize(new java.awt.Dimension(720, 480));
+        telaInicial.setPreferredSize(new java.awt.Dimension(720, 480));
         telaInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/menuIcon.png"))); // NOI18N
-        menu.setContentAreaFilled(false);
-        menu.setMaximumSize(new java.awt.Dimension(50, 50));
-        menu.setMinimumSize(new java.awt.Dimension(50, 50));
-        menu.setPreferredSize(new java.awt.Dimension(50, 50));
-        menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuActionPerformed(evt);
-            }
-        });
-        telaInicial.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telainicial.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        telaInicial.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+        );
+
+        telaInicial.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         painelPrincipal.add(telaInicial, "telaInicial");
 
@@ -121,7 +152,7 @@ public class RinhaMainFrame extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -182,7 +213,7 @@ public class RinhaMainFrame extends javax.swing.JFrame {
         telaBatalhaLayout.setVerticalGroup(
             telaBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaBatalhaLayout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,20 +246,8 @@ public class RinhaMainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        Teste p = new Teste();
-        jPanel1.add(p);
-        jPanel1.revalidate();
-        jPanel1.repaint();
-        p.setVisible(true);
+   
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
-        // TODO add your handling code here:
-        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-        cl.show(painelPrincipal, "telaBatalha");
-
-    }//GEN-LAST:event_menuActionPerformed
 
     private void atck1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atck1ActionPerformed
         // Ataque 1
@@ -318,12 +337,15 @@ public class RinhaMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton atck4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JButton menu;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel telaBatalha;
     private javax.swing.JPanel telaInicial;

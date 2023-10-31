@@ -160,10 +160,8 @@ public class Galo {
         // Tira um certo dano da vida do galo adversário de acordo com o ataque escolhido.
         Random random = new Random();
         int dano = 0;
-        int bonus = 0;
         
         // Informações do oponente
-        int vida_adversario = adversario.getVida();
         String tipo_adversario = adversario.getTipo();
         
         // Escolha do ataque
