@@ -1,8 +1,1 @@
-com\rinha\gui\mainFrame.class
-com\rinha\gui\mainFrame$2.class
-com\rinha\player\Perfil.class
-com\rinha\gui\mainFrame$4.class
-com\rinha\player\GaloDex.class
-com\rinha\gui\mainFrame$1.class
-com\rinha\player\Carteira.class
-com\rinha\gui\mainFrame$3.class
+com/rinha/ataque/Ataque.class

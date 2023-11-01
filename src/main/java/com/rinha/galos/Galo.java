@@ -1,4 +1,5 @@
 package com.rinha.galos;
+import com.rinha.ataque.Ataque;
 import java.util.Random;
 
 public class Galo {
@@ -17,6 +18,34 @@ public class Galo {
     protected int vida;                // 10 - 1.000
     protected String[] ataques;        // Lista com os nomes dos ataques
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
+    
+    //ATAQUES
+    protected Ataque atq01;
+    protected Ataque atq02;
+    protected Ataque atq03;
+    protected Ataque atq04;
+    
+    public String getNomeAtq(int ID){
+        String nomeAtq = null;
+        
+        switch(ID){
+            case 1:
+                nomeAtq = atq01.getNomeAtaque();
+                break;
+            case 2:
+                nomeAtq = atq02.getNomeAtaque();
+                break;
+            case 3:
+                nomeAtq = atq03.getNomeAtaque();
+                break;
+            case 4:
+                nomeAtq = atq04.getNomeAtaque();
+                break;
+        }
+        
+        return nomeAtq;
+            
+    }
     
     
     public String getStatus(){

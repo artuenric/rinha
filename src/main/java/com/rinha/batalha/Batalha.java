@@ -2,6 +2,7 @@ package com.rinha.batalha;
 import com.rinha.galos.Galo;
 import java.util.Random;
 import java.util.Scanner;
+import com.rinha.ataque.Ataque;
 
 public class Batalha {
     private Galo player;
@@ -61,7 +62,8 @@ public class Batalha {
                 dano = this.player.atacar(this.maquina,ataqueId);
                 this.maquina.setVida(this.maquina.getVida() - dano);
             }
-            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getAtaque(ataqueId - 1) + ", o dano foi de " + dano);
+            
+            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getNomeAtq(ataqueId) + ", o dano foi de " + dano);
             System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
             

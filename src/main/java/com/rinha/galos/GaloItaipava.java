@@ -1,10 +1,12 @@
 package com.rinha.galos;
 
 import com.rinha.galos.raridade.Lendario;
+import com.rinha.ataque.Ataque;
 
 public class GaloItaipava extends Galo{
     
     public GaloItaipava(int nivel, String apelido){
+        
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo Itaipava");
@@ -20,13 +22,18 @@ public class GaloItaipava extends Galo{
         this.defesa = raridade.getDefesa();
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
+                
+        this.atq01 = new Ataque("Voadora", 1, this.forca, this.defesa, this.agilidade);
+        this.atq02 = new Ataque("Arremesso de Tampinha", 2, this.forca, this.defesa, this.agilidade);
+        this.atq03 = new Ataque("Ressaca", 3, this.forca, this.defesa, this.agilidade);
+        this.atq04 = new Ataque("Apagar Cigarro", 4, this.forca, this.defesa, this.agilidade);
         
-
         // Nomes para os ataques
         String[] atcks = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};
         setAtaques(atcks);
-      }
-          
+        
+    }
+    
 }
     
 /* 
