@@ -1,5 +1,9 @@
 package com.rinha.galos;
 import com.rinha.ataque.Ataque;
+import com.rinha.ataque.AtaqueBasico;
+import com.rinha.ataque.AtaqueTipificado;
+import com.rinha.ataque.AtaqueAgil;
+import com.rinha.ataque.AtaqueUltimate;
 import java.util.Random;
 
 public class Galo {
@@ -20,33 +24,32 @@ public class Galo {
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
     
     //ATAQUES
-    protected Ataque atq01;
-    protected Ataque atq02;
-    protected Ataque atq03;
-    protected Ataque atq04;
+    protected AtaqueBasico atqBasico;
+    protected AtaqueTipificado atqTipificado;
+    protected AtaqueAgil atqAgil;
+    protected AtaqueUltimate atqUltimate;
     
-    public String getNomeAtq(int ID){
+    public String getNomeAtaque(int ID){
         String nomeAtq = null;
         
         switch(ID){
             case 1:
-                nomeAtq = atq01.getNomeAtaque();
+                nomeAtq = atqBasico.getNomeAtaque();
                 break;
             case 2:
-                nomeAtq = atq02.getNomeAtaque();
+                nomeAtq = atqTipificado.getNomeAtaque();
                 break;
             case 3:
-                nomeAtq = atq03.getNomeAtaque();
+                nomeAtq = atqAgil.getNomeAtaque();
                 break;
             case 4:
-                nomeAtq = atq04.getNomeAtaque();
+                nomeAtq = atqUltimate.getNomeAtaque();
                 break;
         }
         
         return nomeAtq;
             
     }
-    
     
     public String getStatus(){
         return      "\n Nome do Galo: " + this.nome +
@@ -57,10 +60,10 @@ public class Galo {
                       "\n Defesa: " + this.defesa +
                       "\n Agilidade: " + this.agilidade +
                       "\n Valor: " + this.valor + " Moedas" +
-                      "\n Ataquei 1: " + this.ataques[0] +
-                      "\n Ataquei 2: " + this.ataques[1] +
-                      "\n Ataquei 3: " + this.ataques[2] +
-                      "\n Ataquei 4: " + this.ataques[3];
+                      "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() +
+                      "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() +
+                      "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() +
+                      "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque();
     }
     
     
@@ -165,14 +168,14 @@ public class Galo {
     }
     
     public String getAtaques(){
-       return       "\n Ataquei 1: " + this.ataques[0] +
-                      "\n Ataquei 2: " + this.ataques[1] +
-                      "\n Ataquei 3: " + this.ataques[2] +
-                      "\n Ataquei 4: " + this.ataques[3];
+       return       "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() +
+                      "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() +
+                      "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() +
+                      "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque();
     }
     
     public void setAtaques(String[] ataques) {
-        this.ataques = ataques;
+        this.ataques = ataques; //sairá
     }
     
     public boolean isInGaloDex() {
@@ -192,37 +195,41 @@ public class Galo {
         
         // Informações do oponente
         String tipo_adversario = adversario.getTipo();
+            
         
         // Escolha do ataque
         switch (ataque) {
-            case 1: {
+            case 1: { 
                 // Ataque básico baseado em força
-                dano = (this.forca * (this.nivel/10) + this.forca) - (adversario.getDefesa()/2);
+                dano = atqBasico.getDanoBase() - (adversario.getDefesa()/2);
             break;
             }
             
             case 2 : {
+                //Ataque Tipificado
                 // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
-                dano = (this.forca * (this.nivel/10) + this.forca) - (adversario.getDefesa());
+                dano = (atqTipificado.getDanoBase()) - (adversario.getDefesa());
                 if (tipo_adversario.equals(this.vantagem)){
-                    dano += ((random.nextInt(26) + 50) / 100) * this.forca;
+                    dano += (atqTipificado.getBonus() / 100) * this.forca;
             break;    
                 }
             }
             
             case 3: { 
+                //Ataque Agil
                 // Ataque baseado na agilidade, mesma lógica do baseado em força
-                dano =  (this.agilidade * (this.nivel/10) + this.agilidade) - (adversario.getDefesa()/2);
+                dano =  atqAgil.getDanoBase() - (adversario.getDefesa()/2);
             break;
             }
             
             case 4: {
-                dano = (((random.nextInt(121) + 100) / 100) * this.forca) - (adversario.getDefesa()/3);
+                //Ultimate
+                dano = (atqUltimate.getDanoBase() - adversario.getDefesa()/3);
             break;
             }
             
             default:
-                System.out.println("O ataque fornecido para " + getNome() + " não está de acordo aos valores aceitos.");
+                System.out.println("O ataque fornecido para " + this.getNome() + " não está de acordo aos valores aceitos.");
             break;
         }
         

@@ -3,23 +3,23 @@ import com.rinha.galos.Galo;
 import java.util.Random;
 import java.util.Scanner;
 import com.rinha.ataque.Ataque;
+import com.rinha.interfaceusuario.InterfaceUsuario;
 
-public class Batalha {
-    private Galo player;
-    private Galo maquina;
-    private String vencedor;
-    private int premio;
+public class Batalha{
+    protected InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
+    protected Galo player;
+    protected Galo maquina;
+    protected String vencedor;
+    protected int premio;
     
     public Batalha(Galo player, Galo maquina){
         this.player = player;
         this.maquina = maquina;
     }
     
-    Scanner sc = new Scanner(System.in);
-    
     // Modificadores e Acessores
     public Galo getPlayer() {
-        return player;
+        return this.player;
     }
 
     public void setPlayer(Galo player) {
@@ -27,7 +27,7 @@ public class Batalha {
     }
 
     public Galo getMaquina() {
-        return maquina;
+        return this.maquina;
     }
 
     public void setMaquina(Galo maquina) {
@@ -63,7 +63,7 @@ public class Batalha {
                 this.maquina.setVida(this.maquina.getVida() - dano);
             }
             
-            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getNomeAtq(ataqueId) + ", o dano foi de " + dano);
+            System.out.println("\nO Galo: " + this.player.getNome() + " efetuou o ataque: " + this.player.getNomeAtaque(ataqueId) + ", o dano foi de " + dano);
             System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
             
@@ -75,7 +75,7 @@ public class Batalha {
                   dano = this.maquina.atacar(this.player,ataqueId);
                   this.player.setVida(this.player.getVida() - dano);
             }
-            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getAtaque(ataqueId - 1) + ", o dano foi de " + dano);
+            System.out.println("\nO Galo: " + this.maquina.getNome() + " efetuou o ataque: " + this.maquina.getNomeAtaque(ataqueId) + ", o dano foi de " + dano);
             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
             System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
         }
@@ -98,8 +98,13 @@ public class Batalha {
         while ((this.getVencedor() != this.player.getNome()) && (this.getVencedor() != this.maquina.getNome())){
             
             if (turno ==  0){
-                System.out.print("\nAtaques disponiveis: " + this.player.getAtaques() + "\n Escolha um ataque: ");
-                decidirAtaques = sc.nextInt();
+                
+                decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
+                
+                while(decidirAtaques < 1 || decidirAtaques > 4 ){
+                    System.out.println("Valor invalido para ataques, Tente Novamente!");
+                    decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
+                }
                 
                 infoTurno(turno, decidirAtaques);
                 turno = 1;

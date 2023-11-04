@@ -1,7 +1,11 @@
 package com.rinha.galos;
 
 import com.rinha.galos.raridade.Lendario;
-import com.rinha.ataque.Ataque;
+import com.rinha.ataque.AtaqueBasico;
+import com.rinha.ataque.AtaqueTipificado;
+import com.rinha.ataque.AtaqueAgil;
+import com.rinha.ataque.AtaqueUltimate;
+
 
 public class GaloItaipava extends Galo{
     
@@ -23,10 +27,10 @@ public class GaloItaipava extends Galo{
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
                 
-        this.atq01 = new Ataque("Voadora", 1, this.forca, this.defesa, this.agilidade);
-        this.atq02 = new Ataque("Arremesso de Tampinha", 2, this.forca, this.defesa, this.agilidade);
-        this.atq03 = new Ataque("Ressaca", 3, this.forca, this.defesa, this.agilidade);
-        this.atq04 = new Ataque("Apagar Cigarro", 4, this.forca, this.defesa, this.agilidade);
+        this.atqBasico = new AtaqueBasico("Voadora", this.forca, this.nivel, this.agilidade);
+        this.atqTipificado = new AtaqueTipificado("Arremesso de Tampinha", this.nivel, this.defesa, this.agilidade);
+        this.atqAgil = new AtaqueAgil("Ressaca", this.forca, this.nivel, this.agilidade);
+        this.atqUltimate = new AtaqueUltimate("Apagar Cigarro", this.forca, this.nivel, this.agilidade);
         
         // Nomes para os ataques
         String[] atcks = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};

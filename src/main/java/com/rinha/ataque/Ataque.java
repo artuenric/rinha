@@ -23,11 +23,7 @@ public abstract class Ataque {
         return this.nomeAtaque;
     }
     
-    public int getDanoBase(boolean bonus){
-        
-        if (bonus){
-            return this.dano + 
-        } 
+    public int getDanoBase(){
         
         return this.dano;
          

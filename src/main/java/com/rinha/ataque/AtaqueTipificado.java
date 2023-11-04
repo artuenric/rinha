@@ -20,17 +20,17 @@ public class AtaqueTipificado extends Ataque implements Golpe {
     }
     
     @Override
-    public void defineDano(boolean bonus){
-        
-        this.dano = this.forca * (this.nivel/10) + this.forca;
+    public void defineDano(){
+        this.dano = this.forca * (this.nivel/10) + this.forca; //dava p simplificar e por direto no construtor mas o ratola quer se aparecer
     }
 
     @Override
     public void definePontosDePoder() {
         
-    }
+    }   
     
-    public int setBonus(){
+    public int getBonus(){
+        //Método especifico deste ataque, para setar bonus de tipificação
         Random random = new Random();
         return random.nextInt(26) +50;
     }
