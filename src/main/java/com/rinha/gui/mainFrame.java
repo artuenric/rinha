@@ -4,6 +4,8 @@
  */
 package com.rinha.gui;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author artue
@@ -28,14 +30,12 @@ public class mainFrame extends javax.swing.JFrame {
 
         painelPrincipal = new javax.swing.JPanel();
         telaInicial = new javax.swing.JPanel();
-        botaoBatalhaRapida = new javax.swing.JButton();
-        botaoTorneios = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        botaoSettings = new javax.swing.JButton();
+        botaoHelp = new javax.swing.JButton();
+        botaoPlay = new javax.swing.JButton();
+        labelBackgroundTelaInicial = new javax.swing.JLabel();
+        telaDashBoard = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         telaLoja = new javax.swing.JPanel();
         telaBatalha = new javax.swing.JPanel();
 
@@ -64,61 +64,69 @@ public class mainFrame extends javax.swing.JFrame {
         telaInicial.setName(""); // NOI18N
         telaInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botaoBatalhaRapida.setBackground(new java.awt.Color(255, 156, 69));
-        botaoBatalhaRapida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        botaoBatalhaRapida.setForeground(new java.awt.Color(238, 240, 242));
-        botaoBatalhaRapida.setText("Batalha Rápida");
-        botaoBatalhaRapida.addActionListener(new java.awt.event.ActionListener() {
+        botaoSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/botaoSettings.png"))); // NOI18N
+        botaoSettings.setText("");
+        botaoSettings.setContentAreaFilled(false);
+        telaInicial.add(botaoSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 40, 40));
+
+        botaoHelp.setBackground(new java.awt.Color(228, 56, 82));
+        botaoHelp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        botaoHelp.setForeground(new java.awt.Color(238, 240, 242));
+        botaoHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/botaoHelp.png"))); // NOI18N
+        botaoHelp.setContentAreaFilled(false);
+        botaoHelp.setFocusPainted(false);
+        botaoHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoBatalhaRapidaActionPerformed(evt);
+                botaoHelpActionPerformed(evt);
             }
         });
-        telaInicial.add(botaoBatalhaRapida, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 220, 60));
+        telaInicial.add(botaoHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 30, 40));
 
-        botaoTorneios.setBackground(new java.awt.Color(255, 156, 69));
-        botaoTorneios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        botaoTorneios.setForeground(new java.awt.Color(238, 240, 242));
-        botaoTorneios.setText("Torneios");
-        botaoTorneios.setToolTipText("");
-        botaoTorneios.setActionCommand("Torneios");
-        botaoTorneios.addActionListener(new java.awt.event.ActionListener() {
+        botaoPlay.setBackground(new java.awt.Color(246, 110, 21));
+        botaoPlay.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
+        botaoPlay.setForeground(new java.awt.Color(238, 240, 242));
+        botaoPlay.setText("play");
+        botaoPlay.setBorder(null);
+        botaoPlay.setFocusPainted(false);
+        botaoPlay.setRolloverEnabled(false);
+        botaoPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoTorneiosActionPerformed(evt);
+                botaoPlayActionPerformed(evt);
             }
         });
-        telaInicial.add(botaoTorneios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 220, 60));
+        telaInicial.add(botaoPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 240, 60));
 
-        jButton3.setLabel("S");
-        telaInicial.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 40, 40));
-
-        jButton4.setText("jButton4");
-        telaInicial.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 40, 80, 80));
-
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton5.setText("GaloDex");
-        telaInicial.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 140, 80, -1));
-
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setText("Loja");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        telaInicial.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 170, 80, -1));
-
-        jButton7.setBackground(new java.awt.Color(228, 56, 82));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(238, 240, 242));
-        jButton7.setText("?");
-        jButton7.setFocusPainted(false);
-        telaInicial.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 40, 40));
-
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setText("i");
-        telaInicial.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 40, 40));
+        labelBackgroundTelaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telainicial.png"))); // NOI18N
+        telaInicial.add(labelBackgroundTelaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         painelPrincipal.add(telaInicial, "telaInicial");
+
+        telaDashBoard.setAlignmentX(0.0F);
+        telaDashBoard.setAlignmentY(0.0F);
+        telaDashBoard.setMaximumSize(getPreferredSize());
+        telaDashBoard.setMinimumSize(getPreferredSize());
+        telaDashBoard.setPreferredSize(getPreferredSize());
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout telaDashBoardLayout = new javax.swing.GroupLayout(telaDashBoard);
+        telaDashBoard.setLayout(telaDashBoardLayout);
+        telaDashBoardLayout.setHorizontalGroup(
+            telaDashBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaDashBoardLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(481, Short.MAX_VALUE))
+        );
+        telaDashBoardLayout.setVerticalGroup(
+            telaDashBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaDashBoardLayout.createSequentialGroup()
+                .addContainerGap(314, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
+        );
+
+        painelPrincipal.add(telaDashBoard, "telaDashBoard");
 
         telaLoja.setAlignmentX(0.0F);
         telaLoja.setAlignmentY(0.0F);
@@ -173,17 +181,15 @@ public class mainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoBatalhaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBatalhaRapidaActionPerformed
+    private void botaoHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHelpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoBatalhaRapidaActionPerformed
+    }//GEN-LAST:event_botaoHelpActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void botaoTorneiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneiosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoTorneiosActionPerformed
+    private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
+        // botaoPlay encaminha a tela para o dashboard
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "telaDashBoard");
+    }//GEN-LAST:event_botaoPlayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,16 +227,14 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoBatalhaRapida;
-    private javax.swing.JButton botaoTorneios;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton botaoHelp;
+    private javax.swing.JButton botaoPlay;
+    private javax.swing.JButton botaoSettings;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel labelBackgroundTelaInicial;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel telaBatalha;
+    private javax.swing.JPanel telaDashBoard;
     private javax.swing.JPanel telaInicial;
     private javax.swing.JPanel telaLoja;
     // End of variables declaration//GEN-END:variables
