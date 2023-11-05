@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.rinha.gui;
 
 import java.awt.CardLayout;
 
-/**
- *
- * @author artue
- */
 public class mainFrame extends javax.swing.JFrame {
 
     /**
@@ -18,7 +10,16 @@ public class mainFrame extends javax.swing.JFrame {
     public mainFrame() {
         initComponents();
     }
-
+    
+    /*
+    * Minhas funções para auxiliar na interface
+    */
+    
+    public void trocarTela(String nomeDoCard){
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, nomeDoCard);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +37,12 @@ public class mainFrame extends javax.swing.JFrame {
         labelBackgroundTelaInicial = new javax.swing.JLabel();
         telaDashBoard = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        menuInicial = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        botaoPerfil = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        botaoGaloDex = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         telaLoja = new javax.swing.JPanel();
         telaBatalha = new javax.swing.JPanel();
 
@@ -65,7 +72,6 @@ public class mainFrame extends javax.swing.JFrame {
         telaInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botaoSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/botaoSettings.png"))); // NOI18N
-        botaoSettings.setText("");
         botaoSettings.setContentAreaFilled(false);
         telaInicial.add(botaoSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 40, 40));
 
@@ -106,25 +112,49 @@ public class mainFrame extends javax.swing.JFrame {
         telaDashBoard.setMaximumSize(getPreferredSize());
         telaDashBoard.setMinimumSize(getPreferredSize());
         telaDashBoard.setPreferredSize(getPreferredSize());
+        telaDashBoard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
+        jButton1.setBackground(new java.awt.Color(255, 135, 30));
+        jButton1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Torneios");
+        telaDashBoard.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 386, 182, 54));
 
-        javax.swing.GroupLayout telaDashBoardLayout = new javax.swing.GroupLayout(telaDashBoard);
-        telaDashBoard.setLayout(telaDashBoardLayout);
-        telaDashBoardLayout.setHorizontalGroup(
-            telaDashBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(telaDashBoardLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(481, Short.MAX_VALUE))
-        );
-        telaDashBoardLayout.setVerticalGroup(
-            telaDashBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaDashBoardLayout.createSequentialGroup()
-                .addContainerGap(314, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
-        );
+        menuInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/menuIcon.png"))); // NOI18N
+        menuInicial.setAlignmentY(0.0F);
+        menuInicial.setContentAreaFilled(false);
+        telaDashBoard.add(menuInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 48, 48));
+
+        jButton3.setBackground(new java.awt.Color(75, 150, 187));
+        jButton3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Loja");
+        telaDashBoard.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 386, 182, 54));
+
+        botaoPerfil.setBackground(new java.awt.Color(228, 56, 82));
+        botaoPerfil.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        botaoPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        botaoPerfil.setText("Perfil");
+        botaoPerfil.setAlignmentY(0.0F);
+        telaDashBoard.add(botaoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 100, 31));
+
+        jButton5.setBackground(new java.awt.Color(255, 135, 30));
+        jButton5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Partida Rápida");
+        telaDashBoard.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 182, 54));
+
+        botaoGaloDex.setBackground(new java.awt.Color(228, 56, 82));
+        botaoGaloDex.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        botaoGaloDex.setForeground(new java.awt.Color(255, 255, 255));
+        botaoGaloDex.setText("GaloDex");
+        botaoGaloDex.setAlignmentY(0.0F);
+        telaDashBoard.add(botaoGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 83, 100, 31));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/dash.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setToolTipText("");
+        telaDashBoard.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         painelPrincipal.add(telaDashBoard, "telaDashBoard");
 
@@ -187,8 +217,7 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
         // botaoPlay encaminha a tela para o dashboard
-        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-        cl.show(painelPrincipal, "telaDashBoard");
+        trocarTela("telaDashBoard");
     }//GEN-LAST:event_botaoPlayActionPerformed
 
     /**
@@ -227,11 +256,17 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoGaloDex;
     private javax.swing.JButton botaoHelp;
+    private javax.swing.JButton botaoPerfil;
     private javax.swing.JButton botaoPlay;
     private javax.swing.JButton botaoSettings;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBackgroundTelaInicial;
+    private javax.swing.JButton menuInicial;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel telaBatalha;
     private javax.swing.JPanel telaDashBoard;
