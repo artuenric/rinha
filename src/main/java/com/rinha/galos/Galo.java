@@ -29,6 +29,26 @@ public class Galo {
     protected AtaqueAgil atqAgil;
     protected AtaqueUltimate atqUltimate;
     
+    //Pontos de Poder de cada Ataque
+    
+    
+    
+    public AtaqueBasico getAtqBasico(){
+        return atqBasico;
+    }
+    
+    public AtaqueTipificado getAtqTipificado(){
+        return atqTipificado;
+    }
+    
+    public AtaqueUltimate getAtqUltimate(){
+        return atqUltimate;
+    }
+    
+    public AtaqueAgil getAtqAgil(){
+        return atqAgil;
+    }
+    
     public String getNomeAtaque(int ID){
         String nomeAtq = null;
         
@@ -49,6 +69,13 @@ public class Galo {
         
         return nomeAtq;
             
+    }
+    
+    public String getInfoAtaques(){
+    return    "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() + " PP: " + this.atqBasico.getPontosDePoderAtual() +
+              "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() + " PP: " + this.atqTipificado.getPontosDePoderAtual() +
+              "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() + " PP: " + this.atqAgil.getPontosDePoderAtual() +
+              "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque() + " PP: " + this.atqUltimate.getPontosDePoderAtual(); 
     }
     
     public String getStatus(){

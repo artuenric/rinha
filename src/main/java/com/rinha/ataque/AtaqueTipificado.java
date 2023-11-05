@@ -16,7 +16,9 @@ public class AtaqueTipificado extends Ataque implements Golpe {
            this.forca = forca;
            this.nivel = nivel;
            this.agilidade = agilidade;
-           defineDano();
+           this.defineDano();
+           this.definePontosDePoder();
+           this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
     }
     
     @Override
@@ -26,7 +28,7 @@ public class AtaqueTipificado extends Ataque implements Golpe {
 
     @Override
     public void definePontosDePoder() {
-        
+        this.pontosDePoderOriginal = 8; //Substituir pela lógica para atribuição dos pontos de poder
     }   
     
     public int getBonus(){

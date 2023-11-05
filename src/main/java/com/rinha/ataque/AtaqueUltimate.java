@@ -9,7 +9,9 @@ public class AtaqueUltimate extends Ataque implements Golpe {
            this.forca = forca;
            this.nivel = nivel;
            this.agilidade = agilidade;
-           defineDano();
+           this.defineDano();
+           this.definePontosDePoder();
+           this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
     }
     
     @Override
@@ -20,7 +22,7 @@ public class AtaqueUltimate extends Ataque implements Golpe {
 
     @Override
     public void definePontosDePoder() {
-        
+        this.pontosDePoderOriginal = 5; //Substituir pela lógica para atribuição dos pontos de poder
     }
    
     

@@ -15,8 +15,15 @@ public class InterfaceUsuario {
         Scanner sc = new Scanner(System.in);
         int decidirAtaques;
         
-        System.out.print("\nAtaques disponiveis: " + this.player.getAtaques() + "\n Escolha um ataque: ");
-        return decidirAtaques = sc.nextInt(); 
+        System.out.print("\nAtaques disponiveis: " + this.player.getInfoAtaques() + "\n Escolha um ataque: ");
+        decidirAtaques = sc.nextInt(); 
+        
+        while(decidirAtaques < 1 || decidirAtaques > 4 ){
+                System.out.println("Valor invalido para ataques, Tente Novamente!");
+                decidirAtaques = this.getDecidirAtaques(this.player);
+        }
+        
+        return decidirAtaques; 
     }
     
 }

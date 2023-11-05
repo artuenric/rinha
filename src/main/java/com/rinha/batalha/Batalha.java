@@ -1,20 +1,32 @@
 package com.rinha.batalha;
 import com.rinha.galos.Galo;
 import java.util.Random;
-import java.util.Scanner;
 import com.rinha.ataque.Ataque;
 import com.rinha.interfaceusuario.InterfaceUsuario;
 
 public class Batalha{
     protected InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
+    
     protected Galo player;
     protected Galo maquina;
+    
+    protected Galo atacante;
+    protected Galo atacado;
+    
     protected String vencedor;
     protected int premio;
     
     public Batalha(Galo player, Galo maquina){
         this.player = player;
         this.maquina = maquina;
+    }
+    
+    public void setAtacante(Galo atacante){
+        this.atacante = atacante;
+    }    
+    
+    public void setAtacado(Galo atacado){
+        this.atacado = atacado;
     }
     
     // Modificadores e Acessores
@@ -50,12 +62,59 @@ public class Batalha{
         return this.vencedor;
     }
     
+    public void atualizaPontosDePoder(int ataqueId){
+        /*Função serve para atualizar os pontos de poder, recebendo o numero do ataque 
+        (de acordo com a interface de linha de comando que controla os ataques, ainda não está adaptado para botões)*/
+        
+        switch(ataqueId){ //decrementa pontos de poder para controle dos mesmos
+            case 1:
+                this.atacante.getAtqBasico().setPontosDePoderAtual(this.atacante.getAtqBasico().getPontosDePoderAtual() - 1); //Remove 1 de PP do ataque basico
+            break;
+            case 2:
+                this.atacante.getAtqTipificado().setPontosDePoderAtual(this.atacante.getAtqTipificado().getPontosDePoderAtual() - 1); //Remove 1 de PP do ataque tipificado
+            break;
+            case 3:
+               this.atacante.getAtqAgil().setPontosDePoderAtual(this.atacante.getAtqAgil().getPontosDePoderAtual() - 1); //Remove 1 de PP do ataque agil
+            break;
+            case 4:
+                this.atacante.getAtqUltimate().setPontosDePoderAtual(this.atacante.getAtqUltimate().getPontosDePoderAtual() - 1); //Remove 1 de PP do ataque ultimate
+            break;
+        }    
+    }
+    
+    public int verificaPontosDePoder(int ataqueId){
+        /*Função serve para verificar a quantidade de pontos de poder, recebe o numero do ataque 
+        (de acordo com a interface de linha de comando que controla os ataques, ainda não está adaptado para botões)*/
+        
+        
+        if (ataqueId == 1){
+            return this.atacante.getAtqBasico().getPontosDePoderAtual(); 
+        }
+        
+        if(ataqueId == 2){   
+            return this.atacante.getAtqTipificado().getPontosDePoderAtual(); 
+        }
+        
+        if (ataqueId == 3){
+            return this.atacante.getAtqAgil().getPontosDePoderAtual();
+        }
+        
+        if (ataqueId == 4){
+           return this.atacante.getAtqUltimate().getPontosDePoderAtual();
+        }
+        
+        return 0;
+    }
+    
+    /*
     public void infoTurno(int turn, int ataqueId){
         
         int dano = 0;
         
-        if (turn == 0){
+        if (turn == 0){ //Vez do Player
             
+            this.atualizaPontosDePoder(ataqueId);    
+                   
             if (this.maquina.esquivar()){
                 System.out.println("\nMinha nossa! " + this.maquina.getApelido() + " esquivou!");
             } else {
@@ -67,7 +126,7 @@ public class Batalha{
             System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
             System.out.println("Vida de Galo: " + this.maquina.getNome() + ": " + this.maquina.getVida());
             
-        } else if(turn == 1){
+        } else if(turn == 1){ //Vez da Máquina
             
             if (this.player.esquivar()){
                   System.out.println("\nMinha nossa! " + this.player.getApelido() + " esquivou!");
@@ -80,8 +139,35 @@ public class Batalha{
             System.out.println("Vida de Galo: " + this.player.getNome() + ": " + this.player.getVida());
         }
     }
+    */
     
     // Métodos principais
+    
+    public void combate(Galo atacante, Galo atacado, int ataqueId){
+        
+        this.setAtacante(atacante);
+        this.setAtacado(atacado);
+        
+        int dano = 0;
+        
+        if(this.verificaPontosDePoder(ataqueId) == 0){
+            System.out.println("Pontos de Poder Insuficiente para utilização do ataque");
+        } else {
+                   
+            if (this.atacado.esquivar()){
+                System.out.println("\nMinha nossa! " + this.atacado.getApelido() + " esquivou!");
+            } else {
+                dano = this.atacante.atacar(this.atacado,ataqueId);
+                this.atacado.setVida(this.atacado.getVida() - dano);
+            }
+
+            System.out.println("\nO Galo: " + this.atacante.getNome() + " efetuou o ataque: " + this.atacante.getNomeAtaque(ataqueId) + ", o dano foi de " + dano);
+            System.out.println("Vida de Galo: " + this.atacante.getNome() + ": " + this.atacante.getVida());
+            System.out.println("Vida de Galo: " + this.atacado.getNome() + ": " + this.atacado.getVida());
+            
+            this.atualizaPontosDePoder(ataqueId);
+        }    
+    }
     
     public void batalhar(){
         // Ataca o galo inimigo
@@ -101,17 +187,16 @@ public class Batalha{
                 
                 decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
                 
-                while(decidirAtaques < 1 || decidirAtaques > 4 ){
-                    System.out.println("Valor invalido para ataques, Tente Novamente!");
-                    decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
-                }
-                
-                infoTurno(turno, decidirAtaques);
+                combate(this.player, this.maquina, decidirAtaques);
+                this.setPlayer(this.atacante);
+                this.setMaquina(this.atacado);
                 turno = 1;
             } else {
-                    int ataqueAleatorio = random.nextInt(4) +  1; 
+                int ataqueAleatorio = random.nextInt(4) +  1; 
 
-                infoTurno(turno, ataqueAleatorio);
+                combate(this.maquina, this.player, ataqueAleatorio);
+                this.setMaquina(this.atacante);
+                this.setPlayer(this.atacado);
                 turno = 0;
           } 
           
