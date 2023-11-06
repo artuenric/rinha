@@ -32,9 +32,5 @@ public class GaloPolicialFederal extends Galo{
         this.atqTipificado = new AtaqueTipificado("Oprimir ", this.nivel, this.defesa, this.agilidade);
         this.atqAgil = new AtaqueAgil("Operação Policial", this.forca, this.nivel, this.agilidade);
         this.atqUltimate = new AtaqueUltimate("Motopatrulhamento Ostensivo", this.forca, this.nivel, this.agilidade);
-        
-        // Nomes para os ataques
-        String[] atcks = {"Coronhada", "Oprimir", "AK-47 é o porte do homem", "Motopatrulhamentostensivo"};
-        setAtaques(atcks);
     }
 }
