@@ -31,5 +31,9 @@ public class GaloBMW extends Galo {
         this.atqTipificado = new AtaqueTipificado("VrumVrum Gatinha", this.nivel, this.defesa, this.agilidade);
         this.atqAgil = new AtaqueAgil("Gasolina de Milho", this.forca, this.nivel, this.agilidade);
         this.atqUltimate = new AtaqueUltimate("Freio da Blazer", this.forca, this.nivel, this.agilidade);
+
+        // Nomes para os ataques
+        String[] atcks = {"Atropelamento", "VrumVrumGatinha", "Gasolina de Milho", "Freio da Blazer"};
+        setAtaques(atcks);
     }     
 }

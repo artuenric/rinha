@@ -30,6 +30,10 @@ public class GaloCiborg extends Galo {
         this.atqTipificado = new AtaqueTipificado("Curto Circuito", this.nivel, this.defesa, this.agilidade);
         this.atqAgil = new AtaqueAgil("Chute Mecânico", this.forca, this.nivel, this.agilidade);
         this.atqUltimate = new AtaqueUltimate("Raio Laser", this.forca, this.nivel, this.agilidade);
+
+        // Nomes para os ataques
+        String[] atcks = {"Curso do SENAI", "Curto circuito", "Chute mecânico", "Raio laser"};
+        setAtaques(atcks);
     }
     
 }

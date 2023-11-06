@@ -31,5 +31,11 @@ public class GaloCego extends Galo{
         this.atqTipificado = new AtaqueTipificado("Midnight Club", this.nivel, this.defesa, this.agilidade);
         this.atqAgil = new AtaqueAgil("Sol da Meia Noite", this.forca, this.nivel, this.agilidade);
         this.atqUltimate = new AtaqueUltimate("Comprar Alimento", this.forca, this.nivel, this.agilidade);
+        
+        
+        
+        // Nomes para os ataques
+        String[] atcks = {"5 Reais", "midnight club", "sol da meia noite", "Comprar alimento"};
+        setAtaques(atcks);
     }
 }
