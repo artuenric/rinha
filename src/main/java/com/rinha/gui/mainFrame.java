@@ -1,23 +1,121 @@
 package com.rinha.gui;
 
+import com.rinha.batalha.Batalha;
+import com.rinha.galos.*;
 import java.awt.CardLayout;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JProgressBar;
 
 public class mainFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form mainFrame
-     */
+    // Propriedades para a batalha
+    Batalha batalhaAtual;
+    int usuarioAtq = 0;
+    
+    
     public mainFrame() {
+        // Essa iniciaização acontece por que as informações da interface dependem disso. (Nome do ataque no botão...)
+        // Parece gambiarra, ver depois.
+        criarBatalhaRapida();
         initComponents();
     }
     
     /*
     * Minhas funções para auxiliar na interface
-    */
-    
+    */ 
     public void trocarTela(String nomeDoCard){
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
         cl.show(painelPrincipal, nomeDoCard);
+    }
+    
+    /**
+    * Funções para batalha
+    */
+    public void criarBatalhaRapida(){
+        // Futuramente funcionar com o nível e raridade do galo da coleção escolhido. Deverá ser o parâmetro.
+        GaloItaipava player = new GaloItaipava(3,"Geraldo");
+        GaloCego maquina = new GaloCego(3, "Alimento");
+        
+        // Define a batalha criada para a batalha atual
+        Batalha pr = new Batalha(player, maquina);
+        batalhaAtual = pr;      
+    }
+    
+    public void maquinaAtaca(){
+         // Escolhe o ataque da máquina
+        Random random = new Random();
+        int atqId = random.nextInt(5)+1;
+        
+        // Garante que a máquina só vai atacar se o ataque tiver PP
+        batalhaAtual.setAtacante(batalhaAtual.getMaquina());
+        while (batalhaAtual.verificaPontosDePoder(atqId) == 0){
+            atqId = random.nextInt(5)+1;
+        }        
+                
+        int dano = batalhaAtual.combate(batalhaAtual.getMaquina(), batalhaAtual.getPlayer(), atqId);
+        updateBarraVida(batalhaAtual.getPlayer(), vidaPlayer, dano);
+    }
+    
+    public boolean playerAtaca(int atqId){
+        int dano = 0;
+        // Garante o retorno do verifica pontos de poder -> Passar como argumento o galo batalhaAtual.atacante
+        batalhaAtual.setAtacante(batalhaAtual.getPlayer());
+        
+        if (batalhaAtual.verificaPontosDePoder(atqId) != 0){
+            // Player Ataca
+            dano = batalhaAtual.combate(batalhaAtual.getPlayer(), batalhaAtual.getMaquina(), usuarioAtq);
+            
+            // Redefine para usuarioAtq para 0, obrigando o usuário a selecionar um Ataque
+            usuarioAtq = 0;
+            
+            // Atualiza as informações da tela
+            updateLabelsAtq();
+            updateBarraVida(batalhaAtual.getMaquina(), vidaMaquina, dano);
+            
+            return true;
+        }
+        return false;
+    }
+    
+    public void updateBarraVida(Galo galo, JProgressBar barraVida, int dano){
+        int danoPercentual = (dano * 100) / galo.getVida();
+        barraVida.setValue(barraVida.getValue() - danoPercentual);
+        
+    }
+    
+    public void updateLabelsAtq(){
+        // Atualiza label do pp e do nome do ataque
+        String pp = "";
+        switch (usuarioAtq){
+            case 0: {
+                labelNomeAtq.setText("Selecione o Ataque");
+                labelPP.setText(" ");
+                break;
+            }
+            case 1: {
+                labelNomeAtq.setText(botaoAtqBasico.getText());
+                pp = Integer.toString(batalhaAtual.getPlayer().getAtqBasico().getPontosDePoderAtual());
+                break;
+            }   
+            case 2: {
+                labelNomeAtq.setText(botaoAtqTipificado.getText());
+                pp = Integer.toString(batalhaAtual.getPlayer().getAtqTipificado().getPontosDePoderAtual());
+                break;
+            }
+            case 3: {
+                labelNomeAtq.setText(botaoAtqAgil.getText());
+                pp = Integer.toString(batalhaAtual.getPlayer().getAtqAgil().getPontosDePoderAtual());
+                break;
+            }
+            case 4: {
+                labelNomeAtq.setText(botaoAtqUltimate.getText());
+                pp = Integer.toString(batalhaAtual.getPlayer().getAtqUltimate().getPontosDePoderAtual());
+                break;
+            }
+        }
+        // Atualiza a label, finalmente
+        labelPP.setText("PP: " + pp);
     }
     
     /**
@@ -32,8 +130,8 @@ public class mainFrame extends javax.swing.JFrame {
         painelPrincipal = new javax.swing.JPanel();
         telaInicial = new javax.swing.JPanel();
         botaoSettings = new javax.swing.JButton();
-        botaoHelp = new javax.swing.JButton();
         botaoPlay = new javax.swing.JButton();
+        labelRinhaNome = new javax.swing.JLabel();
         labelBackgroundTelaInicial = new javax.swing.JLabel();
         telaDashBoard = new javax.swing.JPanel();
         botaoTorneios = new javax.swing.JButton();
@@ -45,21 +143,21 @@ public class mainFrame extends javax.swing.JFrame {
         labelBackgroundDashBoard = new javax.swing.JLabel();
         telaLoja = new javax.swing.JPanel();
         telaBatalha = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        labelFotoPlayer = new javax.swing.JLabel();
+        painelFuncoesAtaque = new javax.swing.JPanel();
+        botaoAtqBasico = new javax.swing.JButton();
+        botaoAtqTipificado = new javax.swing.JButton();
+        botaoAtqUltimate = new javax.swing.JButton();
+        botaoAtqAgil = new javax.swing.JButton();
+        botaoAtacar = new javax.swing.JButton();
         labelPP = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        botaoItens = new javax.swing.JButton();
+        labelNomeAtq = new javax.swing.JLabel();
+        labelFotoMaquina = new javax.swing.JLabel();
+        vidaMaquina = new javax.swing.JProgressBar();
+        vidaPlayer = new javax.swing.JProgressBar();
+        labelNomePlayer = new javax.swing.JLabel();
+        labelNomeMaquina = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -88,20 +186,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         botaoSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/botaoSettings.png"))); // NOI18N
         botaoSettings.setContentAreaFilled(false);
-        telaInicial.add(botaoSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 40, 40));
-
-        botaoHelp.setBackground(new java.awt.Color(228, 56, 82));
-        botaoHelp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        botaoHelp.setForeground(new java.awt.Color(238, 240, 242));
-        botaoHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/botaoHelp.png"))); // NOI18N
-        botaoHelp.setContentAreaFilled(false);
-        botaoHelp.setFocusPainted(false);
-        botaoHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoHelpActionPerformed(evt);
-            }
-        });
-        telaInicial.add(botaoHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 30, 40));
+        telaInicial.add(botaoSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 40, 40));
 
         botaoPlay.setBackground(new java.awt.Color(246, 110, 21));
         botaoPlay.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
@@ -115,9 +200,12 @@ public class mainFrame extends javax.swing.JFrame {
                 botaoPlayActionPerformed(evt);
             }
         });
-        telaInicial.add(botaoPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 240, 60));
+        telaInicial.add(botaoPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 200, 50));
 
-        labelBackgroundTelaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telainicial.png"))); // NOI18N
+        labelRinhaNome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/nomerinha.png"))); // NOI18N
+        telaInicial.add(labelRinhaNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 240, 90));
+
+        labelBackgroundTelaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gifs/telaInicial.gif"))); // NOI18N
         telaInicial.add(labelBackgroundTelaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         painelPrincipal.add(telaInicial, "telaInicial");
@@ -143,6 +231,11 @@ public class mainFrame extends javax.swing.JFrame {
         menuInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/menuIcon.png"))); // NOI18N
         menuInicial.setAlignmentY(0.0F);
         menuInicial.setContentAreaFilled(false);
+        menuInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInicialActionPerformed(evt);
+            }
+        });
         telaDashBoard.add(menuInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 48, 48));
 
         botaoLoja.setBackground(new java.awt.Color(75, 150, 187));
@@ -207,101 +300,126 @@ public class mainFrame extends javax.swing.JFrame {
         telaBatalha.setMinimumSize(getPreferredSize());
         telaBatalha.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("jLabel2");
-        jLabel2.setMaximumSize(jLabel2.getPreferredSize());
-        jLabel2.setMinimumSize(jLabel2.getPreferredSize());
-        telaBatalha.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 150, 150));
+        labelFotoPlayer.setText("jLabel2");
+        labelFotoPlayer.setMaximumSize(labelFotoPlayer.getPreferredSize());
+        labelFotoPlayer.setMinimumSize(labelFotoPlayer.getPreferredSize());
+        telaBatalha.add(labelFotoPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 150, 150));
 
-        jPanel1.setBackground(new java.awt.Color(238, 240, 242));
+        painelFuncoesAtaque.setBackground(new java.awt.Color(238, 240, 242));
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoAtqBasico.setText(batalhaAtual.getPlayer().getAtqBasico().getNomeAtaque());
+        botaoAtqBasico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoAtqBasicoActionPerformed(evt);
             }
         });
 
-        jButton3.setText("jButton3");
+        botaoAtqTipificado.setText(batalhaAtual.getPlayer().getAtqTipificado().getNomeAtaque());
+        botaoAtqTipificado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtqTipificadoActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        botaoAtqUltimate.setText(batalhaAtual.getPlayer().getAtqUltimate().getNomeAtaque());
+        botaoAtqUltimate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtqUltimateActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("jButton5");
+        botaoAtqAgil.setText(batalhaAtual.getPlayer().getAtqAgil().getNomeAtaque());
+        botaoAtqAgil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtqAgilActionPerformed(evt);
+            }
+        });
+
+        botaoAtacar.setText("Atacar");
+        botaoAtacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtacarActionPerformed(evt);
+            }
+        });
 
         labelPP.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         labelPP.setText("PP:");
         labelPP.setAlignmentY(0.0F);
 
-        jButton6.setText("jButton5");
+        botaoItens.setText("Itens");
+        botaoItens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoItensActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel6.setText("Ataque");
+        labelNomeAtq.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        labelNomeAtq.setText("Ataque");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelFuncoesAtaqueLayout = new javax.swing.GroupLayout(painelFuncoesAtaque);
+        painelFuncoesAtaque.setLayout(painelFuncoesAtaqueLayout);
+        painelFuncoesAtaqueLayout.setHorizontalGroup(
+            painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoAtqTipificado, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAtqBasico, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoAtqAgil, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAtqUltimate, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
+                        .addComponent(botaoAtacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)
+                        .addComponent(botaoItens)
                         .addGap(30, 30, 30))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
+                        .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelPP)
-                            .addComponent(jLabel6))
+                            .addComponent(labelNomeAtq))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        painelFuncoesAtaqueLayout.setVerticalGroup(
+            painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botaoAtqAgil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoAtqBasico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
+                        .addComponent(labelNomeAtq)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelPP, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAtqTipificado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAtqUltimate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoItens, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
-        telaBatalha.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 720, 160));
+        telaBatalha.add(painelFuncoesAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 720, 160));
 
-        jLabel3.setText("jLabel3");
-        jLabel3.setMaximumSize(new java.awt.Dimension(140, 140));
-        jLabel3.setMinimumSize(new java.awt.Dimension(140, 140));
-        jLabel3.setPreferredSize(new java.awt.Dimension(140, 140));
-        telaBatalha.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 140, 140));
-        telaBatalha.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 200, 20));
-        telaBatalha.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 200, 20));
+        labelFotoMaquina.setText("jLabel3");
+        labelFotoMaquina.setMaximumSize(new java.awt.Dimension(140, 140));
+        labelFotoMaquina.setMinimumSize(new java.awt.Dimension(140, 140));
+        labelFotoMaquina.setPreferredSize(new java.awt.Dimension(140, 140));
+        telaBatalha.add(labelFotoMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 140, 140));
+        telaBatalha.add(vidaMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 200, 20));
+        telaBatalha.add(vidaPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 200, 20));
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel1.setText("jLabel1");
-        telaBatalha.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
+        labelNomePlayer.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        labelNomePlayer.setText(batalhaAtual.getPlayer().getApelido());
+        telaBatalha.add(labelNomePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel4.setText("jLabel4");
-        telaBatalha.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+        labelNomeMaquina.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        labelNomeMaquina.setText(batalhaAtual.getMaquina().getApelido());
+        telaBatalha.add(labelNomeMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
         painelPrincipal.add(telaBatalha, "telaBatalha");
 
@@ -322,10 +440,6 @@ public class mainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHelpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoHelpActionPerformed
-
     private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
         // botaoPlay encaminha a tela para o dashboard
         trocarTela("telaDashBoard");
@@ -334,15 +448,69 @@ public class mainFrame extends javax.swing.JFrame {
     private void botaoPartidaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPartidaRapidaActionPerformed
         // botaoPartidaRapida gera e encaminha para uma partida aleatória
         trocarTela("telaBatalha");
+        criarBatalhaRapida();
+        
+        // Informações adicionais para a batalha rápida
+        vidaMaquina.setValue(100);
+        vidaPlayer.setValue(100);
+        
     }//GEN-LAST:event_botaoPartidaRapidaActionPerformed
 
     private void botaoTorneiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneiosActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_botaoTorneiosActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botaoAtqTipificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqTipificadoActionPerformed
+        // Seleciona o Atq2 para o usarioAtq (Ataque Tipificado)
+        usuarioAtq = 2;
+        updateLabelsAtq();
+    }//GEN-LAST:event_botaoAtqTipificadoActionPerformed
+
+    private void menuInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicialActionPerformed
+        // Abre o pop-up do menu
+    }//GEN-LAST:event_menuInicialActionPerformed
+
+    private void botaoItensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoItensActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botaoItensActionPerformed
+
+    private void botaoAtqBasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqBasicoActionPerformed
+        // Seleciona o Atq1 para o usarioAtq (Ataque Basico)
+        usuarioAtq = 1;
+        updateLabelsAtq();
+    }//GEN-LAST:event_botaoAtqBasicoActionPerformed
+
+    private void botaoAtqAgilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqAgilActionPerformed
+        // Seleciona o Atq3 para o usarioAtq (Ataque Agil)
+        usuarioAtq = 3;
+        updateLabelsAtq();
+    }//GEN-LAST:event_botaoAtqAgilActionPerformed
+
+    private void botaoAtqUltimateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqUltimateActionPerformed
+        // Seleciona o Atq4 para o usarioAtq (Ataque Ultimate)
+        usuarioAtq = 4;
+        updateLabelsAtq();
+    }//GEN-LAST:event_botaoAtqUltimateActionPerformed
+
+    private void botaoAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtacarActionPerformed
+        boolean vezMaquina = false;
+        // Realiza o ataque escolhido pelo usuarioAtq
+        if (usuarioAtq != 0){
+            vezMaquina = playerAtaca(usuarioAtq);
+        }
+        
+        // Pausa dramática para máquina atacar
+        try {
+            new Thread().sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(mainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Caso o ataque do player tenha sido realizado, a máquina pode atacar também
+        if (vezMaquina){
+            maquinaAtaca();
+        }
+    }//GEN-LAST:event_botaoAtacarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,36 +548,36 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAtacar;
+    private javax.swing.JButton botaoAtqAgil;
+    private javax.swing.JButton botaoAtqBasico;
+    private javax.swing.JButton botaoAtqTipificado;
+    private javax.swing.JButton botaoAtqUltimate;
     private javax.swing.JButton botaoGaloDex;
-    private javax.swing.JButton botaoHelp;
+    private javax.swing.JButton botaoItens;
     private javax.swing.JButton botaoLoja;
     private javax.swing.JButton botaoPartidaRapida;
     private javax.swing.JButton botaoPerfil;
     private javax.swing.JButton botaoPlay;
     private javax.swing.JButton botaoSettings;
     private javax.swing.JButton botaoTorneios;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
+    private javax.swing.JLabel labelFotoMaquina;
+    private javax.swing.JLabel labelFotoPlayer;
+    private javax.swing.JLabel labelNomeAtq;
+    private javax.swing.JLabel labelNomeMaquina;
+    private javax.swing.JLabel labelNomePlayer;
     private javax.swing.JLabel labelPP;
+    private javax.swing.JLabel labelRinhaNome;
     private javax.swing.JButton menuInicial;
+    private javax.swing.JPanel painelFuncoesAtaque;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel telaBatalha;
     private javax.swing.JPanel telaDashBoard;
     private javax.swing.JPanel telaInicial;
     private javax.swing.JPanel telaLoja;
+    private javax.swing.JProgressBar vidaMaquina;
+    private javax.swing.JProgressBar vidaPlayer;
     // End of variables declaration//GEN-END:variables
 }

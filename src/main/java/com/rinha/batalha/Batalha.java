@@ -143,12 +143,15 @@ public class Batalha{
     
     // Métodos principais
     
-    public void combate(Galo atacante, Galo atacado, int ataqueId){
+    public int combate(Galo atacante, Galo atacado, int ataqueId){
         
         this.setAtacante(atacante);
         this.setAtacado(atacado);
         
         int dano = 0;
+        
+        // while pp = 0 não entra pra não me deixar entrar aqui. Ou outra estratégia
+        // Sla, ataque válido? Sucesso? Alguma variável de controle como propriedade, pq o dano já é um return
         
         if(this.verificaPontosDePoder(ataqueId) == 0){
             System.out.println("Pontos de Poder Insuficiente para utilização do ataque");
@@ -166,7 +169,9 @@ public class Batalha{
             System.out.println("Vida de Galo: " + this.atacado.getNome() + ": " + this.atacado.getVida());
             
             this.atualizaPontosDePoder(ataqueId);
-        }    
+        }
+        
+        return dano;
     }
     
     public void batalhar(){
