@@ -174,12 +174,20 @@ public class Batalha{
         return dano;
     }
     
+    public void inicioBatalha(){
+        System.out.println("A BATALHA COMEÇOU, PARTICIPANTES: ");
+        System.out.println(this.player.getStatus());
+        System.out.println(this.maquina.getStatus());
+    }
+    
     public void batalhar(){
         // Ataca o galo inimigo
         // Ver depois
         // [0] Dá o daninho e vai comendo vida, [1] mais dano menos pp, [2] um pouco mais dano menos pp tipo influencia, [3] bem mais dano, bem menos pp
         
         //modelo de batalha (NECESSARIO REVISAR)
+        
+        this.inicioBatalha();
         
         Random random = new Random();
         

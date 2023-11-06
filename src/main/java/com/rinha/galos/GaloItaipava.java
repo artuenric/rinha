@@ -32,10 +32,6 @@ public class GaloItaipava extends Galo{
         this.atqAgil = new AtaqueAgil("Ressaca", this.forca, this.nivel, this.agilidade);
         this.atqUltimate = new AtaqueUltimate("Apagar Cigarro", this.forca, this.nivel, this.agilidade);
         
-        // Nomes para os ataques
-        String[] atcks = {"Voadora", "Arremesso de Tampinha", "Ressaca", "Apagar Cigarro"};
-        setAtaques(atcks);
-        
     }
     
 }

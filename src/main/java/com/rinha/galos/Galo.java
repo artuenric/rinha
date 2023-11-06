@@ -20,7 +20,6 @@ public class Galo {
     protected int defesa;              // 1  - 100
     protected int agilidade;           // 1  - 100
     protected int vida;                // 10 - 1.000
-    protected String[] ataques;        // Lista com os nomes dos ataques
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
     
     //ATAQUES
@@ -190,19 +189,11 @@ public class Galo {
         }
     }
     
-    public String getAtaque(int x){
-        return this.ataques[x];
-    }
-    
     public String getAtaques(){
        return       "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() +
                       "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() +
                       "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() +
                       "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque();
-    }
-    
-    public void setAtaques(String[] ataques) {
-        this.ataques = ataques; //sairá
     }
     
     public boolean isInGaloDex() {
