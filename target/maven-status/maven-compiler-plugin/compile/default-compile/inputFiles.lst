@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /home/ratu/Documentos/GitHub/rinha/src/main/java/com/rinha/galos/GaloBMW.java
 /home/ratu/Documentos/GitHub/rinha/src/main/java/com/rinha/galos/GaloPolicialFederal.java
 /home/ratu/Documentos/GitHub/rinha/src/main/java/com/rinha/player/GaloDex.java
@@ -21,3 +22,29 @@
 /home/ratu/Documentos/GitHub/rinha/src/main/java/com/rinha/player/Carteira.java
 /home/ratu/Documentos/GitHub/rinha/src/main/java/com/rinha/galos/raridade/Lendario.java
 /home/ratu/Documentos/GitHub/rinha/src/main/java/com/rinha/ataque/AtaqueAgil.java
+=======
+/home/caio/proj-rinha/src/main/java/com/rinha/player/Perfil.java
+/home/caio/proj-rinha/src/main/java/com/rinha/gui/mainFrame.java
+/home/caio/proj-rinha/src/main/java/com/rinha/ataque/AtaqueBasico.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/raridade/Raro.java
+/home/caio/proj-rinha/src/main/java/com/rinha/batalha/Batalha.java
+/home/caio/proj-rinha/src/main/java/com/rinha/player/Carteira.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/raridade/Raridade.java
+/home/caio/proj-rinha/src/main/java/com/rinha/ataque/AtaqueAgil.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/Galo.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/GaloBMW.java
+/home/caio/proj-rinha/src/main/java/com/rinha/main/Rinha.java
+/home/caio/proj-rinha/src/main/java/com/rinha/player/GaloDex.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/GaloCiborg.java
+/home/caio/proj-rinha/src/main/java/com/rinha/ataque/Ataque.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/GaloItaipava.java
+/home/caio/proj-rinha/src/main/java/com/rinha/ataque/AtaqueUltimate.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/raridade/Epico.java
+/home/caio/proj-rinha/src/main/java/com/rinha/ataque/Golpe.java
+/home/caio/proj-rinha/src/main/java/com/rinha/interfaceusuario/InterfaceUsuario.java
+/home/caio/proj-rinha/src/main/java/com/rinha/ataque/AtaqueTipificado.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/GaloCego.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/GaloPolicialFederal.java
+/home/caio/proj-rinha/src/main/java/com/rinha/galos/raridade/Lendario.java
+/home/caio/proj-rinha/src/main/java/com/rinha/torneio/Torneio.java
+>>>>>>> Stashed changes
