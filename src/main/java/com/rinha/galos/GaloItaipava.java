@@ -5,6 +5,7 @@ import com.rinha.ataque.AtaqueBasico;
 import com.rinha.ataque.AtaqueTipificado;
 import com.rinha.ataque.AtaqueAgil;
 import com.rinha.ataque.AtaqueUltimate;
+import javax.swing.ImageIcon;
 
 
 public class GaloItaipava extends Galo{
@@ -27,6 +28,7 @@ public class GaloItaipava extends Galo{
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
         this.vidaAtual = this.vida;
+        this.fotoBatalha = new ImageIcon(getClass().getResource("/imgs/galos/galoitaipava.png"));
                 
         this.atqBasico = new AtaqueBasico("Voadora", this.forca, this.nivel, this.agilidade);
         this.atqTipificado = new AtaqueTipificado("Arremesso de Tampinha", this.nivel, this.defesa, this.agilidade);

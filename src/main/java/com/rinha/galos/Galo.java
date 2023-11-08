@@ -4,7 +4,9 @@ import com.rinha.ataque.AtaqueBasico;
 import com.rinha.ataque.AtaqueTipificado;
 import com.rinha.ataque.AtaqueAgil;
 import com.rinha.ataque.AtaqueUltimate;
+import java.awt.Image;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 public class Galo {
     
@@ -29,6 +31,13 @@ public class Galo {
     protected AtaqueTipificado atqTipificado;
     protected AtaqueAgil atqAgil;
     protected AtaqueUltimate atqUltimate;
+    
+    // Interface
+    protected ImageIcon fotoBatalha;
+
+    public ImageIcon getFotoBatalha() {
+        return fotoBatalha;
+    }
     
     public AtaqueBasico getAtqBasico(){
         return atqBasico;

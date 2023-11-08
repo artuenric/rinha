@@ -6,6 +6,7 @@ import com.rinha.ataque.AtaqueAgil;
 import com.rinha.ataque.AtaqueBasico;
 import com.rinha.ataque.AtaqueTipificado;
 import com.rinha.ataque.AtaqueUltimate;
+import javax.swing.ImageIcon;
 
 
 public class GaloCego extends Galo{
@@ -27,6 +28,7 @@ public class GaloCego extends Galo{
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
         this.vidaAtual = this.vida;
+        this.fotoBatalha = new ImageIcon(getClass().getResource("/imgs/galos/galocego.png"));
         
         this.atqBasico = new AtaqueBasico("5 Reais", this.forca, this.nivel, this.agilidade);
         this.atqTipificado = new AtaqueTipificado("Midnight Club", this.nivel, this.defesa, this.agilidade);

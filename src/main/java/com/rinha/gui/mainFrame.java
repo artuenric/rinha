@@ -9,13 +9,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JProgressBar;
 
-public class mainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
     // Propriedades para a batalha
     Batalha batalhaAtual;
     int usuarioAtq = 0;
     
     
-    public mainFrame() {
+    public MainFrame() {
         // Essa iniciaização acontece por que as informações da interface dependem disso. (Nome do ataque no botão...)
         // Parece gambiarra, ver depois.
         criarBatalhaRapida();
@@ -106,6 +106,9 @@ public class mainFrame extends javax.swing.JFrame {
         vidaPlayer = new javax.swing.JProgressBar();
         labelNomePlayer = new javax.swing.JLabel();
         labelNomeMaquina = new javax.swing.JLabel();
+        botaoVoltar = new javax.swing.JButton();
+        labelVidaPlayer = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -248,7 +251,7 @@ public class mainFrame extends javax.swing.JFrame {
         telaBatalha.setMinimumSize(getPreferredSize());
         telaBatalha.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelFotoPlayer.setText("jLabel2");
+        labelFotoPlayer.setIcon(batalhaAtual.getPlayer().getFotoBatalha());
         labelFotoPlayer.setMaximumSize(labelFotoPlayer.getPreferredSize());
         labelFotoPlayer.setMinimumSize(labelFotoPlayer.getPreferredSize());
         telaBatalha.add(labelFotoPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 150, 150));
@@ -353,7 +356,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         telaBatalha.add(painelFuncoesAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 720, 160));
 
-        labelFotoMaquina.setText("jLabel3");
+        labelFotoMaquina.setIcon(batalhaAtual.getMaquina().getFotoBatalha());
         labelFotoMaquina.setMaximumSize(new java.awt.Dimension(140, 140));
         labelFotoMaquina.setMinimumSize(new java.awt.Dimension(140, 140));
         labelFotoMaquina.setPreferredSize(new java.awt.Dimension(140, 140));
@@ -368,6 +371,25 @@ public class mainFrame extends javax.swing.JFrame {
         labelNomeMaquina.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         labelNomeMaquina.setText(batalhaAtual.getMaquina().getApelido());
         telaBatalha.add(labelNomeMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+
+        botaoVoltar.setBackground(new java.awt.Color(228, 56, 82));
+        botaoVoltar.setText("Voltar");
+        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarActionPerformed(evt);
+            }
+        });
+        telaBatalha.add(botaoVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        labelVidaPlayer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelVidaPlayer.setText(Integer.toString(batalhaAtual.getPlayer().getVidaAtual()));
+        telaBatalha.add(labelVidaPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 40, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText(Integer.toString(batalhaAtual.getMaquina().getVidaAtual())
+        );
+        telaBatalha.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 40, -1));
 
         painelPrincipal.add(telaBatalha, "telaBatalha");
 
@@ -456,6 +478,10 @@ public class mainFrame extends javax.swing.JFrame {
         updateInfo();
     }//GEN-LAST:event_botaoAtacarActionPerformed
 
+    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
+        this.trocarTela("telaDashBoard");
+    }//GEN-LAST:event_botaoVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -473,20 +499,21 @@ public class mainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFrame().setVisible(true);
+                new MainFrame().setVisible(true);
             }
         });
     }
@@ -505,6 +532,8 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoPlay;
     private javax.swing.JButton botaoSettings;
     private javax.swing.JButton botaoTorneios;
+    private javax.swing.JButton botaoVoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
     private javax.swing.JLabel labelFotoMaquina;
@@ -514,6 +543,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelNomePlayer;
     private javax.swing.JLabel labelPP;
     private javax.swing.JLabel labelRinhaNome;
+    private javax.swing.JLabel labelVidaPlayer;
     private javax.swing.JButton menuInicial;
     private javax.swing.JPanel painelFuncoesAtaque;
     private javax.swing.JPanel painelPrincipal;
