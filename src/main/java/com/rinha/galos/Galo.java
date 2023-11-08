@@ -219,7 +219,11 @@ public class Galo {
     }
 
     public void setVidaAtual(int vidaAtual) {
-        this.vidaAtual = vidaAtual;
+        if (vidaAtual <= 0 ){
+            this.vidaAtual = 0;
+        } else{
+            this.vidaAtual = vidaAtual;
+        }
     }
     
     public void setAtaques(String[] ataques) {

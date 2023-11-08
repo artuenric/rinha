@@ -1,5 +1,6 @@
 package com.rinha.gui;
 
+import com.rinha.ataque.Ataque;
 import com.rinha.batalha.Batalha;
 import com.rinha.galos.*;
 import java.awt.CardLayout;
@@ -38,58 +39,32 @@ public class mainFrame extends javax.swing.JFrame {
         GaloCego maquina = new GaloCego(3, "Alimento");
         
         // Define a batalha criada para a batalha atual
-        Batalha pr = new Batalha(player, maquina);
-        batalhaAtual = pr;
+        batalhaAtual = new Batalha(player, maquina);
+         
     }
-    
-    public void maquinaAtaca(){
-         // Escolhe o ataque da máquina
-        batalhaAtual.turnoMaquina();
-    }
-    
-    public boolean playerAtaca(int atqId){
-        return false;
-    }
-    
-    public void updateBarraVida(Galo galo, JProgressBar barraVida, int dano){
-        int danoPercentual = (dano * 100) / galo.getVida();
-        barraVida.setValue(barraVida.getValue() - danoPercentual);
-        
-    }
-    
+
     public void updateLabelsAtq(){
         // Atualiza label do pp e do nome do ataque
-        String pp = "";
-        switch (usuarioAtq){
-            case 0: {
-                labelNomeAtq.setText("Selecione o Ataque");
-                labelPP.setText(" ");
-                break;
-            }
-            case 1: {
-                labelNomeAtq.setText(botaoAtqBasico.getText());
-                pp = Integer.toString(batalhaAtual.getPlayer().getAtqBasico().getPontosDePoderAtual());
-                break;
-            }   
-            case 2: {
-                labelNomeAtq.setText(botaoAtqTipificado.getText());
-                pp = Integer.toString(batalhaAtual.getPlayer().getAtqTipificado().getPontosDePoderAtual());
-                break;
-            }
-            case 3: {
-                labelNomeAtq.setText(botaoAtqAgil.getText());
-                pp = Integer.toString(batalhaAtual.getPlayer().getAtqAgil().getPontosDePoderAtual());
-                break;
-            }
-            case 4: {
-                labelNomeAtq.setText(botaoAtqUltimate.getText());
-                pp = Integer.toString(batalhaAtual.getPlayer().getAtqUltimate().getPontosDePoderAtual());
-                break;
-            }
+        Ataque ataque;
+        if (usuarioAtq != 0){
+            ataque = this.batalhaAtual.getPlayer().getAtaque(usuarioAtq);
+            this.labelPP.setText("PP: " + ataque.getPontosDePoderAtual());
+            this.labelNomeAtq.setText(ataque.getNomeAtaque());
         }
-        // Atualiza a label, finalmente
-        labelPP.setText("PP: " + pp);
+        else {
+            this.labelNomeAtq.setText("Selecione o Ataque");
+            this.labelPP.setText("");
+        }
     }
+    
+    public void updateInfo(){
+        // Update das barras de vida
+        this.vidaMaquina.setValue(batalhaAtual.getMaquina().getPercentualVidaAtual());
+        this.vidaPlayer.setValue(batalhaAtual.getPlayer().getPercentualVidaAtual());
+        // Update das informações da tela
+        this.updateLabelsAtq();
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -466,17 +441,19 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAtqUltimateActionPerformed
 
     private void botaoAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtacarActionPerformed
-        boolean vezMaquina = false;
-        // Realiza o ataque escolhido pelo usuarioAtq
+        // Variável de controle para a maquina aguardar a vez
+        boolean turnoMaquina = false;
+        
         if (usuarioAtq != 0){
-            vezMaquina = playerAtaca(usuarioAtq);
+            turnoMaquina = batalhaAtual.turnoPlayer(usuarioAtq);
         }
         
-        // Caso o ataque do player tenha sido realizado, a máquina pode atacar também
-        if (vezMaquina){
-            maquinaAtaca();
+        if (turnoMaquina){
+            batalhaAtual.turnoMaquina();
         }
-        usuarioAtq = 0;
+        // Atualiza as informações
+        this.usuarioAtq = 0;
+        updateInfo();
     }//GEN-LAST:event_botaoAtacarActionPerformed
 
     /**

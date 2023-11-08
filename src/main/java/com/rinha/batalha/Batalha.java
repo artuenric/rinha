@@ -89,15 +89,14 @@ public class Batalha{
     
     public boolean verificaPontosDePoder(Galo galo, int ataqueId){
         int ppAtual = this.quantidadePontosDePoder(galo, ataqueId);
-        if (ppAtual > 0){
-            return true;
-        }
-        return false;
+        return ppAtual > 0;
     }
     
-    public int nextTurno(Galo atacante, Galo atacado, int ataqueId){
-        int dano = 0;
-        if (aberto){
+    public boolean nextTurno(Galo atacante, Galo atacado, int ataqueId){
+        boolean concluido = false;
+        int pp = atacante.getAtaque(ataqueId).getPontosDePoderAtual();
+        int dano;
+        if (aberto && pp > 0){
             if (atacado.esquivar()){
                 System.out.println("Opa! " + atacado.getApelido() + " esquivou legal!");
             }
@@ -112,20 +111,23 @@ public class Batalha{
         }
         this.setVencedor();
         this.fechar();
-        return dano;
+        return concluido;
     }
     
-    public int turnoMaquina(){
+    public void turnoMaquina(){
         Random random = new Random();
-        int dano = 0;
         int ataqueId = random.nextInt(4)+1;
         
         while (!this.verificaPontosDePoder(maquina, ataqueId)){
             ataqueId = random.nextInt(4)+1;
         }
-
-        dano = this.nextTurno(this.maquina, this.player, ataqueId);
-        return dano;
+        this.nextTurno(this.maquina, this.player, ataqueId);
+    }
+    
+    public boolean turnoPlayer(int atqId){
+        boolean turnoRealizado;
+        turnoRealizado = this.nextTurno(this.player, this.maquina, atqId);
+        return turnoRealizado;
     }
     
     private void fechar(){
