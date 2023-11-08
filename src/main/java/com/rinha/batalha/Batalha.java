@@ -103,6 +103,8 @@ public class Batalha{
             else {
                 dano = atacante.atacar(atacado,ataqueId);
                 atacado.setVidaAtual(atacado.getVidaAtual() - dano);
+                concluido = true;
+                
                 System.out.println(atacante.getApelido() + " efetuou ataque " + atacante.getAtaque(ataqueId).getNomeAtaque() + " com dano de " + dano);
                 System.out.println("Vida de Galo: " + atacante.getNome() + ": " + atacante.getVidaAtual());
                 System.out.println("Vida de Galo: " + atacado.getNome() + ": " + atacado.getVidaAtual());

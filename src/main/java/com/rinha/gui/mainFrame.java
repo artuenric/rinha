@@ -447,7 +447,7 @@ public class mainFrame extends javax.swing.JFrame {
         if (usuarioAtq != 0){
             turnoMaquina = batalhaAtual.turnoPlayer(usuarioAtq);
         }
-        
+        System.out.println(turnoMaquina);
         if (turnoMaquina){
             batalhaAtual.turnoMaquina();
         }
