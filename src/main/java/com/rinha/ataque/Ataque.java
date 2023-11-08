@@ -42,4 +42,10 @@ public abstract class Ataque {
         return this.bonusAtq;
     }
     
+    public void decrementaPontosDePoderAtual(){
+        // Decrementa o PP até no mínimo 0
+        if (this.getPontosDePoderAtual() > 0){
+            this.setPontosDePoderAtual(getPontosDePoderAtual()-1);
+        }
+    }
 }

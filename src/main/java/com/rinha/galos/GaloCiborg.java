@@ -25,6 +25,7 @@ public class GaloCiborg extends Galo {
         this.defesa = raridade.getDefesa();
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
+        this.vidaAtual = this.vida;
         
         this.atqBasico = new AtaqueBasico("Curso do SENAI", this.forca, this.nivel, this.agilidade);
         this.atqTipificado = new AtaqueTipificado("Curto Circuito", this.nivel, this.defesa, this.agilidade);

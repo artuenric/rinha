@@ -26,6 +26,7 @@ public class GaloBMW extends Galo {
         this.defesa = raridade.getDefesa();
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
+        this.vidaAtual = this.vida;
         
         this.atqBasico = new AtaqueBasico("Atropelamento", this.forca, this.nivel, this.agilidade);
         this.atqTipificado = new AtaqueTipificado("VrumVrum Gatinha", this.nivel, this.defesa, this.agilidade);

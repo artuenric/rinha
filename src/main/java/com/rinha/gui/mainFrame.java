@@ -39,22 +39,12 @@ public class mainFrame extends javax.swing.JFrame {
         
         // Define a batalha criada para a batalha atual
         Batalha pr = new Batalha(player, maquina);
-        batalhaAtual = pr;      
+        batalhaAtual = pr;
     }
     
     public void maquinaAtaca(){
          // Escolhe o ataque da máquina
-        Random random = new Random();
-        int atqId = random.nextInt(5)+1;
-        
-        // Garante que a máquina só vai atacar se o ataque tiver PP
-        batalhaAtual.setAtacante(batalhaAtual.getMaquina());
-        while (batalhaAtual.verificaPontosDePoder(atqId) == 0){
-            atqId = random.nextInt(5)+1;
-        }        
-                
-        int dano = batalhaAtual.combate(batalhaAtual.getMaquina(), batalhaAtual.getPlayer(), atqId);
-        updateBarraVida(batalhaAtual.getPlayer(), vidaPlayer, dano);
+        batalhaAtual.turnoMaquina();
     }
     
     public boolean playerAtaca(int atqId){
@@ -62,7 +52,7 @@ public class mainFrame extends javax.swing.JFrame {
         // Garante o retorno do verifica pontos de poder -> Passar como argumento o galo batalhaAtual.atacante
         batalhaAtual.setAtacante(batalhaAtual.getPlayer());
         
-        if (batalhaAtual.verificaPontosDePoder(atqId) != 0){
+        if (batalhaAtual.verificaPontosDePoder(atqId)){
             // Player Ataca
             dano = batalhaAtual.combate(batalhaAtual.getPlayer(), batalhaAtual.getMaquina(), usuarioAtq);
             
@@ -499,17 +489,11 @@ public class mainFrame extends javax.swing.JFrame {
             vezMaquina = playerAtaca(usuarioAtq);
         }
         
-        // Pausa dramática para máquina atacar
-        try {
-            new Thread().sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(mainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         // Caso o ataque do player tenha sido realizado, a máquina pode atacar também
         if (vezMaquina){
             maquinaAtaca();
         }
+        usuarioAtq = 0;
     }//GEN-LAST:event_botaoAtacarActionPerformed
 
     /**

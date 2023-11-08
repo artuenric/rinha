@@ -25,6 +25,7 @@ public class GaloPolicialFederal extends Galo{
         this.defesa = raridade.getDefesa();
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
+        this.vidaAtual = this.vida;
 
         //Nova implementação de ataques
         

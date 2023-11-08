@@ -26,6 +26,7 @@ public class GaloItaipava extends Galo{
         this.defesa = raridade.getDefesa();
         this.agilidade = raridade.getAgilidade();
         this.vida = raridade.getVida();
+        this.vidaAtual = this.vida;
                 
         this.atqBasico = new AtaqueBasico("Voadora", this.forca, this.nivel, this.agilidade);
         this.atqTipificado = new AtaqueTipificado("Arremesso de Tampinha", this.nivel, this.defesa, this.agilidade);

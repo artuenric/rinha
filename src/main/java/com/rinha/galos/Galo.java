@@ -20,6 +20,7 @@ public class Galo {
     protected int defesa;              // 1  - 100
     protected int agilidade;           // 1  - 100
     protected int vida;                // 10 - 1.000
+    protected int vidaAtual;
     protected String[] ataques;        // Lista com os nomes dos ataques
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
     
@@ -28,10 +29,6 @@ public class Galo {
     protected AtaqueTipificado atqTipificado;
     protected AtaqueAgil atqAgil;
     protected AtaqueUltimate atqUltimate;
-    
-    //Pontos de Poder de cada Ataque
-    
-    
     
     public AtaqueBasico getAtqBasico(){
         return atqBasico;
@@ -67,10 +64,32 @@ public class Galo {
                 break;
         }
         
-        return nomeAtq;
-            
+        return nomeAtq;  
     }
     
+    public Ataque getAtaque(int ataqueId){
+        Ataque ataque = null;     
+        switch (ataqueId){
+            case 1:{
+                ataque = this.getAtqBasico();
+                break;
+            }
+            case 2:{
+                ataque = this.getAtqTipificado();
+                break;
+            }
+            case 3:{
+                ataque = this.getAtqAgil();
+                break;
+            }
+            case 4:{
+                ataque = this.getAtqUltimate();
+                break;
+            }
+        }
+        return ataque;
+    }
+            
     public String getInfoAtaques(){
     return    "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() + " PP: " + this.atqBasico.getPontosDePoderAtual() +
               "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() + " PP: " + this.atqTipificado.getPontosDePoderAtual() +
@@ -82,7 +101,7 @@ public class Galo {
         return      "\n Nome do Galo: " + this.nome +
                       "\n Raridade: " + this.raridade +
                       "\n Nivel: " + this.nivel +
-                      "\n Vida: " + this.vida  +
+                      "\n Vida: " + this.vidaAtual  +
                       "\n Forca: " + this.forca +
                       "\n Defesa: " + this.defesa +
                       "\n Agilidade: " + this.agilidade +
@@ -189,16 +208,13 @@ public class Galo {
             this.vida = vida;
         }
     }
-    
-    public String getAtaque(int x){
-        return this.ataques[x];
+
+    public int getVidaAtual() {
+        return vidaAtual;
     }
-    
-    public String getAtaques(){
-       return       "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() +
-                      "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() +
-                      "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() +
-                      "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque();
+
+    public void setVidaAtual(int vidaAtual) {
+        this.vidaAtual = vidaAtual;
     }
     
     public void setAtaques(String[] ataques) {
@@ -217,7 +233,6 @@ public class Galo {
 
     public int atacar(Galo adversario, int ataque){
         // Tira um certo dano da vida do galo adversário de acordo com o ataque escolhido.
-        Random random = new Random();
         int dano = 0;
         
         // Informações do oponente
@@ -231,7 +246,6 @@ public class Galo {
                 dano = atqBasico.getDanoBase() - (adversario.getDefesa()/2);
             break;
             }
-            
             case 2 : {
                 //Ataque Tipificado
                 // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
@@ -241,14 +255,12 @@ public class Galo {
             break;    
                 }
             }
-            
             case 3: { 
                 //Ataque Agil
                 // Ataque baseado na agilidade, mesma lógica do baseado em força
                 dano =  atqAgil.getDanoBase() - (adversario.getDefesa()/2);
             break;
             }
-            
             case 4: {
                 //Ultimate
                 dano = (atqUltimate.getDanoBase() - adversario.getDefesa()/3);
@@ -260,12 +272,11 @@ public class Galo {
             break;
         }
         
-        // Existe a chance de um galo fraco não conseguir gerar danos o suficiente para subtrarir da defesa, nesse caso, o resultado das operações para definir o dano serão negativos
+        // Existe a chance de um galo fraco não conseguir gerar danos o suficiente para subtrarir da defesa, nesse caso, o resultado das operações para definir o dano serão negativos.
         // Ou seja, caso o dano gerado seja menor que 0, ainda há a chance de reduzir a vida se a força  do galo for maior ou igual a 10.
         if (dano < 0){
             dano = this.forca / 10;
         }
-        
         return dano;
     }    
     
@@ -280,5 +291,11 @@ public class Galo {
             return true;
         }
         return false;
+    }
+    
+    public int getPercentualVidaAtual(){
+        // Retorna o valor percentual da vida para barra de vida
+        int percent = (this.getVidaAtual()*100) / getVida();
+        return percent;
     }
 }
