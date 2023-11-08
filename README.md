@@ -1,7 +1,7 @@
 # rinha
 
 <div align="center">
-<img height="250" width="400" src="https://github.com/caiojulio/rinha/assets/87271769/44a6a468-8422-4c34-a4a2-b229712920c7"/>
+<img height="320" width="700" src="https://github.com/artuenric/rinha/assets/87271769/341c46cd-df42-4c47-b439-22e1e6125d7d"/>
 </div>
 
 O projeto rinha™ é um jogo de batalha entre galos icônincos da internet baseada em turnos.
