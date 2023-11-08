@@ -48,23 +48,6 @@ public class mainFrame extends javax.swing.JFrame {
     }
     
     public boolean playerAtaca(int atqId){
-        int dano = 0;
-        // Garante o retorno do verifica pontos de poder -> Passar como argumento o galo batalhaAtual.atacante
-        batalhaAtual.setAtacante(batalhaAtual.getPlayer());
-        
-        if (batalhaAtual.verificaPontosDePoder(atqId)){
-            // Player Ataca
-            dano = batalhaAtual.combate(batalhaAtual.getPlayer(), batalhaAtual.getMaquina(), usuarioAtq);
-            
-            // Redefine para usuarioAtq para 0, obrigando o usuário a selecionar um Ataque
-            usuarioAtq = 0;
-            
-            // Atualiza as informações da tela
-            updateLabelsAtq();
-            updateBarraVida(batalhaAtual.getMaquina(), vidaMaquina, dano);
-            
-            return true;
-        }
         return false;
     }
     

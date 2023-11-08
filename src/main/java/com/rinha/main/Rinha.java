@@ -3,6 +3,8 @@ import com.rinha.batalha.Batalha;
 import com.rinha.galos.GaloItaipava;
 import com.rinha.galos.GaloBMW;
 import com.rinha.galos.GaloCego;
+import java.util.Random;
+import java.util.Scanner;
 
 
 public class Rinha {
@@ -17,9 +19,23 @@ public class Rinha {
         System.out.println(galinhocegueira.getStatus());
         
         Batalha vamove = new Batalha(galinhoitaipava, galinhocegueira);
+        int turno = 0;
+        int ataqueId = 0;
+        Random random = new Random();
         
-        vamove.batalhar();
-        System.out.println("O Vencedor da Batalha foi: " + vamove.getVencedor());
+        while(vamove.isAberto()){
+            if (turno == 0){
+                ataqueId = random.nextInt(4)+1;
+                vamove.nextTurno(vamove.getPlayer(), vamove.getMaquina(), ataqueId);
+                turno = 1;
+            }
+            else if (turno == 1){
+                vamove.turnoMaquina();
+                turno = 0;
+            }
+        }
+        
+        System.out.println("OOOOOOOOOOOOOOOO Vencedor da Batalha foi: " + vamove.getVencedor());
 
         
     }

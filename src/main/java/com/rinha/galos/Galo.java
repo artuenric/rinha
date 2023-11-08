@@ -94,7 +94,7 @@ public class Galo {
     return    "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() + " PP: " + this.atqBasico.getPontosDePoderAtual() +
               "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() + " PP: " + this.atqTipificado.getPontosDePoderAtual() +
               "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() + " PP: " + this.atqAgil.getPontosDePoderAtual() +
-              "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque() + " PP: " + this.atqUltimate.getPontosDePoderAtual(); 
+              "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque() + " PP: " + this.atqUltimate.getPontosDePoderAtual();
     }
     
     public String getStatus(){
@@ -110,6 +110,11 @@ public class Galo {
                       "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() +
                       "\n Ataquei 3: " + this.atqAgil.getNomeAtaque() +
                       "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque();
+    }
+    
+    public int getVidaPercentual(){
+        int vidaPercentual = (this.getVidaAtual() * 100) / getVida();
+        return vidaPercentual;
     }
     
     

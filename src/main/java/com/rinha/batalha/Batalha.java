@@ -16,13 +16,17 @@ public class Batalha{
     protected String vencedor;
     protected int premio;
     
-    public int c = 0;
+    // Controle da batalha
+    protected boolean aberto;
     
+    // Construtor
     public Batalha(Galo player, Galo maquina){
         this.player = player;
         this.maquina = maquina;
+        this.aberto = true;
     }
     
+    // Modificadores e Acessores
     public void setAtacante(Galo atacante){
         this.atacante = atacante;
     }    
@@ -31,7 +35,6 @@ public class Batalha{
         this.atacado = atacado;
     }
     
-    // Modificadores e Acessores
     public Galo getPlayer() {
         return this.player;
     }
@@ -48,12 +51,12 @@ public class Batalha{
         this.maquina = maquina;
     }
 
-    public void setVencedor() {
+    public void setVencedor(){
         
-        if (this.player.getVida() <= 0){
+        if (this.player.getVidaAtual() <= 0){
             this.vencedor = this.maquina.getNome();
         } 
-        else if (this.maquina.getVida() <= 0){
+        else if (this.maquina.getVidaAtual() <= 0){
             this.vencedor = this.player.getNome();
         } else {
             this.vencedor = null;
@@ -64,31 +67,79 @@ public class Batalha{
         return this.vencedor;
     }
     
-    public void atualizaPontosDePoder(int ataqueId){       
-        Ataque ataque = this.atacante.getAtaque(ataqueId);
+    public void setAberto(boolean b){
+        this.aberto = false;
+    }
+    
+    public boolean isAberto(){
+        return this.aberto;
+    }
+    
+    public void atualizaPontosDePoder(Galo galo, int ataqueId){       
+        Ataque ataque = galo.getAtaque(ataqueId);
         ataque.decrementaPontosDePoderAtual();
     }
     
-    public int quantidadePontosDePoder(int ataqueId){
+    public int quantidadePontosDePoder(Galo galo, int ataqueId){
         //Função serve para verificar a quantidade de pontos de poder, recebe o numero do ataque 
-        Ataque ataque = this.atacante.getAtaque(ataqueId);
+        Ataque ataque = galo.getAtaque(ataqueId);
         int ppAtual = ataque.getPontosDePoderAtual();
         return ppAtual;
     }
     
-    public boolean verificaPontosDePoder(int ataqueId){
-        int ppAtual = this.quantidadePontosDePoder(ataqueId);
+    public boolean verificaPontosDePoder(Galo galo, int ataqueId){
+        int ppAtual = this.quantidadePontosDePoder(galo, ataqueId);
         if (ppAtual > 0){
             return true;
         }
         return false;
     }
     
+    public int nextTurno(Galo atacante, Galo atacado, int ataqueId){
+        int dano = 0;
+        if (aberto){
+            if (atacado.esquivar()){
+                System.out.println("Opa! " + atacado.getApelido() + " esquivou legal!");
+            }
+            else {
+                dano = atacante.atacar(atacado,ataqueId);
+                atacado.setVidaAtual(atacado.getVidaAtual() - dano);
+                System.out.println(atacante.getApelido() + " efetuou ataque " + atacante.getAtaque(ataqueId).getNomeAtaque() + " com dano de " + dano);
+                System.out.println("Vida de Galo: " + atacante.getNome() + ": " + atacante.getVidaAtual());
+                System.out.println("Vida de Galo: " + atacado.getNome() + ": " + atacado.getVidaAtual());
+            }
+            this.atualizaPontosDePoder(atacante, ataqueId);
+        }
+        this.setVencedor();
+        this.fechar();
+        return dano;
+    }
+    
+    public int turnoMaquina(){
+        Random random = new Random();
+        int dano = 0;
+        int ataqueId = random.nextInt(4)+1;
+        
+        while (!this.verificaPontosDePoder(maquina, ataqueId)){
+            ataqueId = random.nextInt(4)+1;
+        }
+
+        dano = this.nextTurno(this.maquina, this.player, ataqueId);
+        return dano;
+    }
+    
+    private void fechar(){
+        if (this.getVencedor()!= null){
+            this.setAberto(false);
+        }
+    }
+    
+    /*
     public int combate(Galo atacante, Galo atacado, int ataqueId){    
         this.setAtacante(atacante);
         this.setAtacado(atacado);
         
-        System.out.println(this.c);
+ 
         System.out.println("");
         int dano = 0;    
               
@@ -118,6 +169,7 @@ public class Batalha{
         return dano;
     }
     
+    
     public void turnoMaquina(){
         // Maquina ataca
         this.setAtacante(this.maquina);
@@ -128,22 +180,6 @@ public class Batalha{
         }
         this.combate(this.maquina, this.player, ataqueId);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     public void batalhar(){
@@ -181,5 +217,5 @@ public class Batalha{
         }
     
     }
-    
+    */
 }
