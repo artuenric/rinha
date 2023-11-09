@@ -1,5 +1,7 @@
 package com.rinha.main;
 import com.rinha.batalha.Batalha;
+import com.rinha.galos.Galinheiro;
+import com.rinha.galos.Galo;
 import com.rinha.galos.GaloItaipava;
 import com.rinha.galos.GaloBMW;
 import com.rinha.galos.GaloCego;
@@ -10,7 +12,12 @@ import java.util.Scanner;
 public class Rinha {
     public static void main(String[] args) {
        
-
+        Galinheiro galinheiro = new Galinheiro(4);
+        Galo galo = galinheiro.getGalo(0);
+        System.out.println(galo.getStatus());
+        
+        
+        /*
         GaloItaipava galinhoitaipava = new GaloItaipava(3, "eu mermo");
         GaloBMW galinhobmw =  new GaloBMW(3, "caio");
         GaloCego galinhocegueira = new GaloCego(3, "neyma");
@@ -42,6 +49,6 @@ public class Rinha {
         // O galo muda que nem ontem, muito foda
         System.out.println(galinhoitaipava.getStatus());
         System.out.println(galinhocegueira.getStatus());
-        
+        */
     }
 }

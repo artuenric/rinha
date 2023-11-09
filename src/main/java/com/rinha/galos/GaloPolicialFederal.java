@@ -18,6 +18,6 @@ public class GaloPolicialFederal extends Galo{
         // Ataques
         setAtaques("Abuso de autoridade", "Opressão", "AK-47 é o porte do homem", "Motopatrulhamentostensivo");
         // Foto
-        setFotoBatalha("/imgs/galos/galopolicialfederal.png");
+        // setFotoBatalha("/imgs/galos/galopolicialfederal.png");
     }
 }

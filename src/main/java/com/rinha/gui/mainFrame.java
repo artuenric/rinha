@@ -4,6 +4,7 @@ import com.rinha.ataque.Ataque;
 import com.rinha.batalha.Batalha;
 import com.rinha.galos.*;
 import java.awt.CardLayout;
+import java.util.Random;
 
 public class mainFrame extends javax.swing.JFrame {
     // Propriedades para a batalha
@@ -30,8 +31,12 @@ public class mainFrame extends javax.swing.JFrame {
     */
     public void criarBatalhaRapida(){
         // Futuramente funcionar com o nível e raridade do galo da coleção escolhido. Deverá ser o parâmetro.
-        GaloItaipava player = new GaloItaipava(3,"Geraldo");
-        GaloCego maquina = new GaloCego(3, "Alimento");
+        Galinheiro galinheiro = new Galinheiro(4);
+        Galo player = galinheiro.getGalo(0);
+        Galo maquina = galinheiro.getGalo(5);
+        
+        System.out.println(player.getStatus());
+        System.out.println(maquina.getStatus());
         
         // Define a batalha criada para a batalha atual
         batalhaAtual = new Batalha(player, maquina);
@@ -50,14 +55,25 @@ public class mainFrame extends javax.swing.JFrame {
             this.labelNomeAtq.setText("Selecione o Ataque");
             this.labelPP.setText("");
         }
+        botaoAtqBasico.setText(batalhaAtual.getPlayer().getAtaque(1).getNomeAtaque());
+        botaoAtqTipificado.setText(batalhaAtual.getPlayer().getAtaque(2).getNomeAtaque());
+        botaoAtqAgil.setText(batalhaAtual.getPlayer().getAtaque(3).getNomeAtaque());
+        botaoAtqUltimate.setText(batalhaAtual.getPlayer().getAtaque(4).getNomeAtaque());
     }
     
     public void updateInfo(){
         // Update das barras de vida
         this.vidaMaquina.setValue(batalhaAtual.getMaquina().getPercentualVidaAtual());
+        this.labelVidaMaquina.setText(Integer.toString(batalhaAtual.getMaquina().getVidaAtual()));
         this.vidaPlayer.setValue(batalhaAtual.getPlayer().getPercentualVidaAtual());
-        // Update das informações da tela
+        this.labelVidaPlayer.setText(Integer.toString(batalhaAtual.getPlayer().getVidaAtual()));
+        // Update das informações painel de Ataque
         this.updateLabelsAtq();
+        // Update das fotos
+        labelFotoMaquina.setIcon(batalhaAtual.getMaquina().getFotoBatalha());
+        labelFotoPlayer.setIcon(batalhaAtual.getPlayer().getFotoBatalha());
+        
+        updateLabelsAtq();
     }
     
     
@@ -103,7 +119,7 @@ public class mainFrame extends javax.swing.JFrame {
         labelNomeMaquina = new javax.swing.JLabel();
         botaoVoltar = new javax.swing.JButton();
         labelVidaPlayer = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        labelVidaMaquina = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -215,8 +231,7 @@ public class mainFrame extends javax.swing.JFrame {
         botaoGaloDex.setAlignmentY(0.0F);
         telaDashBoard.add(botaoGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 83, 100, 31));
 
-        labelBackgroundDashBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/dash.png"))); // NOI18N
-        labelBackgroundDashBoard.setText("jLabel1");
+        labelBackgroundDashBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telaDashboard.png"))); // NOI18N
         labelBackgroundDashBoard.setToolTipText("");
         telaDashBoard.add(labelBackgroundDashBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
@@ -380,11 +395,11 @@ public class mainFrame extends javax.swing.JFrame {
         labelVidaPlayer.setText(Integer.toString(batalhaAtual.getPlayer().getVidaAtual()));
         telaBatalha.add(labelVidaPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 40, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText(Integer.toString(batalhaAtual.getMaquina().getVidaAtual())
+        labelVidaMaquina.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelVidaMaquina.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelVidaMaquina.setText(Integer.toString(batalhaAtual.getMaquina().getVidaAtual())
         );
-        telaBatalha.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 40, -1));
+        telaBatalha.add(labelVidaMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 40, -1));
 
         painelPrincipal.add(telaBatalha, "telaBatalha");
 
@@ -414,6 +429,9 @@ public class mainFrame extends javax.swing.JFrame {
         // botaoPartidaRapida gera e encaminha para uma partida aleatória
         trocarTela("telaBatalha");
         criarBatalhaRapida();
+        
+        updateInfo();
+        updateLabelsAtq();
         
         // Informações adicionais para a batalha rápida
         vidaMaquina.setValue(100);
@@ -542,7 +560,6 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoSettings;
     private javax.swing.JButton botaoTorneios;
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
     private javax.swing.JLabel labelFotoMaquina;
@@ -552,6 +569,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelNomePlayer;
     private javax.swing.JLabel labelPP;
     private javax.swing.JLabel labelRinhaNome;
+    private javax.swing.JLabel labelVidaMaquina;
     private javax.swing.JLabel labelVidaPlayer;
     private javax.swing.JButton menuInicial;
     private javax.swing.JPanel painelFuncoesAtaque;

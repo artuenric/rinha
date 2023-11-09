@@ -18,6 +18,6 @@ public class GaloCiborg extends Galo {
         // Ataques
         setAtaques("Curso do SENAI", "Curto circuito", "Chute mecânico", "Raio laser");
         // Foto
-        setFotoBatalha("/imgs/galos/galobmw.png");
+        setFotoBatalha("/imgs/galos/galociborg.png");
     }
 }
