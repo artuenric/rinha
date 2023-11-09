@@ -24,7 +24,6 @@ public class Galo {
     protected int agilidade;           // 1  - 100
     protected int vida;                // 10 - 1.000
     protected int vidaAtual;
-    protected String[] ataques;        // Lista com os nomes dos ataques
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
     
     //ATAQUES
@@ -40,7 +39,7 @@ public class Galo {
         return fotoBatalha;
     }
     
-    public void setImageIcon(String path){
+    public void setFotoBatalha(String path){
         // Por padrão, as fotos dos galos estão no caminho /imgs/galos/nomedogalo.png
         this.fotoBatalha = new ImageIcon(getClass().getResource(path));
     }
@@ -60,6 +59,15 @@ public class Galo {
     public AtaqueAgil getAtqAgil(){
         return atqAgil;
     }
+    
+    public void setAtaques(String ataqueBasico, String ataqueTipificado, String ataqueAgil, String ataqueUltimate){
+        // Define os ataques e seus nomes
+        this.atqBasico = new AtaqueBasico(ataqueBasico, this.forca, this.nivel, this.agilidade);
+        this.atqTipificado = new AtaqueTipificado(ataqueTipificado, this.nivel, this.defesa, this.agilidade);
+        this.atqAgil = new AtaqueAgil(ataqueAgil, this.forca, this.nivel, this.agilidade);
+        this.atqUltimate = new AtaqueUltimate(ataqueUltimate, this.forca, this.nivel, this.agilidade);
+    }
+    
     
     public String getNomeAtaque(int ID){
         String nomeAtq = null;
@@ -240,11 +248,7 @@ public class Galo {
             this.vidaAtual = vidaAtual;
         }
     }
-    
-    public void setAtaques(String[] ataques) {
-        this.ataques = ataques; //sairá
-    }
-    
+
     public boolean isInGaloDex() {
         return inGaloDex;
     }

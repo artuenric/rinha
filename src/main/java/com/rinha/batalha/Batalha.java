@@ -99,6 +99,7 @@ public class Batalha{
         if (aberto && pp > 0){
             if (atacado.esquivar()){
                 System.out.println("Opa! " + atacado.getApelido() + " esquivou legal!");
+                concluido = true;
             }
             else {
                 dano = atacante.atacar(atacado,ataqueId);

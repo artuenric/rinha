@@ -4,10 +4,6 @@ import com.rinha.ataque.Ataque;
 import com.rinha.batalha.Batalha;
 import com.rinha.galos.*;
 import java.awt.CardLayout;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JProgressBar;
 
 public class mainFrame extends javax.swing.JFrame {
     // Propriedades para a batalha
@@ -17,7 +13,6 @@ public class mainFrame extends javax.swing.JFrame {
     
     public mainFrame() {
         // Essa iniciaização acontece por que as informações da interface dependem disso. (Nome do ataque no botão...)
-        // Parece gambiarra, ver depois.
         criarBatalhaRapida();
         initComponents();
     }
