@@ -4,6 +4,7 @@ import com.rinha.ataque.AtaqueBasico;
 import com.rinha.ataque.AtaqueTipificado;
 import com.rinha.ataque.AtaqueAgil;
 import com.rinha.ataque.AtaqueUltimate;
+import com.rinha.galos.raridade.Raridade;
 import java.awt.Image;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -34,9 +35,14 @@ public class Galo {
     
     // Interface
     protected ImageIcon fotoBatalha;
-
+    
     public ImageIcon getFotoBatalha() {
         return fotoBatalha;
+    }
+    
+    public void setImageIcon(String path){
+        // Por padrão, as fotos dos galos estão no caminho /imgs/galos/nomedogalo.png
+        this.fotoBatalha = new ImageIcon(getClass().getResource(path));
     }
     
     public AtaqueBasico getAtqBasico(){
@@ -245,7 +251,19 @@ public class Galo {
     public void setInGaloDex(boolean inGaloDex) {
         this.inGaloDex = inGaloDex;
     }
-
+    
+    public void defineAtributos(Raridade raridade){
+        // Define os atributos de um galo a partir de sua raridade;
+        this.raridade = raridade.getTipoRaridade();
+        this.valor = raridade.getValor();
+        this.forca = raridade.getForca();
+        this.defesa = raridade.getDefesa();
+        this.agilidade = raridade.getAgilidade();
+        this.vida = raridade.getVida();
+        this.vidaAtual = this.vida;
+    }
+    
+    
     /* Métodos para a batalha */
     // Esses métodos definem a lógica das ações realizadas no combate, que serão utilizadas na classe Batalha.
 
