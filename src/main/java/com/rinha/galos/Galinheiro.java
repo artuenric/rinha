@@ -1,5 +1,6 @@
 package com.rinha.galos;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Galinheiro {
@@ -7,6 +8,15 @@ public class Galinheiro {
     
     public Galinheiro(int nivel){
         gerarGalos(nivel);
+    }
+    
+    public ArrayList<Galo> gerarGalosIniciais(){
+        ArrayList<Galo> galosIniciais = new ArrayList<>();
+        String apelidoInicial = "First";
+        galosIniciais.add(new GaloCego(1, apelidoInicial));
+        galosIniciais.add(new GaloBMW(1, apelidoInicial));
+        galosIniciais.add(new GaloCiborg(1, apelidoInicial));
+        return galosIniciais;
     }
     
     public Galo getGalo(int i) {

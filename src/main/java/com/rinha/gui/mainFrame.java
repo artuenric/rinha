@@ -4,12 +4,20 @@ import com.rinha.ataque.Ataque;
 import com.rinha.batalha.Batalha;
 import com.rinha.galos.*;
 import com.rinha.loja.Loja;
-import com.rinha.player.GaloDex;
 import com.rinha.player.Perfil;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class mainFrame extends javax.swing.JFrame {
-    Perfil player;
+    // Informações do PLayer
+    Perfil player = new Perfil("Desafiante");
+        
+    // Informações dos Galos
+    Galinheiro galinheiro = new Galinheiro(1);
+    ArrayList<Galo> galosIniciais = galinheiro.gerarGalosIniciais();
+    
+    // Informações da Loja
     Loja loja;
     
     Batalha batalhaAtual;
@@ -80,6 +88,20 @@ public class mainFrame extends javax.swing.JFrame {
         updateLabelsAtq();
     }
     
+    /**
+     * Funções para GaloDex
+     */
+    
+    public void updateTableGaloDex(){
+        DefaultTableModel table = (DefaultTableModel) tableGaloDex.getModel();
+        table.setRowCount(0);
+        int tamanho = player.getGaloDex().getTamanho();
+        for (int index = 0; index < tamanho; index++){
+            Object[] dados = player.getGaloDex().getInfoGalo(index);
+            table.addRow(dados);
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +117,7 @@ public class mainFrame extends javax.swing.JFrame {
         tableGaloDex = new javax.swing.JTable();
         botaoSelecionarAtacante = new javax.swing.JButton();
         labelSelecione = new javax.swing.JLabel();
-        fotoAtacanteGaloDex = new javax.swing.JLabel();
+        labelFotoAtacanteGaloDex = new javax.swing.JLabel();
         labelAtacante = new javax.swing.JLabel();
         labelApelidoAtacanteGaloDex = new javax.swing.JLabel();
         painelPrincipal = new javax.swing.JPanel();
@@ -130,6 +152,11 @@ public class mainFrame extends javax.swing.JFrame {
         botaoVoltar = new javax.swing.JButton();
         labelVidaPlayer = new javax.swing.JLabel();
         labelVidaMaquina = new javax.swing.JLabel();
+        telaBemVindo = new javax.swing.JPanel();
+        botaoInicial2 = new javax.swing.JButton();
+        botaoInicial0 = new javax.swing.JButton();
+        botaoInicial1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         dialogGaloDex.setMaximumSize(new java.awt.Dimension(480, 360));
         dialogGaloDex.setMinimumSize(new java.awt.Dimension(480, 360));
@@ -174,15 +201,12 @@ public class mainFrame extends javax.swing.JFrame {
         labelSelecione.setText("<html>Selecinoe um Galo para ser o seu galo Atacante:</html>");
         labelSelecione.setToolTipText("");
 
-        fotoAtacanteGaloDex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/galos/galofebem.png"))); // NOI18N
-        fotoAtacanteGaloDex.setText("jLabel1");
-
         labelAtacante.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelAtacante.setText("Atacante");
 
         labelApelidoAtacanteGaloDex.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         labelApelidoAtacanteGaloDex.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelApelidoAtacanteGaloDex.setText("Apelido");
+        labelApelidoAtacanteGaloDex.setText("...");
 
         javax.swing.GroupLayout dialogGaloDexLayout = new javax.swing.GroupLayout(dialogGaloDex.getContentPane());
         dialogGaloDex.getContentPane().setLayout(dialogGaloDexLayout);
@@ -202,9 +226,9 @@ public class mainFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelAtacante, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelApelidoAtacanteGaloDex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelApelidoAtacanteGaloDex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelFotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(97, 97, 97))))
         );
         dialogGaloDexLayout.setVerticalGroup(
@@ -213,7 +237,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogGaloDexLayout.createSequentialGroup()
                         .addContainerGap(27, Short.MAX_VALUE)
-                        .addComponent(fotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelFotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(dialogGaloDexLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
@@ -502,6 +526,51 @@ public class mainFrame extends javax.swing.JFrame {
 
         painelPrincipal.add(telaBatalha, "telaBatalha");
 
+        telaBemVindo.setAlignmentX(0.0F);
+        telaBemVindo.setAlignmentY(0.0F);
+        telaBemVindo.setMaximumSize(getPreferredSize());
+        telaBemVindo.setMinimumSize(getPreferredSize());
+        telaBemVindo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botaoInicial2.setIcon(galosIniciais.get(2).getFotoBatalha());
+        botaoInicial2.setMaximumSize(new java.awt.Dimension(150, 150));
+        botaoInicial2.setMinimumSize(new java.awt.Dimension(150, 150));
+        botaoInicial2.setPreferredSize(new java.awt.Dimension(150, 150));
+        botaoInicial2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicial2ActionPerformed(evt);
+            }
+        });
+        telaBemVindo.add(botaoInicial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
+
+        botaoInicial0.setIcon(galosIniciais.get(0).getFotoBatalha());
+        botaoInicial0.setMaximumSize(new java.awt.Dimension(150, 150));
+        botaoInicial0.setMinimumSize(new java.awt.Dimension(150, 150));
+        botaoInicial0.setPreferredSize(new java.awt.Dimension(150, 150));
+        botaoInicial0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicial0ActionPerformed(evt);
+            }
+        });
+        telaBemVindo.add(botaoInicial0, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        botaoInicial1.setIcon(galosIniciais.get(1).getFotoBatalha());
+        botaoInicial1.setMaximumSize(new java.awt.Dimension(150, 150));
+        botaoInicial1.setMinimumSize(new java.awt.Dimension(150, 150));
+        botaoInicial1.setPreferredSize(new java.awt.Dimension(150, 150));
+        botaoInicial1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicial1ActionPerformed(evt);
+            }
+        });
+        telaBemVindo.add(botaoInicial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel1.setText("<html> <p align=\"center\">Bem-vindo, desafiante!<br> Escolha com sabedoria um dos Galos abaixo para ser seu inicial. </p> </html>");
+        telaBemVindo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
+        painelPrincipal.add(telaBemVindo, "telaBemVindo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -521,7 +590,9 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
         // botaoPlay encaminha a tela para o dashboard
-        trocarTela("telaDashBoard");
+        trocarTela("telaBemVindo");
+        galosIniciais = galinheiro.gerarGalosIniciais();
+        
     }//GEN-LAST:event_botaoPlayActionPerformed
 
     private void botaoPartidaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPartidaRapidaActionPerformed
@@ -593,11 +664,39 @@ public class mainFrame extends javax.swing.JFrame {
     private void botaoGaloDexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGaloDexActionPerformed
         // TODO add your handling code here:
         dialogGaloDex.setVisible(true);
+        updateTableGaloDex();
     }//GEN-LAST:event_botaoGaloDexActionPerformed
 
     private void botaoSelecionarAtacanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionarAtacanteActionPerformed
         // TODO add your handling code here:
+        int index = tableGaloDex.getSelectedRow();
+        if (index >= 0){
+            player.getGaloDex().setAtacante(player.getGaloDex().getGalo(index));
+            
+            System.out.println(player.getGaloDex().getAtacante());
+            this.labelApelidoAtacanteGaloDex.setText(player.getGaloDex().getAtacante().getApelido());
+            this.labelFotoAtacanteGaloDex.setIcon(player.getGaloDex().getAtacante().getFotoBatalha());
+        }
     }//GEN-LAST:event_botaoSelecionarAtacanteActionPerformed
+
+    private void botaoInicial0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicial0ActionPerformed
+        // TODO add your handling code here:
+        player.getGaloDex().addGalo(galosIniciais.get(0));
+        trocarTela("telaDashBoard");
+        System.out.println("AA");
+    }//GEN-LAST:event_botaoInicial0ActionPerformed
+
+    private void botaoInicial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicial1ActionPerformed
+        // TODO add your handling code here:
+        player.getGaloDex().addGalo(galosIniciais.get(1));
+        trocarTela("telaDashBoard");
+    }//GEN-LAST:event_botaoInicial1ActionPerformed
+
+    private void botaoInicial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicial2ActionPerformed
+        // TODO add your handling code here:
+        player.getGaloDex().addGalo(galosIniciais.get(2));
+        trocarTela("telaDashBoard");
+    }//GEN-LAST:event_botaoInicial2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -656,6 +755,9 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoAtqTipificado;
     private javax.swing.JButton botaoAtqUltimate;
     private javax.swing.JButton botaoGaloDex;
+    private javax.swing.JButton botaoInicial0;
+    private javax.swing.JButton botaoInicial1;
+    private javax.swing.JButton botaoInicial2;
     private javax.swing.JButton botaoItens;
     private javax.swing.JButton botaoLoja;
     private javax.swing.JButton botaoPartidaRapida;
@@ -665,12 +767,13 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoTorneios;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.JDialog dialogGaloDex;
-    private javax.swing.JLabel fotoAtacanteGaloDex;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelApelidoAtacanteGaloDex;
     private javax.swing.JLabel labelAtacante;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
+    private javax.swing.JLabel labelFotoAtacanteGaloDex;
     private javax.swing.JLabel labelFotoMaquina;
     private javax.swing.JLabel labelFotoPlayer;
     private javax.swing.JLabel labelNomeAtq;
@@ -685,6 +788,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JTable tableGaloDex;
     private javax.swing.JPanel telaBatalha;
+    private javax.swing.JPanel telaBemVindo;
     private javax.swing.JPanel telaDashBoard;
     private javax.swing.JPanel telaInicial;
     private javax.swing.JPanel telaLoja;
