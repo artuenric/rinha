@@ -3,11 +3,15 @@ package com.rinha.gui;
 import com.rinha.ataque.Ataque;
 import com.rinha.batalha.Batalha;
 import com.rinha.galos.*;
+import com.rinha.loja.Loja;
+import com.rinha.player.GaloDex;
+import com.rinha.player.Perfil;
 import java.awt.CardLayout;
-import java.util.Random;
 
 public class mainFrame extends javax.swing.JFrame {
-    // Propriedades para a batalha
+    Perfil player;
+    Loja loja;
+    
     Batalha batalhaAtual;
     int usuarioAtq = 0;
     
@@ -86,15 +90,21 @@ public class mainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogGaloDex = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableGaloDex = new javax.swing.JTable();
+        botaoSelecionarAtacante = new javax.swing.JButton();
+        labelSelecione = new javax.swing.JLabel();
+        fotoAtacanteGaloDex = new javax.swing.JLabel();
+        labelAtacante = new javax.swing.JLabel();
+        labelApelidoAtacanteGaloDex = new javax.swing.JLabel();
         painelPrincipal = new javax.swing.JPanel();
         telaInicial = new javax.swing.JPanel();
-        botaoSettings = new javax.swing.JButton();
         botaoPlay = new javax.swing.JButton();
         labelRinhaNome = new javax.swing.JLabel();
         labelBackgroundTelaInicial = new javax.swing.JLabel();
         telaDashBoard = new javax.swing.JPanel();
         botaoTorneios = new javax.swing.JButton();
-        menuInicial = new javax.swing.JButton();
         botaoLoja = new javax.swing.JButton();
         botaoPerfil = new javax.swing.JButton();
         botaoPartidaRapida = new javax.swing.JButton();
@@ -121,6 +131,105 @@ public class mainFrame extends javax.swing.JFrame {
         labelVidaPlayer = new javax.swing.JLabel();
         labelVidaMaquina = new javax.swing.JLabel();
 
+        dialogGaloDex.setMaximumSize(new java.awt.Dimension(480, 360));
+        dialogGaloDex.setMinimumSize(new java.awt.Dimension(480, 360));
+        dialogGaloDex.setPreferredSize(new java.awt.Dimension(480, 360));
+        dialogGaloDex.setResizable(false);
+        dialogGaloDex.setLocationRelativeTo(null);
+
+        tableGaloDex.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Galo", "Tipo", "Raridade", "Nivel", "Vida"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableGaloDex);
+        if (tableGaloDex.getColumnModel().getColumnCount() > 0) {
+            tableGaloDex.getColumnModel().getColumn(0).setResizable(false);
+            tableGaloDex.getColumnModel().getColumn(1).setResizable(false);
+            tableGaloDex.getColumnModel().getColumn(2).setResizable(false);
+            tableGaloDex.getColumnModel().getColumn(3).setResizable(false);
+            tableGaloDex.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        botaoSelecionarAtacante.setText("Selecionar");
+        botaoSelecionarAtacante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSelecionarAtacanteActionPerformed(evt);
+            }
+        });
+
+        labelSelecione.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        labelSelecione.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelSelecione.setText("<html>Selecinoe um Galo para ser o seu galo Atacante:</html>");
+        labelSelecione.setToolTipText("");
+
+        fotoAtacanteGaloDex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/galos/galofebem.png"))); // NOI18N
+        fotoAtacanteGaloDex.setText("jLabel1");
+
+        labelAtacante.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelAtacante.setText("Atacante");
+
+        labelApelidoAtacanteGaloDex.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        labelApelidoAtacanteGaloDex.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelApelidoAtacanteGaloDex.setText("Apelido");
+
+        javax.swing.GroupLayout dialogGaloDexLayout = new javax.swing.GroupLayout(dialogGaloDex.getContentPane());
+        dialogGaloDex.getContentPane().setLayout(dialogGaloDexLayout);
+        dialogGaloDexLayout.setHorizontalGroup(
+            dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogGaloDexLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoSelecionarAtacante, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(labelSelecione, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(12, 12, 12))
+                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAtacante, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelApelidoAtacanteGaloDex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))))
+        );
+        dialogGaloDexLayout.setVerticalGroup(
+            dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogGaloDexLayout.createSequentialGroup()
+                .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
+                        .addContainerGap(27, Short.MAX_VALUE)
+                        .addComponent(fotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(labelAtacante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelApelidoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
+                        .addComponent(labelSelecione, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoSelecionarAtacante, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
         setMinimumSize(new java.awt.Dimension(720, 480));
@@ -144,10 +253,6 @@ public class mainFrame extends javax.swing.JFrame {
         telaInicial.setMinimumSize(getPreferredSize());
         telaInicial.setName(""); // NOI18N
         telaInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botaoSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/botaoSettings.png"))); // NOI18N
-        botaoSettings.setContentAreaFilled(false);
-        telaInicial.add(botaoSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 40, 40));
 
         botaoPlay.setBackground(new java.awt.Color(246, 110, 21));
         botaoPlay.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
@@ -189,16 +294,6 @@ public class mainFrame extends javax.swing.JFrame {
         });
         telaDashBoard.add(botaoTorneios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 386, 182, 54));
 
-        menuInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/menuIcon.png"))); // NOI18N
-        menuInicial.setAlignmentY(0.0F);
-        menuInicial.setContentAreaFilled(false);
-        menuInicial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuInicialActionPerformed(evt);
-            }
-        });
-        telaDashBoard.add(menuInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 48, 48));
-
         botaoLoja.setBackground(new java.awt.Color(75, 150, 187));
         botaoLoja.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoLoja.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,6 +323,11 @@ public class mainFrame extends javax.swing.JFrame {
         botaoGaloDex.setForeground(new java.awt.Color(255, 255, 255));
         botaoGaloDex.setText("GaloDex");
         botaoGaloDex.setAlignmentY(0.0F);
+        botaoGaloDex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoGaloDexActionPerformed(evt);
+            }
+        });
         telaDashBoard.add(botaoGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 83, 100, 31));
 
         labelBackgroundDashBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telaDashboard.png"))); // NOI18N
@@ -448,10 +548,6 @@ public class mainFrame extends javax.swing.JFrame {
         updateLabelsAtq();
     }//GEN-LAST:event_botaoAtqTipificadoActionPerformed
 
-    private void menuInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInicialActionPerformed
-        // Abre o pop-up do menu
-    }//GEN-LAST:event_menuInicialActionPerformed
-
     private void botaoItensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoItensActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoItensActionPerformed
@@ -493,6 +589,15 @@ public class mainFrame extends javax.swing.JFrame {
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.trocarTela("telaDashBoard");
     }//GEN-LAST:event_botaoVoltarActionPerformed
+
+    private void botaoGaloDexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGaloDexActionPerformed
+        // TODO add your handling code here:
+        dialogGaloDex.setVisible(true);
+    }//GEN-LAST:event_botaoGaloDexActionPerformed
+
+    private void botaoSelecionarAtacanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionarAtacanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoSelecionarAtacanteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -556,9 +661,14 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoPartidaRapida;
     private javax.swing.JButton botaoPerfil;
     private javax.swing.JButton botaoPlay;
-    private javax.swing.JButton botaoSettings;
+    private javax.swing.JButton botaoSelecionarAtacante;
     private javax.swing.JButton botaoTorneios;
     private javax.swing.JButton botaoVoltar;
+    private javax.swing.JDialog dialogGaloDex;
+    private javax.swing.JLabel fotoAtacanteGaloDex;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelApelidoAtacanteGaloDex;
+    private javax.swing.JLabel labelAtacante;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
     private javax.swing.JLabel labelFotoMaquina;
@@ -568,11 +678,12 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelNomePlayer;
     private javax.swing.JLabel labelPP;
     private javax.swing.JLabel labelRinhaNome;
+    private javax.swing.JLabel labelSelecione;
     private javax.swing.JLabel labelVidaMaquina;
     private javax.swing.JLabel labelVidaPlayer;
-    private javax.swing.JButton menuInicial;
     private javax.swing.JPanel painelFuncoesAtaque;
     private javax.swing.JPanel painelPrincipal;
+    private javax.swing.JTable tableGaloDex;
     private javax.swing.JPanel telaBatalha;
     private javax.swing.JPanel telaDashBoard;
     private javax.swing.JPanel telaInicial;
