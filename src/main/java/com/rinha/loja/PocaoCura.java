@@ -1,6 +1,7 @@
 package com.rinha.loja;
 
 import java.util.Random;
+import com.rinha.galos.Galo;
 
 public class PocaoCura extends Item{
     int restauracao;
@@ -13,6 +14,6 @@ public class PocaoCura extends Item{
     }
     
     public void curar(Galo galo){
-        galo.setVidaAtual(galo.getVidaAtual + this.restauracao);
+        galo.setVidaAtual(galo.getVidaAtual() + this.restauracao);
     }
 }

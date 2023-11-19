@@ -2,7 +2,7 @@ package com.rinha.loja;
 
 import java.util.Random;
 
-public class Milho extends Iten{
+public class Milho extends Item{
     int xp;
     
     public Milho(){

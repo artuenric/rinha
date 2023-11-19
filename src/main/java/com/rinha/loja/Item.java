@@ -1,6 +1,6 @@
 package com.rinha.loja;
 
-public class abstract Item {
+public abstract class Item {
     int preco;
     String nome;
 }

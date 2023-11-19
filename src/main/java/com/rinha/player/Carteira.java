@@ -12,8 +12,8 @@ public class Carteira {
     }
     
     // Construtor
-    public Carteira() {
-        this.saldo = 0;
+    public Carteira(int saldo) {
+        this.saldo = saldo;
     }
     
     // Demais métodos
@@ -26,9 +26,6 @@ public class Carteira {
     }
     
     public boolean solicitacao(int valor){
-        if (valor > this.getSaldo()){
-            return false;
-        }
-        return true;
+        return valor <= this.getSaldo();
     }
 }
