@@ -2,6 +2,7 @@ package com.rinha.batalha;
 import com.rinha.galos.Galo;
 import java.util.Random;
 import com.rinha.ataque.Ataque;
+import com.rinha.galos.Galinheiro;
 import com.rinha.interfaceusuario.InterfaceUsuario;
 
 public class Batalha{
@@ -23,6 +24,28 @@ public class Batalha{
     public Batalha(Galo player, Galo maquina){
         this.player = player;
         this.maquina = maquina;
+        this.aberto = true;
+    }
+    public Batalha(Galo player){
+        this.player = player;
+        int nivelPlayer = player.getNivel();
+        // Definindo adversário com base no player
+        Galinheiro galinheiro = new Galinheiro();
+        switch (player.getRaridade()){
+            case "Raro":{
+                this.maquina = galinheiro.getRandomGaloRaro(nivelPlayer);
+                break;
+            }
+            case "Epico":{
+                this.maquina = galinheiro.getRandomGaloEpico(nivelPlayer);
+                break;
+            }
+            case "Lendario":{
+                this.maquina = galinheiro.getRandomGaloLendario(nivelPlayer);
+                break;
+            }
+        }
+        // Batalha aberta
         this.aberto = true;
     }
     

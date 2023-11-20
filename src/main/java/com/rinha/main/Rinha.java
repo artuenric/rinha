@@ -11,10 +11,7 @@ import java.util.Scanner;
 
 public class Rinha {
     public static void main(String[] args) {
-       
-        Galinheiro galinheiro = new Galinheiro(4);
-        Galo galo = galinheiro.getGalo(0);
-        System.out.println(galo.getStatus());
+
         
         
         /*

@@ -14,7 +14,7 @@ public class mainFrame extends javax.swing.JFrame {
     Perfil player = new Perfil("Desafiante");
         
     // Informações dos Galos
-    Galinheiro galinheiro = new Galinheiro(1);
+    Galinheiro galinheiro = new Galinheiro();
     ArrayList<Galo> galosIniciais = galinheiro.gerarGalosIniciais();
     
     // Informações da Loja
@@ -26,71 +26,58 @@ public class mainFrame extends javax.swing.JFrame {
     
     public mainFrame() {
         // Essa iniciaização acontece por que as informações da interface dependem disso. (Nome do ataque no botão...)
-        criarBatalhaRapida();
         initComponents();
     }
     
     /*
-    * Minhas funções para auxiliar na interface
+    * Minhas funções para auxiliar nas informações da interface
     */ 
     public void trocarTela(String nomeDoCard){
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
         cl.show(painelPrincipal, nomeDoCard);
     }
     
-    /**
-    * Funções para batalha
-    */
-    public void criarBatalhaRapida(){
-        // Futuramente funcionar com o nível e raridade do galo da coleção escolhido. Deverá ser o parâmetro.
-        Galinheiro galinheiro = new Galinheiro(4);
-        Galo player = galinheiro.getGalo(0);
-        Galo maquina = galinheiro.getGalo(5);
-        
-        System.out.println(player.getStatus());
-        System.out.println(maquina.getStatus());
-        
-        // Define a batalha criada para a batalha atual
-        batalhaAtual = new Batalha(player, maquina);
-         
-    }
-
-    public void updateLabelsAtq(){
+    public void updateLabelsPPeNomeAtaque(){
         // Atualiza label do pp e do nome do ataque
         Ataque ataque;
         if (usuarioAtq != 0){
+            // Nome do ataque
             ataque = this.batalhaAtual.getPlayer().getAtaque(usuarioAtq);
             this.labelPP.setText("PP: " + ataque.getPontosDePoderAtual());
             this.labelNomeAtq.setText(ataque.getNomeAtaque());
         }
         else {
+            // Caso ainda não haja ataque selecionado
             this.labelNomeAtq.setText("Selecione o Ataque");
             this.labelPP.setText("");
         }
+        // Botoes dos ataques dos galos
         botaoAtqBasico.setText(batalhaAtual.getPlayer().getAtaque(1).getNomeAtaque());
         botaoAtqTipificado.setText(batalhaAtual.getPlayer().getAtaque(2).getNomeAtaque());
         botaoAtqAgil.setText(batalhaAtual.getPlayer().getAtaque(3).getNomeAtaque());
         botaoAtqUltimate.setText(batalhaAtual.getPlayer().getAtaque(4).getNomeAtaque());
     }
     
-    public void updateInfo(){
-        // Update das barras de vida
+    public void updateLabelsFoto(){
+        // Atualiza as fotos de batalha dos Galos
+        labelFotoMaquina.setIcon(batalhaAtual.getMaquina().getFotoBatalha());
+        labelFotoPlayer.setIcon(batalhaAtual.getPlayer().getFotoBatalha());
+    }
+    
+    public void updateBarrasVida(){
+        // Atualização das barras de vida e das labels com o valor
         this.vidaMaquina.setValue(batalhaAtual.getMaquina().getPercentualVidaAtual());
         this.labelVidaMaquina.setText(Integer.toString(batalhaAtual.getMaquina().getVidaAtual()));
         this.vidaPlayer.setValue(batalhaAtual.getPlayer().getPercentualVidaAtual());
         this.labelVidaPlayer.setText(Integer.toString(batalhaAtual.getPlayer().getVidaAtual()));
-        // Update das informações painel de Ataque
-        this.updateLabelsAtq();
-        // Update das fotos
-        labelFotoMaquina.setIcon(batalhaAtual.getMaquina().getFotoBatalha());
-        labelFotoPlayer.setIcon(batalhaAtual.getPlayer().getFotoBatalha());
-        
-        updateLabelsAtq();
     }
     
-    /**
-     * Funções para GaloDex
-     */
+    public void updateInfoTelaBatalha(){
+        // Atualiza as informações da tela de batalha
+        this.updateLabelsPPeNomeAtaque();
+        this.updateLabelsFoto();
+        this.updateBarrasVida();
+    }
     
     public void updateTableGaloDex(){
         DefaultTableModel table = (DefaultTableModel) tableGaloDex.getModel();
@@ -103,6 +90,14 @@ public class mainFrame extends javax.swing.JFrame {
     }
     
     
+    
+    /**
+    * Funções para batalha
+    */
+    public void criarBatalhaRapida(){
+        this.batalhaAtual = new Batalha(player.getGaloDex().getAtacante());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -384,35 +379,30 @@ public class mainFrame extends javax.swing.JFrame {
         telaBatalha.setMinimumSize(getPreferredSize());
         telaBatalha.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelFotoPlayer.setIcon(batalhaAtual.getPlayer().getFotoBatalha());
         labelFotoPlayer.setMaximumSize(labelFotoPlayer.getPreferredSize());
         labelFotoPlayer.setMinimumSize(labelFotoPlayer.getPreferredSize());
         telaBatalha.add(labelFotoPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 150, 150));
 
         painelFuncoesAtaque.setBackground(new java.awt.Color(238, 240, 242));
 
-        botaoAtqBasico.setText(batalhaAtual.getPlayer().getAtqBasico().getNomeAtaque());
         botaoAtqBasico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAtqBasicoActionPerformed(evt);
             }
         });
 
-        botaoAtqTipificado.setText(batalhaAtual.getPlayer().getAtqTipificado().getNomeAtaque());
         botaoAtqTipificado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAtqTipificadoActionPerformed(evt);
             }
         });
 
-        botaoAtqUltimate.setText(batalhaAtual.getPlayer().getAtqUltimate().getNomeAtaque());
         botaoAtqUltimate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAtqUltimateActionPerformed(evt);
             }
         });
 
-        botaoAtqAgil.setText(batalhaAtual.getPlayer().getAtqAgil().getNomeAtaque());
         botaoAtqAgil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAtqAgilActionPerformed(evt);
@@ -489,7 +479,6 @@ public class mainFrame extends javax.swing.JFrame {
 
         telaBatalha.add(painelFuncoesAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 720, 160));
 
-        labelFotoMaquina.setIcon(batalhaAtual.getMaquina().getFotoBatalha());
         labelFotoMaquina.setMaximumSize(new java.awt.Dimension(140, 140));
         labelFotoMaquina.setMinimumSize(new java.awt.Dimension(140, 140));
         labelFotoMaquina.setPreferredSize(new java.awt.Dimension(140, 140));
@@ -498,11 +487,9 @@ public class mainFrame extends javax.swing.JFrame {
         telaBatalha.add(vidaPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 200, 20));
 
         labelNomePlayer.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        labelNomePlayer.setText(batalhaAtual.getPlayer().getApelido());
         telaBatalha.add(labelNomePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         labelNomeMaquina.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        labelNomeMaquina.setText(batalhaAtual.getMaquina().getApelido());
         telaBatalha.add(labelNomeMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
         botaoVoltar.setBackground(new java.awt.Color(228, 56, 82));
@@ -515,13 +502,10 @@ public class mainFrame extends javax.swing.JFrame {
         telaBatalha.add(botaoVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         labelVidaPlayer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelVidaPlayer.setText(Integer.toString(batalhaAtual.getPlayer().getVidaAtual()));
         telaBatalha.add(labelVidaPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 40, -1));
 
         labelVidaMaquina.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelVidaMaquina.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelVidaMaquina.setText(Integer.toString(batalhaAtual.getMaquina().getVidaAtual())
-        );
         telaBatalha.add(labelVidaMaquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 40, -1));
 
         painelPrincipal.add(telaBatalha, "telaBatalha");
@@ -597,16 +581,17 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void botaoPartidaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPartidaRapidaActionPerformed
         // botaoPartidaRapida gera e encaminha para uma partida aleatória
-        trocarTela("telaBatalha");
-        criarBatalhaRapida();
-        
-        updateInfo();
-        updateLabelsAtq();
-        
-        // Informações adicionais para a batalha rápida
-        vidaMaquina.setValue(100);
-        vidaPlayer.setValue(100);
-        
+        if (player.getGaloDex().getAtacante() == null){
+            this.dialogGaloDex.setVisible(true);
+        }
+        else {
+            trocarTela("telaBatalha");
+            criarBatalhaRapida();
+            updateInfoTelaBatalha();
+            // Informações adicionais para a batalha rápida
+            vidaMaquina.setValue(100);
+            vidaPlayer.setValue(100);
+        }
     }//GEN-LAST:event_botaoPartidaRapidaActionPerformed
 
     private void botaoTorneiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneiosActionPerformed
@@ -616,7 +601,7 @@ public class mainFrame extends javax.swing.JFrame {
     private void botaoAtqTipificadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqTipificadoActionPerformed
         // Seleciona o Atq2 para o usarioAtq (Ataque Tipificado)
         usuarioAtq = 2;
-        updateLabelsAtq();
+        updateLabelsPPeNomeAtaque();
     }//GEN-LAST:event_botaoAtqTipificadoActionPerformed
 
     private void botaoItensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoItensActionPerformed
@@ -626,19 +611,19 @@ public class mainFrame extends javax.swing.JFrame {
     private void botaoAtqBasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqBasicoActionPerformed
         // Seleciona o Atq1 para o usarioAtq (Ataque Basico)
         usuarioAtq = 1;
-        updateLabelsAtq();
+        updateLabelsPPeNomeAtaque();
     }//GEN-LAST:event_botaoAtqBasicoActionPerformed
 
     private void botaoAtqAgilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqAgilActionPerformed
         // Seleciona o Atq3 para o usarioAtq (Ataque Agil)
         usuarioAtq = 3;
-        updateLabelsAtq();
+        updateLabelsPPeNomeAtaque();
     }//GEN-LAST:event_botaoAtqAgilActionPerformed
 
     private void botaoAtqUltimateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqUltimateActionPerformed
         // Seleciona o Atq4 para o usarioAtq (Ataque Ultimate)
         usuarioAtq = 4;
-        updateLabelsAtq();
+        updateLabelsPPeNomeAtaque();
     }//GEN-LAST:event_botaoAtqUltimateActionPerformed
 
     private void botaoAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtacarActionPerformed
@@ -654,7 +639,7 @@ public class mainFrame extends javax.swing.JFrame {
         }
         // Atualiza as informações
         this.usuarioAtq = 0;
-        updateInfo();
+        updateInfoTelaBatalha();
     }//GEN-LAST:event_botaoAtacarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
@@ -668,14 +653,15 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoGaloDexActionPerformed
 
     private void botaoSelecionarAtacanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionarAtacanteActionPerformed
-        // TODO add your handling code here:
+        // Seleciona o atacante do player
         int index = tableGaloDex.getSelectedRow();
         if (index >= 0){
+            // SelectedRow retorna o índice da linha selecionada, caso não haja linha selecionda, retorna -1
             player.getGaloDex().setAtacante(player.getGaloDex().getGalo(index));
-            
-            System.out.println(player.getGaloDex().getAtacante());
             this.labelApelidoAtacanteGaloDex.setText(player.getGaloDex().getAtacante().getApelido());
             this.labelFotoAtacanteGaloDex.setIcon(player.getGaloDex().getAtacante().getFotoBatalha());
+            // Log no terminal
+            System.out.println("O galo atacante atual é:" + player.getGaloDex().getAtacante().getApelido());
         }
     }//GEN-LAST:event_botaoSelecionarAtacanteActionPerformed
 
@@ -683,7 +669,6 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         player.getGaloDex().addGalo(galosIniciais.get(0));
         trocarTela("telaDashBoard");
-        System.out.println("AA");
     }//GEN-LAST:event_botaoInicial0ActionPerformed
 
     private void botaoInicial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicial1ActionPerformed

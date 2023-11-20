@@ -4,13 +4,32 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Galinheiro {
-    Galo[] todos = new Galo[6];
+    ArrayList<Galo> galosEpicos;
+    ArrayList<Galo> galosRaro;
+    ArrayList<Galo> galosLendarios;
+    // Lista com nomes legais
+    ArrayList<String> nomes;
     
-    public Galinheiro(int nivel){
-        gerarGalos(nivel);
+    public ArrayList<Galo> gerarGalosEpicos(int nivel){
+        ArrayList<Galo> galosGerados = new ArrayList<>();
+        // Adicionar Galos Raros
+        galosGerados.add(new GaloBMW(nivel, "Apelido"));
+        return galosGerados;
     }
-    
+    public ArrayList<Galo> gerarGalosRaros(int nivel){
+        ArrayList<Galo> galosGerados = new ArrayList<>();
+        // Adicionar Galos Raros
+        galosGerados.add(new GaloBMW(nivel, "Apelido"));
+        return galosGerados;
+    }
+    public ArrayList<Galo> gerarGalosLendarios(int nivel){
+        ArrayList<Galo> galosGerados = new ArrayList<>();
+        // Adicionar Galos Raros
+        galosGerados.add(new GaloBMW(nivel, "Apelido"));
+        return galosGerados;
+    }
     public ArrayList<Galo> gerarGalosIniciais(){
+        // Gera 3 galos iniciais padrão
         ArrayList<Galo> galosIniciais = new ArrayList<>();
         String apelidoInicial = "First";
         galosIniciais.add(new GaloCego(1, apelidoInicial));
@@ -18,49 +37,25 @@ public class Galinheiro {
         galosIniciais.add(new GaloCiborg(1, apelidoInicial));
         return galosIniciais;
     }
-    
-    public Galo getGalo(int i) {
-        return todos[i];
-    }
-    
-    public Galo[] gerarGalos(int nivel){
+    public Galo getRandomGaloEpico(int nivel){
         Random random = new Random();
-        Galo[] galos = new Galo[6];
-        Galo galo;
-        String nome = "Maquininha";
-        
-        galo = new GaloCego(nivel, nome);
-        
-        for (int x = 0; x < 6; x++){
-            int escolha = random.nextInt(6);
-            System.out.println(x);
-            switch (escolha){
-                case 0:{
-                    galo = new GaloBMW(nivel, nome);
-                    break;
-                }
-                case 1:{
-                    galo = new GaloCego(nivel, nome);
-                    break;
-                }
-                case 2:{
-                    galo = new GaloCiborg(nivel, nome);
-                    break;
-                }
-                case 3:{
-                    galo = new GaloItaipava(nivel, nome);
-                    break;
-                }
-                case 4:{
-                    galo = new GaloFebem(nivel, nome);
-                    break;
-                }
-            }
-            
-            galos[x] = galo;
-        }
-        
-        this.todos = galos;
-        return galos;
+        ArrayList<Galo> galosGerados;
+        galosGerados = this.gerarGalosEpicos(nivel);
+        Galo galo = galosGerados.get(random.nextInt(galosGerados.size()));
+        return galo;
+    }
+    public Galo getRandomGaloRaro(int nivel){
+        Random random = new Random();
+        ArrayList<Galo> galosGerados;
+        galosGerados = this.gerarGalosRaros(nivel);
+        Galo galo = galosGerados.get(random.nextInt(galosGerados.size()));
+        return galo;
+    }
+    public Galo getRandomGaloLendario(int nivel){
+        Random random = new Random();
+        ArrayList<Galo> galosGerados;
+        galosGerados = this.gerarGalosLendarios(nivel);
+        Galo galo = galosGerados.get(random.nextInt(galosGerados.size()));
+        return galo;
     }
 }
