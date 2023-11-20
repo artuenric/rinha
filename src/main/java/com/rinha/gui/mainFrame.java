@@ -113,8 +113,11 @@ public class mainFrame extends javax.swing.JFrame {
         botaoSelecionarAtacante = new javax.swing.JButton();
         labelSelecione = new javax.swing.JLabel();
         labelFotoAtacanteGaloDex = new javax.swing.JLabel();
-        labelAtacante = new javax.swing.JLabel();
         labelApelidoAtacanteGaloDex = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         painelPrincipal = new javax.swing.JPanel();
         telaInicial = new javax.swing.JPanel();
         botaoPlay = new javax.swing.JButton();
@@ -128,6 +131,14 @@ public class mainFrame extends javax.swing.JFrame {
         botaoGaloDex = new javax.swing.JButton();
         labelBackgroundDashBoard = new javax.swing.JLabel();
         telaLoja = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablePocoesLoja = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableMilhoLoja = new javax.swing.JTable();
+        botaoVoltarLoja = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         telaBatalha = new javax.swing.JPanel();
         labelFotoPlayer = new javax.swing.JLabel();
         painelFuncoesAtaque = new javax.swing.JPanel();
@@ -153,11 +164,12 @@ public class mainFrame extends javax.swing.JFrame {
         botaoInicial1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        dialogGaloDex.setMaximumSize(new java.awt.Dimension(480, 360));
-        dialogGaloDex.setMinimumSize(new java.awt.Dimension(480, 360));
-        dialogGaloDex.setPreferredSize(new java.awt.Dimension(480, 360));
+        dialogGaloDex.setMaximumSize(new java.awt.Dimension(500, 380));
+        dialogGaloDex.setMinimumSize(new java.awt.Dimension(500, 380));
+        dialogGaloDex.setPreferredSize(new java.awt.Dimension(500, 380));
         dialogGaloDex.setResizable(false);
         dialogGaloDex.setLocationRelativeTo(null);
+        dialogGaloDex.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableGaloDex.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,70 +196,39 @@ public class mainFrame extends javax.swing.JFrame {
             tableGaloDex.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        dialogGaloDex.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 480, 160));
+
         botaoSelecionarAtacante.setText("Selecionar");
         botaoSelecionarAtacante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoSelecionarAtacanteActionPerformed(evt);
             }
         });
+        dialogGaloDex.getContentPane().add(botaoSelecionarAtacante, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 130, 40));
 
-        labelSelecione.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        labelSelecione.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
         labelSelecione.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelSelecione.setText("<html>Selecinoe um Galo para ser o seu galo Atacante:</html>");
+        labelSelecione.setText("<html> <p align=\"justify\"> Escolha um galo da sua GaloDex e clique em Selecionar pra defini-lo como seu galo Atacante.</p> </html>");
         labelSelecione.setToolTipText("");
-
-        labelAtacante.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelAtacante.setText("Atacante");
+        dialogGaloDex.getContentPane().add(labelSelecione, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 130, 90));
+        dialogGaloDex.getContentPane().add(labelFotoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 150));
 
         labelApelidoAtacanteGaloDex.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        labelApelidoAtacanteGaloDex.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelApelidoAtacanteGaloDex.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelApelidoAtacanteGaloDex.setText("...");
+        dialogGaloDex.getContentPane().add(labelApelidoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 167, 45));
 
-        javax.swing.GroupLayout dialogGaloDexLayout = new javax.swing.GroupLayout(dialogGaloDex.getContentPane());
-        dialogGaloDex.getContentPane().setLayout(dialogGaloDexLayout);
-        dialogGaloDexLayout.setHorizontalGroup(
-            dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogGaloDexLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoSelecionarAtacante, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(labelSelecione, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))
-                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelAtacante, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelApelidoAtacanteGaloDex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelFotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))))
-        );
-        dialogGaloDexLayout.setVerticalGroup(
-            dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogGaloDexLayout.createSequentialGroup()
-                .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
-                        .addContainerGap(27, Short.MAX_VALUE)
-                        .addComponent(labelFotoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(labelAtacante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelApelidoAtacanteGaloDex, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(dialogGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(dialogGaloDexLayout.createSequentialGroup()
-                        .addComponent(labelSelecione, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoSelecionarAtacante, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
+        jLabel3.setText("Força:");
+        dialogGaloDex.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+
+        jLabel4.setText("Agilidade:");
+        dialogGaloDex.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+
+        jLabel5.setText("Defesa:");
+        dialogGaloDex.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+
+        jLabel6.setText("Galo Alguma Coisa");
+        dialogGaloDex.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -317,6 +298,11 @@ public class mainFrame extends javax.swing.JFrame {
         botaoLoja.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoLoja.setForeground(new java.awt.Color(255, 255, 255));
         botaoLoja.setText("Loja");
+        botaoLoja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLojaActionPerformed(evt);
+            }
+        });
         telaDashBoard.add(botaoLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 386, 182, 54));
 
         botaoPerfil.setBackground(new java.awt.Color(228, 56, 82));
@@ -360,15 +346,107 @@ public class mainFrame extends javax.swing.JFrame {
         telaLoja.setMaximumSize(getPreferredSize());
         telaLoja.setMinimumSize(getPreferredSize());
 
+        tablePocoesLoja.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Restauração", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablePocoesLoja);
+        if (tablePocoesLoja.getColumnModel().getColumnCount() > 0) {
+            tablePocoesLoja.getColumnModel().getColumn(0).setResizable(false);
+            tablePocoesLoja.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        tableMilhoLoja.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Xp", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tableMilhoLoja);
+        if (tableMilhoLoja.getColumnModel().getColumnCount() > 0) {
+            tableMilhoLoja.getColumnModel().getColumn(0).setResizable(false);
+            tableMilhoLoja.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        botaoVoltarLoja.setText("Voltar");
+        botaoVoltarLoja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarLojaActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+
+        jButton3.setText("jButton3");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Tua Grana");
+
         javax.swing.GroupLayout telaLojaLayout = new javax.swing.GroupLayout(telaLoja);
         telaLoja.setLayout(telaLojaLayout);
         telaLojaLayout.setHorizontalGroup(
             telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(telaLojaLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(telaLojaLayout.createSequentialGroup()
+                        .addGroup(telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(telaLojaLayout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3))
+                            .addGroup(telaLojaLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2)))
+                        .addContainerGap(405, Short.MAX_VALUE))
+                    .addGroup(telaLojaLayout.createSequentialGroup()
+                        .addComponent(botaoVoltarLoja)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
         );
         telaLojaLayout.setVerticalGroup(
             telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaLojaLayout.createSequentialGroup()
+                .addGroup(telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(telaLojaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(telaLojaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoVoltarLoja)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(telaLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(78, 78, 78))
         );
 
         painelPrincipal.add(telaLoja, "telaLoja");
@@ -683,6 +761,16 @@ public class mainFrame extends javax.swing.JFrame {
         trocarTela("telaDashBoard");
     }//GEN-LAST:event_botaoInicial2ActionPerformed
 
+    private void botaoVoltarLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarLojaActionPerformed
+        // Volta da loja pro Dashboard
+        trocarTela("telaDashBoard");
+    }//GEN-LAST:event_botaoVoltarLojaActionPerformed
+
+    private void botaoLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLojaActionPerformed
+        // Vai para tela da loja
+        trocarTela("telaLoja");
+    }//GEN-LAST:event_botaoLojaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -751,11 +839,20 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoSelecionarAtacante;
     private javax.swing.JButton botaoTorneios;
     private javax.swing.JButton botaoVoltar;
+    private javax.swing.JButton botaoVoltarLoja;
     private javax.swing.JDialog dialogGaloDex;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelApelidoAtacanteGaloDex;
-    private javax.swing.JLabel labelAtacante;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
     private javax.swing.JLabel labelFotoAtacanteGaloDex;
@@ -772,6 +869,8 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel painelFuncoesAtaque;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JTable tableGaloDex;
+    private javax.swing.JTable tableMilhoLoja;
+    private javax.swing.JTable tablePocoesLoja;
     private javax.swing.JPanel telaBatalha;
     private javax.swing.JPanel telaBemVindo;
     private javax.swing.JPanel telaDashBoard;

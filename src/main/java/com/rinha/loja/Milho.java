@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class Milho extends Item{
     int xp;
+
+    public int getXp() {
+        return xp;
+    }
     
     public Milho(){
         this.nome = "Milho";

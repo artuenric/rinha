@@ -12,6 +12,10 @@ public class PocaoCura extends Item{
         this.restauracao = random.nextInt(20)+10;
         this.preco = restauracao / 2;
     }
+
+    public int getRestauracao() {
+        return restauracao;
+    }
     
     public void curar(Galo galo){
         galo.setVidaAtual(galo.getVidaAtual() + this.restauracao);
