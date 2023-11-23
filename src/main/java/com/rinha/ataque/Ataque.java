@@ -48,4 +48,9 @@ public abstract class Ataque {
             this.setPontosDePoderAtual(getPontosDePoderAtual()-1);
         }
     }
+    
+    public void recuperaPontosDePoderOriginal(){
+        this.pontosDePoderAtual = this.pontosDePoderOriginal;
+    }
+    
 }

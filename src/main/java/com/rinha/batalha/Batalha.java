@@ -4,30 +4,37 @@ import java.util.Random;
 import com.rinha.ataque.Ataque;
 import com.rinha.galos.Galinheiro;
 import com.rinha.interfaceusuario.InterfaceUsuario;
+import com.rinha.player.Carteira;
+import com.rinha.player.Perfil;
+import java.util.ArrayList;
 
 public class Batalha{
     protected InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
     
     protected Galo player;
     protected Galo maquina;
+    protected Carteira carteiraPlayer;
     
     protected Galo atacante;
     protected Galo atacado;
     
     protected String vencedor;
-    protected int premio;
+    protected int premio = 10;
     
     // Controle da batalha
     protected boolean aberto;
     
     // Construtor
-    public Batalha(Galo player, Galo maquina){
-        this.player = player;
+    public Batalha(Perfil perfil, Galo maquina){ //Batalha torneio
+        this.player = perfil.getGaloDex().getAtacante();
+        this.carteiraPlayer = perfil.getCarteira();
         this.maquina = maquina;
-        this.aberto = true;
+        this.aberto = true; //state
     }
-    public Batalha(Galo player){
-        this.player = player;
+    
+    public Batalha(Perfil perfil){ //Batalha Rápida
+        this.player = perfil.getGaloDex().getAtacante();
+        this.carteiraPlayer = perfil.getCarteira();
         int nivelPlayer = player.getNivel();
         // Definindo adversário com base no player
         Galinheiro galinheiro = new Galinheiro();
@@ -77,10 +84,10 @@ public class Batalha{
     public void setVencedor(){
         
         if (this.player.getVidaAtual() <= 0){
-            this.vencedor = this.maquina.getNome();
+            this.vencedor = this.maquina.getApelido();
         } 
         else if (this.maquina.getVidaAtual() <= 0){
-            this.vencedor = this.player.getNome();
+            this.vencedor = this.player.getApelido();
         } else {
             this.vencedor = null;
         }
@@ -129,6 +136,7 @@ public class Batalha{
                 atacado.setVidaAtual(atacado.getVidaAtual() - dano);
                 concluido = true;
                 
+                //logs de informação de funcionamento da batalha 
                 System.out.println(atacante.getApelido() + " efetuou ataque " + atacante.getAtaque(ataqueId).getNomeAtaque() + " com dano de " + dano);
                 System.out.println("Vida de Galo: " + atacante.getNome() + ": " + atacante.getVidaAtual());
                 System.out.println("Vida de Galo: " + atacado.getNome() + ": " + atacado.getVidaAtual());
@@ -158,92 +166,14 @@ public class Batalha{
     
     private void fechar(){
         if (this.getVencedor()!= null){
+            
+            if (this.vencedor.equals(player.getApelido())){
+                this.carteiraPlayer.deposito(premio);
+            }
+            
+            System.out.println("Entrou em fechar");
+            this.player.regeneraPontosDePoderOriginal();
             this.setAberto(false);
         }
     }
-    
-    /*
-    public int combate(Galo atacante, Galo atacado, int ataqueId){    
-        this.setAtacante(atacante);
-        this.setAtacado(atacado);
-        
- 
-        System.out.println("");
-        int dano = 0;    
-              
-        if (this.atacado.esquivar()){
-            //System.out.println("\nMinha nossa! " + this.atacado.getApelido() + " esquivou!");
-            System.out.println("");
-        } else {
-            dano = this.atacante.atacar(this.atacado,ataqueId);
-            this.atacado.setVidaAtual(this.atacado.getVidaAtual() - dano);
-        }
-        System.out.println("player" + player.getStatus());
-        System.out.println("maquina" + maquina.getStatus());
-        
-        System.out.println("atacante atual" + atacante.getStatus());
-        System.out.println("atacado atual" + atacado.getStatus());
-        
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        
-        //System.out.println("\nO Galo: " + this.atacante.getNome() + " efetuou o ataque: " + this.atacante.getNomeAtaque(ataqueId) + ", o dano foi de " + dano);
-        //System.out.println("Vida de Galo: " + this.atacante.getNome() + ": " + this.atacante.getVidaAtual());
-        //System.out.println("Vida de Galo: " + this.atacado.getNome() + ": " + this.atacado.getVidaAtual());
-
-        this.atualizaPontosDePoder(ataqueId);
-
-        return dano;
-    }
-    
-    
-    public void turnoMaquina(){
-        // Maquina ataca
-        this.setAtacante(this.maquina);
-        Random random = new Random();
-        int ataqueId = random.nextInt(4)+1;
-        while(!this.verificaPontosDePoder(ataqueId)){
-            ataqueId = random.nextInt(4)+1;
-        }
-        this.combate(this.maquina, this.player, ataqueId);
-    }
-    
-    
-    public void batalhar(){
-        // Ataca o galo inimigo
-        // Ver depois
-        // [0] Dá o daninho e vai comendo vida, [1] mais dano menos pp, [2] um pouco mais dano menos pp tipo influencia, [3] bem mais dano, bem menos pp
-        
-        //modelo de batalha (NECESSARIO REVISAR)
-        
-        Random random = new Random();
-        
-        int decidirAtaques;
-        int turno = random.nextInt(2);
-        
-        while ((this.getVencedor() != this.player.getNome()) && (this.getVencedor() != this.maquina.getNome())){
-            
-            if (turno ==  0){
-                
-                decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
-                
-                combate(this.player, this.maquina, decidirAtaques);
-                this.setPlayer(this.atacante);
-                this.setMaquina(this.atacado);
-                turno = 1;
-            } else {
-                int ataqueAleatorio = random.nextInt(4) +  1; 
-
-                combate(this.maquina, this.player, ataqueAleatorio);
-                this.setMaquina(this.atacante);
-                this.setPlayer(this.atacado);
-                turno = 0;
-          } 
-            
-          this.setVencedor();
-        }
-    
-    }
-    */
 }

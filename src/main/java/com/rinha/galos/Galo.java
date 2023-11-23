@@ -146,6 +146,13 @@ public class Galo {
     Esses métodos pegam e alteram, obviamente, as propriedades dos galos.
     */
     
+    public void regeneraPontosDePoderOriginal(){
+        this.atqBasico.recuperaPontosDePoderOriginal();
+        this.atqTipificado.recuperaPontosDePoderOriginal();
+        this.atqAgil.recuperaPontosDePoderOriginal();
+        this.atqUltimate.recuperaPontosDePoderOriginal();
+    }
+    
     public String getApelido(){
         return apelido;
     }

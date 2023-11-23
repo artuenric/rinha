@@ -95,7 +95,7 @@ public class mainFrame extends javax.swing.JFrame {
     * Funções para batalha
     */
     public void criarBatalhaRapida(){
-        this.batalhaAtual = new Batalha(player.getGaloDex().getAtacante());
+        this.batalhaAtual = new Batalha(player);
     }
 
     /**
