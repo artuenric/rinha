@@ -172,6 +172,7 @@ public class Batalha{
             }
             
             System.out.println("Entrou em fechar");
+            this.player.regeneraVidaAtual();
             this.player.regeneraPontosDePoderOriginal();
             this.setAberto(false);
         }

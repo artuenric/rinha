@@ -153,6 +153,10 @@ public class Galo {
         this.atqUltimate.recuperaPontosDePoderOriginal();
     }
     
+    public void regeneraVidaAtual(){
+        this.vidaAtual = this.vida; //Destinada a regenerar a vida ao final da batalha
+    }
+    
     public String getApelido(){
         return apelido;
     }
