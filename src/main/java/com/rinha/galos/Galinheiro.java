@@ -32,8 +32,8 @@ public class Galinheiro {
         // Gera 3 galos iniciais padrão
         ArrayList<Galo> galosIniciais = new ArrayList<>();
         String apelidoInicial = "First";
-        galosIniciais.add(new GaloCego(1, apelidoInicial));
-        galosIniciais.add(new GaloBMW(1, apelidoInicial));
+        galosIniciais.add(new GaloAgiota(1, apelidoInicial));
+        galosIniciais.add(new GaloCafe(1, apelidoInicial));
         galosIniciais.add(new GaloCiborg(1, apelidoInicial));
         return galosIniciais;
     }

@@ -1,8 +1,5 @@
 package com.rinha.player;
 
-import java.util.ArrayList;
-import com.rinha.galos.Galo;
-
 public class Perfil {
     private String nome;
     private int nivel;
