@@ -717,20 +717,11 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="botaoAtacar" max="32767" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="botaoItens" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelPP" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelNomeAtq" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="labelPP" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNomeAtq" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoAtacar" alignment="0" min="-2" pref="204" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -754,7 +745,6 @@
                               <Component id="botaoAtqTipificado" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="botaoAtqUltimate" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="botaoAtacar" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                              <Component id="botaoItens" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
@@ -798,14 +788,6 @@
                     <Property name="text" type="java.lang.String" value="PP:"/>
                     <Property name="alignmentY" type="float" value="0.0"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="botaoItens">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Itens"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoItensActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelNomeAtq">
                   <Properties>

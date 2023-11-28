@@ -196,7 +196,6 @@ public class mainFrame extends javax.swing.JFrame {
         botaoAtqAgil = new javax.swing.JButton();
         botaoAtacar = new javax.swing.JButton();
         labelPP = new javax.swing.JLabel();
-        botaoItens = new javax.swing.JButton();
         labelNomeAtq = new javax.swing.JLabel();
         labelFotoMaquina = new javax.swing.JLabel();
         vidaMaquina = new javax.swing.JProgressBar();
@@ -559,13 +558,6 @@ public class mainFrame extends javax.swing.JFrame {
         labelPP.setText("PP:");
         labelPP.setAlignmentY(0.0F);
 
-        botaoItens.setText("Itens");
-        botaoItens.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoItensActionPerformed(evt);
-            }
-        });
-
         labelNomeAtq.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         labelNomeAtq.setText("Ataque");
 
@@ -584,16 +576,10 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(botaoAtqUltimate, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
-                        .addComponent(botaoAtacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoItens)
-                        .addGap(30, 30, 30))
-                    .addGroup(painelFuncoesAtaqueLayout.createSequentialGroup()
-                        .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelPP)
-                            .addComponent(labelNomeAtq))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(labelPP)
+                    .addComponent(labelNomeAtq)
+                    .addComponent(botaoAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         painelFuncoesAtaqueLayout.setVerticalGroup(
             painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,8 +597,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addGroup(painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAtqTipificado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAtqUltimate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoItens, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -763,10 +748,6 @@ public class mainFrame extends javax.swing.JFrame {
         usuarioAtq = 2;
         updateLabelsPPeNomeAtaque();
     }//GEN-LAST:event_botaoAtqTipificadoActionPerformed
-
-    private void botaoItensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoItensActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoItensActionPerformed
 
     private void botaoAtqBasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtqBasicoActionPerformed
         // Seleciona o Atq1 para o usarioAtq (Ataque Basico)
@@ -932,7 +913,6 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoInicial0;
     private javax.swing.JButton botaoInicial1;
     private javax.swing.JButton botaoInicial2;
-    private javax.swing.JButton botaoItens;
     private javax.swing.JButton botaoLoja;
     private javax.swing.JButton botaoPartidaRapida;
     private javax.swing.JButton botaoPerfil;
