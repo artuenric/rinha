@@ -73,13 +73,13 @@ public class Loja {
     
     public Object[] getInfoPocoes(int index){
         PocaoCura pocao = this.pocoes.get(index);
-        Object[] info = {pocao.getNome(), pocao.getRestauracao(), pocao.getPreco()};
+        Object[] info = {pocao.getRestauracao(), pocao.getPreco()};
         return info;
     }
     
     public Object[] getInfoMilhos(int index){
         Milho milho = this.milhos.get(index);
-        Object[] info = {milho.getNome(), milho.getXp(), milho.getPreco()};
+        Object[] info = {milho.getXp(), milho.getPreco()};
         return info;
     }
     

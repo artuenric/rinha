@@ -100,6 +100,12 @@ public class mainFrame extends javax.swing.JFrame {
         }
     }
     
+    public void updateInfoTelaLoja(){
+        this.updateTableMilhosLoja();
+        this.updateTablePocoesLoja();
+        this.labelSaldoCarteira.setText(Integer.toString(player.getCarteira().getSaldo()));
+    }
+    
     public void updateTableGaloDex(){
         DefaultTableModel table = (DefaultTableModel) this.tableGaloDex.getModel();
         table.setRowCount(0);
@@ -803,24 +809,23 @@ public class mainFrame extends javax.swing.JFrame {
     private void botaoLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLojaActionPerformed
         // Vai para tela da loja
         trocarTela("telaLoja");
-        this.updateTablePocoesLoja();
-        this.updateTableMilhosLoja();
+        this.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoLojaActionPerformed
 
     private void botaoComprarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoComprarPocaoActionPerformed
         // Botao para compra de Pocoes
         int index = this.tablePocoesLoja.getSelectedRow();
         boolean sucess = loja.venderPocaoCura(player, index);
-        this.updateTablePocoesLoja();
         System.out.println(sucess);
+        this.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoComprarPocaoActionPerformed
 
     private void botaoComprarMilhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoComprarMilhoActionPerformed
         // Botao para compra de Milhos
         int index = this.tableMilhosLoja.getSelectedRow();
         boolean sucess = this.loja.venderMilho(player, index);
-        this.updateTableMilhosLoja();
         System.out.println(sucess);
+        this.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoComprarMilhoActionPerformed
 
     /**
