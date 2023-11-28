@@ -1,4 +1,4 @@
-package com.rinha.player;
+package com.rinha.perfil;
 
 public class Carteira {
     int saldo;

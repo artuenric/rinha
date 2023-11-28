@@ -1,4 +1,4 @@
-package com.rinha.player;
+package com.rinha.perfil;
 
 import com.rinha.galos.Galo;
 import java.util.ArrayList;

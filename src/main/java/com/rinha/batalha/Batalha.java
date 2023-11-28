@@ -4,8 +4,8 @@ import java.util.Random;
 import com.rinha.ataque.Ataque;
 import com.rinha.galos.Galinheiro;
 import com.rinha.interfaceusuario.InterfaceUsuario;
-import com.rinha.player.Carteira;
-import com.rinha.player.Perfil;
+import com.rinha.perfil.Carteira;
+import com.rinha.perfil.Perfil;
 import java.util.ArrayList;
 
 public class Batalha{
