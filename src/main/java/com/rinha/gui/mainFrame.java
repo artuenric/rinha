@@ -172,6 +172,9 @@ public class mainFrame extends javax.swing.JFrame {
         labelRinhaNome = new javax.swing.JLabel();
         labelBackgroundTelaInicial = new javax.swing.JLabel();
         telaDashBoard = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         botaoTorneios = new javax.swing.JButton();
         botaoLoja = new javax.swing.JButton();
         botaoPerfil = new javax.swing.JButton();
@@ -209,7 +212,7 @@ public class mainFrame extends javax.swing.JFrame {
         botaoInicial2 = new javax.swing.JButton();
         botaoInicial0 = new javax.swing.JButton();
         botaoInicial1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelBemVindo = new javax.swing.JLabel();
         telaGaloDex = new javax.swing.JPanel();
 
         dialogGaloDex.setMaximumSize(dialogGaloDex.getPreferredSize());
@@ -265,19 +268,19 @@ public class mainFrame extends javax.swing.JFrame {
         labelApelidoAtacanteGaloDex.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         labelApelidoAtacanteGaloDex.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelApelidoAtacanteGaloDex.setText("...");
-        dialogGaloDex.getContentPane().add(labelApelidoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 167, 45));
+        dialogGaloDex.getContentPane().add(labelApelidoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 167, 45));
 
         labelForcaAtacanteGaloDex.setText("Força:");
-        dialogGaloDex.getContentPane().add(labelForcaAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        dialogGaloDex.getContentPane().add(labelForcaAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         labelAgilidadeAtacanteGaloDex.setText("Agilidade:");
-        dialogGaloDex.getContentPane().add(labelAgilidadeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        dialogGaloDex.getContentPane().add(labelAgilidadeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
         labelDefesaAtacanteGaloDex.setText("Defesa:");
-        dialogGaloDex.getContentPane().add(labelDefesaAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        dialogGaloDex.getContentPane().add(labelDefesaAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
         labelNomeAtacanteGaloDex.setText("Galo Alguma Coisa");
-        dialogGaloDex.getContentPane().add(labelNomeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        dialogGaloDex.getContentPane().add(labelNomeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -325,12 +328,31 @@ public class mainFrame extends javax.swing.JFrame {
 
         painelPrincipal.add(telaInicial, "telaInicial");
 
+        telaDashBoard.setForeground(new java.awt.Color(255, 255, 255));
         telaDashBoard.setAlignmentX(0.0F);
         telaDashBoard.setAlignmentY(0.0F);
         telaDashBoard.setMaximumSize(getPreferredSize());
         telaDashBoard.setMinimumSize(getPreferredSize());
         telaDashBoard.setPreferredSize(getPreferredSize());
         telaDashBoard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nome do Desafiante 3");
+        telaDashBoard.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 280, -1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Milhos:");
+        telaDashBoard.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Poções de Cura:");
+        telaDashBoard.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         botaoTorneios.setBackground(new java.awt.Color(255, 135, 30));
         botaoTorneios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -359,6 +381,11 @@ public class mainFrame extends javax.swing.JFrame {
         botaoPerfil.setForeground(new java.awt.Color(255, 255, 255));
         botaoPerfil.setText("Perfil");
         botaoPerfil.setAlignmentY(0.0F);
+        botaoPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPerfilActionPerformed(evt);
+            }
+        });
         telaDashBoard.add(botaoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 100, 31));
 
         botaoPartidaRapida.setBackground(new java.awt.Color(255, 135, 30));
@@ -384,6 +411,7 @@ public class mainFrame extends javax.swing.JFrame {
         });
         telaDashBoard.add(botaoGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 83, 100, 31));
 
+        labelBackgroundDashBoard.setForeground(new java.awt.Color(255, 255, 255));
         labelBackgroundDashBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telaDashboard.png"))); // NOI18N
         labelBackgroundDashBoard.setToolTipText("");
         telaDashBoard.add(labelBackgroundDashBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
@@ -579,7 +607,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(labelPP)
                     .addComponent(labelNomeAtq)
                     .addComponent(botaoAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelFuncoesAtaqueLayout.setVerticalGroup(
             painelFuncoesAtaqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -675,9 +703,9 @@ public class mainFrame extends javax.swing.JFrame {
         });
         telaBemVindo.add(botaoInicial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel1.setText("<html> <p align=\"center\">Bem-vindo, desafiante!<br> Escolha com sabedoria um dos Galos abaixo para ser seu inicial. </p> </html>");
-        telaBemVindo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        labelBemVindo.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        labelBemVindo.setText("<html> <p align=\"center\">Bem-vindo, desafiante!<br> Escolha com sabedoria um dos Galos abaixo para ser seu inicial. </p> </html>");
+        telaBemVindo.add(labelBemVindo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 
         painelPrincipal.add(telaBemVindo, "telaBemVindo");
 
@@ -850,6 +878,10 @@ public class mainFrame extends javax.swing.JFrame {
         this.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoComprarMilhoActionPerformed
 
+    private void botaoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPerfilActionPerformed
+        // Abre o perfil
+    }//GEN-LAST:event_botaoPerfilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -922,6 +954,8 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoVoltarLoja;
     private javax.swing.JDialog dialogGaloDex;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -929,6 +963,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel labelApelidoAtacanteGaloDex;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
+    private javax.swing.JLabel labelBemVindo;
     private javax.swing.JLabel labelDefesaAtacanteGaloDex;
     private javax.swing.JLabel labelForcaAtacanteGaloDex;
     private javax.swing.JLabel labelFotoAtacanteGaloDex;
