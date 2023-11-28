@@ -123,6 +123,17 @@ public class mainFrame extends javax.swing.JFrame {
         }
     }
     
+    public void updateInfoGaloDex(){
+        this.labelApelidoAtacanteGaloDex.setText(player.getGaloDex().getAtacante().getApelido());
+        this.labelFotoAtacanteGaloDex.setIcon(player.getGaloDex().getAtacante().getFotoBatalha());
+        this.labelNomeAtacanteGaloDex.setText("" + player.getGaloDex().getAtacante().getNome());
+        this.labelAgilidadeAtacanteGaloDex.setText("Agilidade: " + player.getGaloDex().getAtacante().getAgilidade());
+        this.labelForcaAtacanteGaloDex.setText("Força: " + player.getGaloDex().getAtacante().getForca());
+        this.labelDefesaAtacanteGaloDex.setText("Defesa: " + player.getGaloDex().getAtacante().getDefesa());
+        this.updateTableGaloDex();
+        
+    }
+    
     public void abrirGaloDex(){
         dialogGaloDex.setVisible(true);
         this.updateTableGaloDex();
@@ -151,10 +162,10 @@ public class mainFrame extends javax.swing.JFrame {
         labelSelecione = new javax.swing.JLabel();
         labelFotoAtacanteGaloDex = new javax.swing.JLabel();
         labelApelidoAtacanteGaloDex = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        labelForcaAtacanteGaloDex = new javax.swing.JLabel();
+        labelAgilidadeAtacanteGaloDex = new javax.swing.JLabel();
+        labelDefesaAtacanteGaloDex = new javax.swing.JLabel();
+        labelNomeAtacanteGaloDex = new javax.swing.JLabel();
         painelPrincipal = new javax.swing.JPanel();
         telaInicial = new javax.swing.JPanel();
         botaoPlay = new javax.swing.JButton();
@@ -235,7 +246,7 @@ public class mainFrame extends javax.swing.JFrame {
             tableGaloDex.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        dialogGaloDex.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 480, 160));
+        dialogGaloDex.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 480, 160));
 
         botaoSelecionarAtacante.setText("Selecionar");
         botaoSelecionarAtacante.addActionListener(new java.awt.event.ActionListener() {
@@ -243,13 +254,13 @@ public class mainFrame extends javax.swing.JFrame {
                 botaoSelecionarAtacanteActionPerformed(evt);
             }
         });
-        dialogGaloDex.getContentPane().add(botaoSelecionarAtacante, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 130, 40));
+        dialogGaloDex.getContentPane().add(botaoSelecionarAtacante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 130, 40));
 
         labelSelecione.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
         labelSelecione.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSelecione.setText("<html> <p align=\"justify\"> Escolha um galo da sua GaloDex e clique em Selecionar pra defini-lo como seu galo Atacante.</p> </html>");
         labelSelecione.setToolTipText("");
-        dialogGaloDex.getContentPane().add(labelSelecione, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 130, 90));
+        dialogGaloDex.getContentPane().add(labelSelecione, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 130, 90));
         dialogGaloDex.getContentPane().add(labelFotoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
 
         labelApelidoAtacanteGaloDex.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
@@ -257,17 +268,17 @@ public class mainFrame extends javax.swing.JFrame {
         labelApelidoAtacanteGaloDex.setText("...");
         dialogGaloDex.getContentPane().add(labelApelidoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 167, 45));
 
-        jLabel3.setText("Força:");
-        dialogGaloDex.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        labelForcaAtacanteGaloDex.setText("Força:");
+        dialogGaloDex.getContentPane().add(labelForcaAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
 
-        jLabel4.setText("Agilidade:");
-        dialogGaloDex.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        labelAgilidadeAtacanteGaloDex.setText("Agilidade:");
+        dialogGaloDex.getContentPane().add(labelAgilidadeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
-        jLabel5.setText("Defesa:");
-        dialogGaloDex.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        labelDefesaAtacanteGaloDex.setText("Defesa:");
+        dialogGaloDex.getContentPane().add(labelDefesaAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
-        jLabel6.setText("Galo Alguma Coisa");
-        dialogGaloDex.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        labelNomeAtacanteGaloDex.setText("Galo Alguma Coisa");
+        dialogGaloDex.getContentPane().add(labelNomeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -807,8 +818,7 @@ public class mainFrame extends javax.swing.JFrame {
         if (index >= 0){
             // SelectedRow retorna o índice da linha selecionada, caso não haja linha selecionda, retorna -1
             player.getGaloDex().setAtacante(player.getGaloDex().getGalo(index));
-            this.labelApelidoAtacanteGaloDex.setText(player.getGaloDex().getAtacante().getApelido());
-            this.labelFotoAtacanteGaloDex.setIcon(player.getGaloDex().getAtacante().getFotoBatalha());
+            this.updateInfoGaloDex();
             // Log no terminal
             System.out.println("O galo atacante atual é:" + player.getGaloDex().getAtacante().getApelido());
         }
@@ -932,19 +942,19 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoVoltarLoja;
     private javax.swing.JDialog dialogGaloDex;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelAgilidadeAtacanteGaloDex;
     private javax.swing.JLabel labelApelidoAtacanteGaloDex;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelBackgroundTelaInicial;
+    private javax.swing.JLabel labelDefesaAtacanteGaloDex;
+    private javax.swing.JLabel labelForcaAtacanteGaloDex;
     private javax.swing.JLabel labelFotoAtacanteGaloDex;
     private javax.swing.JLabel labelFotoMaquina;
     private javax.swing.JLabel labelFotoPlayer;
+    private javax.swing.JLabel labelNomeAtacanteGaloDex;
     private javax.swing.JLabel labelNomeAtq;
     private javax.swing.JLabel labelNomeMaquina;
     private javax.swing.JLabel labelNomePlayer;

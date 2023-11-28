@@ -236,6 +236,13 @@ public class Galo {
         this.defesa = defesa;
     }
 
+    public int getAgilidade() {
+        return agilidade;
+    }
+    public void setAgilidade(int agilidade) {
+        this.agilidade = agilidade;
+    }
+    
     public int getVida() {
         return vida;
     }
