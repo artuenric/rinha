@@ -11,7 +11,6 @@ Este projeto visa aplicar os conceitos de Programação Orientada a Objetos. A e
 - Programação Orientada a Objetos no geral;
 - Padrões de projeto State e Flyweitght;
 - Interface gráfica com JForm no NetBeans;
-- Manipulação de Json.
 
 ## Especificações
 Utiliza-se o JDK 17 e, para desenvolvimento e escrita do código, o NetBeans, ou seja, o JForm para interface gráfica foi construído com esta IDE. Até o momento não há dependências adicionais além das básicas do Java.
