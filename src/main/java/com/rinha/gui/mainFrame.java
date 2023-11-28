@@ -3,7 +3,6 @@ package com.rinha.gui;
 import com.rinha.ataque.Ataque;
 import com.rinha.batalha.Batalha;
 import com.rinha.galos.*;
-import com.rinha.loja.Item;
 import com.rinha.loja.Loja;
 import com.rinha.perfil.Perfil;
 import java.awt.CardLayout;
@@ -21,10 +20,14 @@ public class mainFrame extends javax.swing.JFrame {
     // Informações da Loja
     Loja loja = new Loja(20);
     
+    // Informações da Batalha
     Batalha batalhaAtual;
     int usuarioAtq = 0;
     
+    // Informações para navegação da interface
+    String ultimaTela = "telaDashBoard";
     
+    // Construtor
     public mainFrame() {
         initComponents();
     }
@@ -32,10 +35,14 @@ public class mainFrame extends javax.swing.JFrame {
     /*
     * Minhas funções para auxiliar nas informações da interface
     */
-    
     public void trocarTela(String nomeDoCard){
-        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
-        cl.show(painelPrincipal, nomeDoCard);
+        CardLayout cl = (CardLayout) this.painelPrincipal.getLayout();
+        cl.show(this.painelPrincipal, nomeDoCard);
+    }
+    
+    public void voltarTela(){
+        CardLayout cl = (CardLayout) this.painelPrincipal.getLayout();
+        cl.show(this.painelPrincipal, this.ultimaTela);
     }
     
     public void updateLabelsPPeNomeAtaque(){
@@ -193,9 +200,13 @@ public class mainFrame extends javax.swing.JFrame {
         botaoInicial0 = new javax.swing.JButton();
         botaoInicial1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        telaGaloDex = new javax.swing.JPanel();
 
-        dialogGaloDex.setMinimumSize(new java.awt.Dimension(500, 380));
+        dialogGaloDex.setMaximumSize(dialogGaloDex.getPreferredSize());
+        dialogGaloDex.setMinimumSize(dialogGaloDex.getPreferredSize());
+        dialogGaloDex.setPreferredSize(new java.awt.Dimension(600, 400));
         dialogGaloDex.setResizable(false);
+        dialogGaloDex.setSize(new java.awt.Dimension(600, 400));
         dialogGaloDex.setLocationRelativeTo(null);
         dialogGaloDex.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -224,7 +235,7 @@ public class mainFrame extends javax.swing.JFrame {
             tableGaloDex.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        dialogGaloDex.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 480, 160));
+        dialogGaloDex.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 480, 160));
 
         botaoSelecionarAtacante.setText("Selecionar");
         botaoSelecionarAtacante.addActionListener(new java.awt.event.ActionListener() {
@@ -232,31 +243,31 @@ public class mainFrame extends javax.swing.JFrame {
                 botaoSelecionarAtacanteActionPerformed(evt);
             }
         });
-        dialogGaloDex.getContentPane().add(botaoSelecionarAtacante, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 130, 40));
+        dialogGaloDex.getContentPane().add(botaoSelecionarAtacante, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 130, 40));
 
         labelSelecione.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
         labelSelecione.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSelecione.setText("<html> <p align=\"justify\"> Escolha um galo da sua GaloDex e clique em Selecionar pra defini-lo como seu galo Atacante.</p> </html>");
         labelSelecione.setToolTipText("");
-        dialogGaloDex.getContentPane().add(labelSelecione, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 130, 90));
-        dialogGaloDex.getContentPane().add(labelFotoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 150));
+        dialogGaloDex.getContentPane().add(labelSelecione, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 130, 90));
+        dialogGaloDex.getContentPane().add(labelFotoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 150, 150));
 
         labelApelidoAtacanteGaloDex.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         labelApelidoAtacanteGaloDex.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelApelidoAtacanteGaloDex.setText("...");
-        dialogGaloDex.getContentPane().add(labelApelidoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 167, 45));
+        dialogGaloDex.getContentPane().add(labelApelidoAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 167, 45));
 
         jLabel3.setText("Força:");
-        dialogGaloDex.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        dialogGaloDex.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
 
         jLabel4.setText("Agilidade:");
-        dialogGaloDex.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+        dialogGaloDex.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         jLabel5.setText("Defesa:");
-        dialogGaloDex.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+        dialogGaloDex.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
         jLabel6.setText("Galo Alguma Coisa");
-        dialogGaloDex.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+        dialogGaloDex.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -632,6 +643,7 @@ public class mainFrame extends javax.swing.JFrame {
         telaBemVindo.setAlignmentY(0.0F);
         telaBemVindo.setMaximumSize(getPreferredSize());
         telaBemVindo.setMinimumSize(getPreferredSize());
+        telaBemVindo.setPreferredSize(new java.awt.Dimension(720, 480));
         telaBemVindo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botaoInicial2.setIcon(galosIniciais.get(2).getFotoBatalha());
@@ -672,6 +684,25 @@ public class mainFrame extends javax.swing.JFrame {
         telaBemVindo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 
         painelPrincipal.add(telaBemVindo, "telaBemVindo");
+
+        telaGaloDex.setAlignmentX(0.0F);
+        telaGaloDex.setAlignmentY(0.0F);
+        telaGaloDex.setMaximumSize(getPreferredSize());
+        telaGaloDex.setMinimumSize(getPreferredSize());
+        telaGaloDex.setPreferredSize(new java.awt.Dimension(720, 480));
+
+        javax.swing.GroupLayout telaGaloDexLayout = new javax.swing.GroupLayout(telaGaloDex);
+        telaGaloDex.setLayout(telaGaloDexLayout);
+        telaGaloDexLayout.setHorizontalGroup(
+            telaGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        telaGaloDexLayout.setVerticalGroup(
+            telaGaloDexLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        painelPrincipal.add(telaGaloDex, "telaGaloDex");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -931,6 +962,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel telaBatalha;
     private javax.swing.JPanel telaBemVindo;
     private javax.swing.JPanel telaDashBoard;
+    private javax.swing.JPanel telaGaloDex;
     private javax.swing.JPanel telaInicial;
     private javax.swing.JPanel telaLoja;
     private javax.swing.JProgressBar vidaMaquina;
