@@ -2,7 +2,7 @@
 package com.rinha.interfaceusuario;
 
 import java.util.Scanner;
-import com.rinha.batalha.Batalha;
+import com.rinha.batalha.BatalhaRapida;
 import com.rinha.galos.Galo;
 
 public class InterfaceUsuario {

@@ -1,7 +1,7 @@
 package com.rinha.gui;
 
 import com.rinha.ataque.Ataque;
-import com.rinha.batalha.Batalha;
+import com.rinha.batalha.BatalhaRapida;
 import com.rinha.galos.*;
 import com.rinha.loja.Loja;
 import com.rinha.perfil.Perfil;
@@ -21,7 +21,7 @@ public class mainFrame extends javax.swing.JFrame {
     Loja loja = new Loja(20);
     
     // Informações da Batalha
-    Batalha batalhaAtual;
+    BatalhaRapida batalhaAtual;
     int usuarioAtq = 0;
     
     // Informações para navegação da interface
@@ -143,7 +143,7 @@ public class mainFrame extends javax.swing.JFrame {
     * Funções para batalha
     */
     public void criarBatalhaRapida(){
-        this.batalhaAtual = new Batalha(player);
+        this.batalhaAtual = new BatalhaRapida(player);
     }
 
     /*

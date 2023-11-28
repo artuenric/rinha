@@ -2,6 +2,9 @@
 package com.rinha.torneio;
 import com.rinha.galos.Galo;
 import com.rinha.batalha.Batalha;
+import com.rinha.batalha.BatalhaTorneio;
+import com.rinha.batalha.BatalhaRapida;
+import com.rinha.batalha.Batalha;
 import com.rinha.perfil.Perfil;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,7 @@ public class Torneio {
         this.torneioState = state;
     }
     
-    public void verificaVitoriaPlayer(Batalha batalhaAtual){
+    public void verificaVitoriaPlayer(BatalhaTorneio batalhaAtual){
         if(batalhaAtual.getVencedor().equals(this.player.getGaloDex().getAtacante().getApelido())){
             setState(true);
         } else {
@@ -54,7 +57,7 @@ public class Torneio {
     public void combateTorneio(){
         
         if (this.getState() == true){
-            Batalha batalhaTorneio = new Batalha(this.player, this.inimigos.get(0)); 
+            BatalhaTorneio batalhaTorneio = new BatalhaTorneio(this.player, this.inimigos.get(0)); 
             batalhaTorneio.batalhar();
             verificaVitoriaPlayer(batalhaTorneio);
             

@@ -1,14 +1,12 @@
 package com.rinha.batalha;
-import com.rinha.galos.Galo;
-import java.util.Random;
 import com.rinha.ataque.Ataque;
-import com.rinha.galos.Galinheiro;
+import com.rinha.galos.Galo;
 import com.rinha.interfaceusuario.InterfaceUsuario;
 import com.rinha.perfil.Carteira;
-import com.rinha.perfil.Perfil;
-import java.util.ArrayList;
+import java.util.Random;
 
-public class Batalha{
+public abstract class Batalha {
+    
     protected InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
     
     protected Galo player;
@@ -19,42 +17,10 @@ public class Batalha{
     protected Galo atacado;
     
     protected String vencedor;
-    protected int premio = 10;
+    protected int premio;
     
     // Controle da batalha
     protected boolean aberto;
-    
-    // Construtor
-    public Batalha(Perfil perfil, Galo maquina){ //Batalha torneio
-        this.player = perfil.getGaloDex().getAtacante();
-        this.carteiraPlayer = perfil.getCarteira();
-        this.maquina = maquina;
-        this.aberto = true; //state
-    }
-    
-    public Batalha(Perfil perfil){ //Batalha Rápida
-        this.player = perfil.getGaloDex().getAtacante();
-        this.carteiraPlayer = perfil.getCarteira();
-        int nivelPlayer = player.getNivel();
-        // Definindo adversário com base no player
-        Galinheiro galinheiro = new Galinheiro();
-        switch (player.getRaridade()){
-            case "Raro":{
-                this.maquina = galinheiro.getRandomGaloRaro(nivelPlayer);
-                break;
-            }
-            case "Epico":{
-                this.maquina = galinheiro.getRandomGaloEpico(nivelPlayer);
-                break;
-            }
-            case "Lendario":{
-                this.maquina = galinheiro.getRandomGaloLendario(nivelPlayer);
-                break;
-            }
-        }
-        // Batalha aberta
-        this.aberto = true;
-    }
     
     // Modificadores e Acessores
     public void setAtacante(Galo atacante){
@@ -148,30 +114,6 @@ public class Batalha{
         return concluido;
     }
     
-    public void batalhar(){
-
-        
-        Random random = new Random();
-        
-        int decidirAtaques;
-        int turno = random.nextInt(2);
-        
-        while ((this.getVencedor() != this.player.getApelido()) && (this.getVencedor() != this.maquina.getApelido())){
-
-            if (turno ==  0){
-                
-                decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
-                
-                nextTurno(this.player, this.maquina, decidirAtaques);
-                turno = 1;
-            } else {
-                int ataqueAleatorio = random.nextInt(4) +  1; 
-                nextTurno(this.maquina, this.player, ataqueAleatorio);
-                turno = 0;
-            }
-          } 
-        }
-    
     public void turnoMaquina(){
         Random random = new Random();
         int ataqueId = random.nextInt(4)+1;
@@ -201,4 +143,28 @@ public class Batalha{
             this.setAberto(false);
         }
     }
+    
+    // Para efeito de log
+    public void batalhar(){
+        Random random = new Random();
+        
+        int decidirAtaques;
+        int turno = random.nextInt(2);
+        
+        while ((this.getVencedor() != this.player.getApelido()) && (this.getVencedor() != this.maquina.getApelido())){
+
+            if (turno ==  0){
+                
+                decidirAtaques = interfaceUsuario.getDecidirAtaques(this.player);
+                
+                nextTurno(this.player, this.maquina, decidirAtaques);
+                turno = 1;
+            } else {
+                int ataqueAleatorio = random.nextInt(4) +  1; 
+                nextTurno(this.maquina, this.player, ataqueAleatorio);
+                turno = 0;
+            }
+          } 
+        }
+    
 }

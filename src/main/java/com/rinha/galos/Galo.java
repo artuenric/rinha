@@ -60,36 +60,6 @@ public class Galo {
         return atqAgil;
     }
     
-    public void setAtaques(String ataqueBasico, String ataqueTipificado, String ataqueAgil, String ataqueUltimate){
-        // Define os ataques e seus nomes
-        this.atqBasico = new AtaqueBasico(ataqueBasico, this.forca, this.nivel, this.agilidade);
-        this.atqTipificado = new AtaqueTipificado(ataqueTipificado, this.nivel, this.defesa, this.agilidade);
-        this.atqAgil = new AtaqueAgil(ataqueAgil, this.forca, this.nivel, this.agilidade);
-        this.atqUltimate = new AtaqueUltimate(ataqueUltimate, this.forca, this.nivel, this.agilidade);
-    }
-    
-    
-    public String getNomeAtaque(int ID){
-        String nomeAtq = null;
-        
-        switch(ID){
-            case 1:
-                nomeAtq = atqBasico.getNomeAtaque();
-                break;
-            case 2:
-                nomeAtq = atqTipificado.getNomeAtaque();
-                break;
-            case 3:
-                nomeAtq = atqAgil.getNomeAtaque();
-                break;
-            case 4:
-                nomeAtq = atqUltimate.getNomeAtaque();
-                break;
-        }
-        
-        return nomeAtq;  
-    }
-    
     public Ataque getAtaque(int ataqueId){
         Ataque ataque = null;     
         switch (ataqueId){
@@ -112,7 +82,16 @@ public class Galo {
         }
         return ataque;
     }
-            
+     
+    public void setAtaques(String ataqueBasico, String ataqueTipificado, String ataqueAgil, String ataqueUltimate){
+        // Define os ataques e seus nomes
+        this.atqBasico = new AtaqueBasico(ataqueBasico, this.forca, this.nivel, this.agilidade);
+        this.atqTipificado = new AtaqueTipificado(ataqueTipificado, this.nivel, this.defesa, this.agilidade);
+        this.atqAgil = new AtaqueAgil(ataqueAgil, this.forca, this.nivel, this.agilidade);
+        this.atqUltimate = new AtaqueUltimate(ataqueUltimate, this.forca, this.nivel, this.agilidade);
+    }
+    
+    // Para efeito de log
     public String getInfoAtaques(){
     return    "\n Ataquei 1: " + this.atqBasico.getNomeAtaque() + " PP: " + this.atqBasico.getPontosDePoderAtual() +
               "\n Ataquei 2: " + this.atqTipificado.getNomeAtaque() + " PP: " + this.atqTipificado.getPontosDePoderAtual() +
@@ -120,6 +99,7 @@ public class Galo {
               "\n Ataquei 4: " + this.atqUltimate.getNomeAtaque() + " PP: " + this.atqUltimate.getPontosDePoderAtual();
     }
     
+    // Para efeito de log
     public String getStatus(){
         return      "\n Nome do Galo: " + this.nome +
                       "\n Raridade: " + this.raridade +
@@ -339,11 +319,12 @@ public class Galo {
     }    
     
     public boolean esquivar(){
-        // O galo tem 80% do valor agilidade de chance de desviar um ataque
+        // O galo tem 30% do valor agilidade de chance de desviar um ataque
         // Caso o galo esquive, retorna true, caso não, false
+        
         Random random = new Random();
         float tentativa = random.nextInt(100);
-        float esquiva = this.agilidade * 0.3f; // A probabilidade de desviar de um ataque estava muito alta, reduzimos para 30%
+        float esquiva = this.agilidade * 0.3f; 
         
         if (tentativa < esquiva){
             return true;
