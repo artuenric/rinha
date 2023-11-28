@@ -8,7 +8,7 @@ import com.rinha.perfil.Carteira;
 import com.rinha.perfil.Perfil;
 import java.util.ArrayList;
 
-public class Batalha{
+public class BatalhaTorneio{
     protected InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
     
     protected Galo player;
@@ -25,35 +25,11 @@ public class Batalha{
     protected boolean aberto;
     
     // Construtor
-    public Batalha(Perfil perfil, Galo maquina){ //Batalha torneio
+    public BatalhaTorneio(Perfil perfil, Galo maquina){ //Batalha torneio
         this.player = perfil.getGaloDex().getAtacante();
         this.carteiraPlayer = perfil.getCarteira();
         this.maquina = maquina;
         this.aberto = true; //state
-    }
-    
-    public Batalha(Perfil perfil){ //Batalha Rápida
-        this.player = perfil.getGaloDex().getAtacante();
-        this.carteiraPlayer = perfil.getCarteira();
-        int nivelPlayer = player.getNivel();
-        // Definindo adversário com base no player
-        Galinheiro galinheiro = new Galinheiro();
-        switch (player.getRaridade()){
-            case "Raro":{
-                this.maquina = galinheiro.getRandomGaloRaro(nivelPlayer);
-                break;
-            }
-            case "Epico":{
-                this.maquina = galinheiro.getRandomGaloEpico(nivelPlayer);
-                break;
-            }
-            case "Lendario":{
-                this.maquina = galinheiro.getRandomGaloLendario(nivelPlayer);
-                break;
-            }
-        }
-        // Batalha aberta
-        this.aberto = true;
     }
     
     // Modificadores e Acessores

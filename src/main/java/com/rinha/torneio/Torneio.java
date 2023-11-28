@@ -2,56 +2,75 @@
 package com.rinha.torneio;
 import com.rinha.galos.Galo;
 import com.rinha.batalha.Batalha;
+import com.rinha.perfil.Perfil;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Torneio {
 
-    protected Galo jogador;
-    protected String nomeJogador;
-    List<Galo> inimigos = new ArrayList<>();
+    protected Perfil player;
+    ArrayList<Galo> inimigos = new ArrayList<>();
     protected int vitorias;
     protected int recompensa = 0;
-    protected String vencedor;
-    protected boolean continua = true;
-    protected int cont = 0;
+    protected boolean torneioState = true;
+    protected String campeaoTorneio;
     
-    public Torneio(Galo jogador, Galo primeiroInimigo, Galo segundoInimigo, Galo terceiroInimigo){
-        this.nomeJogador = jogador.getNome();
-        this.jogador = jogador;
+    public Torneio(Perfil player, Galo primeiroInimigo, Galo segundoInimigo, Galo terceiroInimigo){
+        this.player = player;
         this.inimigos.add(primeiroInimigo);
         this.inimigos.add(segundoInimigo);
         this.inimigos.add( terceiroInimigo);
         this.vitorias = 0;
-    }    
+    }   
     
-    
-    /*
-    public void combateTorneio(int i){
-        System.out.println((i + 1) + "º BATALHA DO TORNEIO");
-        Batalha batalhaTorneio = new Batalha(this.jogador, this.inimigos.get(i));
-        batalhaTorneio.batalhar();
-        this.vencedor = batalhaTorneio.getVencedor();
-        
+    public void getInimigo(int indexInimigo){
+        this.inimigos.get(indexInimigo);
     }
     
-    public void iniciarCompeticao(){
-        
-        int i = 0;
-        while(this.vencedor == null || this.vencedor.equals(this.nomeJogador)){
-            this.combateTorneio(i);
-            i+=1;
-            
-            if (i == 1){
-                System.out.println("PARÁBENS, VOCÊ VENCEU O TORNEIO");
-                break;
-            }
-        } 
-        
-        if(!(this.vencedor.equals(this.nomeJogador))){
-            System.out.println("Fim de Torneio, Você perdeu");
+    public boolean getState(){
+        return this.torneioState;
+    }
+    
+    public void setState(boolean state){
+        this.torneioState = state;
+    }
+    
+    public void verificaVitoriaPlayer(Batalha batalhaAtual){
+        if(batalhaAtual.getVencedor().equals(this.player.getGaloDex().getAtacante().getApelido())){
+            setState(true);
+        } else {
+            setState(false);
         }
     }
+
+    public String getCampeaoTorneio(){
+        return this.campeaoTorneio;
+    }
     
-    */
+    public void setCampeaoTorneio(String campeaoTorneio){
+        this.campeaoTorneio = campeaoTorneio;
+    }
+    
+    public void combateTorneio(){
+        
+        if (this.getState() == true){
+            Batalha batalhaTorneio = new Batalha(this.player, this.inimigos.get(0)); 
+            batalhaTorneio.batalhar();
+            verificaVitoriaPlayer(batalhaTorneio);
+            
+            this.inimigos.remove(0);
+            
+            if (batalhaTorneio.getVencedor().equals(this.player.getGaloDex().getAtacante().getApelido())){
+                System.out.println("\n  Parabéns voce venceu a Batalha do torneio");
+            } else {
+                System.out.println("\n  Você Perdeu a batalha, o Torneio ACABOU");
+            }
+            
+            this.setCampeaoTorneio(batalhaTorneio.getVencedor());
+            
+        }
+        
+    }
+    
+
 }
