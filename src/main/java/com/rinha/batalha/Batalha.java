@@ -17,7 +17,7 @@ public abstract class Batalha {
     protected Galo atacado;
     
     protected String vencedor;
-    protected int premio;
+    protected int premio = 10;
     
     // Controle da batalha
     protected boolean aberto;
@@ -135,6 +135,7 @@ public abstract class Batalha {
             
             if (this.vencedor.equals(player.getApelido())){
                 this.carteiraPlayer.deposito(premio);
+                System.out.println("Voce possui: " + this.carteiraPlayer.getSaldo()); // Para efeito de log
             }
             
             System.out.println("Entrou em fechar");
@@ -166,5 +167,13 @@ public abstract class Batalha {
             }
           } 
         }
+    
+    public int getPremio(){
+        return this.premio;
+    }
+    
+    public void setPremio(int rodadaAtual) {
+        this.premio = premio*rodadaAtual;
+    }
     
 }

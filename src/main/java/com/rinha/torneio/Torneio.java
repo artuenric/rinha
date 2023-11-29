@@ -17,6 +17,7 @@ public class Torneio {
     protected int recompensa = 0;
     protected boolean torneioState = true;
     protected String campeaoTorneio;
+    protected int rodadaAtual = 0;
     
     public Torneio(Perfil player, Galo primeiroInimigo, Galo segundoInimigo, Galo terceiroInimigo){
         this.player = player;
@@ -25,6 +26,8 @@ public class Torneio {
         this.inimigos.add( terceiroInimigo);
         this.vitorias = 0;
     }   
+    
+    
     
     public void getInimigo(int indexInimigo){
         this.inimigos.get(indexInimigo);
@@ -54,7 +57,17 @@ public class Torneio {
         this.campeaoTorneio = campeaoTorneio;
     }
     
-    public void combateTorneio(){
+    public int getRodadaAtual(){
+        return this.rodadaAtual;
+    }
+    
+    public void setRodadaAtual(){
+        this.rodadaAtual += 1;
+    }
+    
+    
+    public void combateTorneio(){   
+        setRodadaAtual();
         
         if (this.getState() == true){
             BatalhaTorneio batalhaTorneio = new BatalhaTorneio(this.player, this.inimigos.get(0)); 
@@ -70,10 +83,7 @@ public class Torneio {
             }
             
             this.setCampeaoTorneio(batalhaTorneio.getVencedor());
-            
         }
         
     }
-    
-
 }

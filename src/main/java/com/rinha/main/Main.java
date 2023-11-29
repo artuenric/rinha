@@ -27,7 +27,8 @@ public class Main {
             torneioTeste.combateTorneio();
         }
         
-        System.out.println("O Campeão do torneio foi: " + torneioTeste.getCampeaoTorneio());*/
+        System.out.println("O Campeão do torneio foi: " + torneioTeste.getCampeaoTorneio());
+        */
         
         /* //Teste Batalha Rápida
         BatalhaRapida batalha = new BatalhaRapida(meuPerfil);

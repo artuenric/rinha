@@ -1,7 +1,7 @@
 package com.rinha.perfil;
 
 public class Carteira {
-    int saldo;
+    int saldo = 0;
     
     // Getters e Setters
     public int getSaldo() {
