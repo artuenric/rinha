@@ -1,5 +1,6 @@
 package com.rinha.batalha;
 import com.rinha.ataque.Ataque;
+import com.rinha.ataque.Efeito.Efeito;
 import com.rinha.galos.Galo;
 import com.rinha.interfaceusuario.InterfaceUsuario;
 import com.rinha.perfil.Carteira;
@@ -92,6 +93,7 @@ public abstract class Batalha {
         boolean concluido = false;
         int pp = atacante.getAtaque(ataqueId).getPontosDePoderAtual();
         int dano;
+        
         if (aberto && pp > 0){
             if (atacado.esquivar()){
                 System.out.println("Opa! " + atacado.getApelido() + " esquivou legal!");
@@ -104,8 +106,13 @@ public abstract class Batalha {
                 
                 //logs de informação de funcionamento da batalha 
                 System.out.println(atacante.getApelido() + " efetuou ataque " + atacante.getAtaque(ataqueId).getNomeAtaque() + " com dano de " + dano);
-                System.out.println("\nVida de Galo: " + atacante.getNome() + ": " + atacante.getVidaAtual());
-                System.out.println("Vida de Galo: " + atacado.getNome() + ": " + atacado.getVidaAtual());
+                System.out.println("\n Vida de Galo: " + atacante.getNome() + ": " + atacante.getVidaAtual());
+                System.out.println(" Estado de Galo: " + atacante.getNome()+ ": "+ atacante.getEstadoAtual().getNomeEstadoAtual());
+                
+                System.out.println("\n Vida de Galo: " + atacado.getNome() + ": " + atacado.getVidaAtual());
+                System.out.println(" Estado de Galo: " + atacado.getNome()+ ": "+ atacado.getEstadoAtual().getNomeEstadoAtual());
+                
+                
             }
             this.atualizaPontosDePoder(atacante, ataqueId);
         }

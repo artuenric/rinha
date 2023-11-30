@@ -1,17 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.rinha.ataque;
+import com.rinha.ataque.Efeito.Efeito;
 import java.util.Random;
 
-/**
- *
- * @author caio
- */
+
 public class AtaqueTipificado extends Ataque implements Golpe {
     
-    public AtaqueTipificado(String nomeAtaque, int forca, int nivel, int agilidade){
+    public AtaqueTipificado(String nomeAtaque, int forca, int nivel, int agilidade, Efeito efeito){
            this.nomeAtaque = nomeAtaque;
            this.forca = forca;
            this.nivel = nivel;
@@ -19,6 +14,7 @@ public class AtaqueTipificado extends Ataque implements Golpe {
            this.defineDano();
            this.definePontosDePoder();
            this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
+           this.setEfeitoAtaque(efeito);
     }
     
     @Override

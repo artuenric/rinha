@@ -4,6 +4,12 @@ import com.rinha.ataque.AtaqueBasico;
 import com.rinha.ataque.AtaqueTipificado;
 import com.rinha.ataque.AtaqueAgil;
 import com.rinha.ataque.AtaqueUltimate;
+import com.rinha.ataque.Efeito.EfeitoAtordoar;
+import com.rinha.ataque.Efeito.EfeitoEnvenenar;
+import com.rinha.ataque.Efeito.EfeitoHipnotizar;
+import com.rinha.ataque.Efeito.semEfeito;
+import com.rinha.batalha.EstadoGalo.EstadoGalo;
+import com.rinha.batalha.EstadoGalo.EstadoNormal;
 import com.rinha.galos.raridade.Raridade;
 import java.awt.Image;
 import java.util.Random;
@@ -25,6 +31,7 @@ public class Galo {
     protected int vida;                // 10 - 1.000
     protected int vidaAtual;
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
+    protected EstadoGalo estado = new EstadoNormal(); 
     
     //ATAQUES
     protected AtaqueBasico atqBasico;
@@ -38,6 +45,16 @@ public class Galo {
     public ImageIcon getFotoBatalha() {
         return fotoBatalha;
     }
+    
+    public EstadoGalo getEstadoAtual(){
+        return this.estado;
+    }
+    
+    //Manipulação de estado do bic
+    public void setEstadoAtual(EstadoGalo novoEstado){
+        this.estado = novoEstado;
+    }
+    
     
     public void setFotoBatalha(String path){
         // Por padrão, as fotos dos galos estão no caminho /imgs/galos/nomedogalo.png
@@ -83,12 +100,12 @@ public class Galo {
         return ataque;
     }
      
-    public void setAtaques(String ataqueBasico, String ataqueTipificado, String ataqueAgil, String ataqueUltimate){
+    public void setAtaques(String nomeAtaqueBasico, String nomeAtaqueTipificado, String nomeAtaqueAgil, String nomeAtaqueUltimate){
         // Define os ataques e seus nomes
-        this.atqBasico = new AtaqueBasico(ataqueBasico, this.forca, this.nivel, this.agilidade);
-        this.atqTipificado = new AtaqueTipificado(ataqueTipificado, this.nivel, this.defesa, this.agilidade);
-        this.atqAgil = new AtaqueAgil(ataqueAgil, this.forca, this.nivel, this.agilidade);
-        this.atqUltimate = new AtaqueUltimate(ataqueUltimate, this.forca, this.nivel, this.agilidade);
+        this.atqBasico = new AtaqueBasico(nomeAtaqueBasico, this.forca, this.nivel, this.agilidade, new semEfeito());
+        this.atqTipificado = new AtaqueTipificado(nomeAtaqueTipificado, this.nivel, this.defesa, this.agilidade, new EfeitoAtordoar());
+        this.atqAgil = new AtaqueAgil(nomeAtaqueAgil, this.forca, this.nivel, this.agilidade, new EfeitoEnvenenar());
+        this.atqUltimate = new AtaqueUltimate(nomeAtaqueUltimate, this.forca, this.nivel, this.agilidade, new EfeitoHipnotizar());
     }
     
     // Para efeito de log
@@ -282,26 +299,32 @@ public class Galo {
             case 1: { 
                 // Ataque básico baseado em força
                 dano = atqBasico.getDanoBase() - (adversario.getDefesa()/2);
+                atqBasico.getEfeito().aplicaEfeito(adversario);
             break;
             }
             case 2 : {
                 //Ataque Tipificado
                 // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
                 dano = (atqTipificado.getDanoBase()) - (adversario.getDefesa());
+                atqTipificado.getEfeito().aplicaEfeito(adversario);
                 if (tipo_adversario.equals(this.vantagem)){
+                    System.out.println("ENTROU NO IF");
                     dano += (atqTipificado.getBonus() / 100) * this.forca;
-            break;    
                 }
+            break;    
             }
             case 3: { 
                 //Ataque Agil
                 // Ataque baseado na agilidade, mesma lógica do baseado em força
+                System.out.println("ENTROU NO 3");
                 dano =  atqAgil.getDanoBase() - (adversario.getDefesa()/2);
+                atqAgil.getEfeito().aplicaEfeito(adversario);
             break;
             }
             case 4: {
                 //Ultimate
                 dano = (atqUltimate.getDanoBase() - adversario.getDefesa()/3);
+                atqUltimate.getEfeito().aplicaEfeito(adversario);
             break;
             }
             

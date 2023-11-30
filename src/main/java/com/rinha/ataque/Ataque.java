@@ -1,5 +1,7 @@
 
 package com.rinha.ataque;
+import com.rinha.ataque.Efeito.Efeito;
+import com.rinha.ataque.Efeito.semEfeito;
 import java.util.Random;
 
 public abstract class Ataque {
@@ -12,6 +14,15 @@ public abstract class Ataque {
     protected int bonusAtq;
     protected int pontosDePoderOriginal;
     protected int pontosDePoderAtual;
+    protected Efeito efeitoAtaque;
+            
+    public void setEfeitoAtaque(Efeito efeito){
+        this.efeitoAtaque = efeito;
+    }
+    
+    public Efeito getEfeito(){
+        return this.efeitoAtaque;
+    }
 
     public String getNomeAtaque(){
         return this.nomeAtaque;

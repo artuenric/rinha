@@ -1,10 +1,11 @@
 
 package com.rinha.ataque;
+import com.rinha.ataque.Efeito.Efeito;
 import java.util.Random;
 
 public class AtaqueUltimate extends Ataque implements Golpe {
     
-    public AtaqueUltimate(String nomeAtaque, int forca, int nivel, int agilidade){
+    public AtaqueUltimate(String nomeAtaque, int forca, int nivel, int agilidade, Efeito efeito){
            this.nomeAtaque = nomeAtaque;
            this.forca = forca;
            this.nivel = nivel;
@@ -12,6 +13,7 @@ public class AtaqueUltimate extends Ataque implements Golpe {
            this.defineDano();
            this.definePontosDePoder();
            this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
+           this.setEfeitoAtaque(efeito);
     }
     
     @Override
@@ -24,8 +26,5 @@ public class AtaqueUltimate extends Ataque implements Golpe {
     public void definePontosDePoder() {
         this.pontosDePoderOriginal = 5; //Substituir pela lógica para atribuição dos pontos de poder
     }
-   
-    
-    //FALTA CONTINUAR
     
 }
