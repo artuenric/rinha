@@ -24,9 +24,6 @@ public class mainFrame extends javax.swing.JFrame {
     BatalhaRapida batalhaAtual;
     int usuarioAtq = 0;
     
-    // Informações para navegação da interface
-    String ultimaTela = "telaDashBoard";
-    
     // Construtor
     public mainFrame() {
         initComponents();
@@ -39,12 +36,7 @@ public class mainFrame extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) this.painelPrincipal.getLayout();
         cl.show(this.painelPrincipal, nomeDoCard);
     }
-    
-    public void voltarTela(){
-        CardLayout cl = (CardLayout) this.painelPrincipal.getLayout();
-        cl.show(this.painelPrincipal, this.ultimaTela);
-    }
-    
+
     public void updateLabelsPPeNomeAtaque(){
         // Atualiza label do pp e do nome do ataque
         Ataque ataque;
@@ -126,7 +118,7 @@ public class mainFrame extends javax.swing.JFrame {
     public void updateInfoGaloDex(){
         this.labelApelidoAtacanteGaloDex.setText(player.getGaloDex().getAtacante().getApelido());
         this.labelFotoAtacanteGaloDex.setIcon(player.getGaloDex().getAtacante().getFotoBatalha());
-        this.labelNomeAtacanteGaloDex.setText("" + player.getGaloDex().getAtacante().getNome());
+        this.labelNomeAtacanteGaloDex.setText(player.getGaloDex().getAtacante().getNome());
         this.labelAgilidadeAtacanteGaloDex.setText("Agilidade: " + player.getGaloDex().getAtacante().getAgilidade());
         this.labelForcaAtacanteGaloDex.setText("Força: " + player.getGaloDex().getAtacante().getForca());
         this.labelDefesaAtacanteGaloDex.setText("Defesa: " + player.getGaloDex().getAtacante().getDefesa());
