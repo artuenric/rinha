@@ -4,7 +4,7 @@ import com.rinha.perfil.Perfil;
 
 public class PainelPlay extends PainelFilho{
     
-    public PainelPlay(MainFrame mainFrame, Perfil player) {
+    public PainelPlay(mainFrame mainFrame, Perfil player) {
         this.mainFrame = mainFrame;
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         this.player = player;
@@ -51,15 +51,9 @@ public class PainelPlay extends PainelFilho{
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
-<<<<<<< Updated upstream:src/main/java/com/rinha/gui/PainelPlay.java
-        trocarTela("bemvindo");
-=======
-        // botaoPlay encaminha a tela para o dashboard
-        //trocarTela("telaBemVindo");
-        //this.trocarTela("store");
-        //galosIniciais = galinheiro.gerarGalosIniciais();
 
->>>>>>> Stashed changes:src/main/java/com/rinha/gui/Play.java
+        trocarTela("bemvindo");
+
     }//GEN-LAST:event_botaoPlayActionPerformed
 
 

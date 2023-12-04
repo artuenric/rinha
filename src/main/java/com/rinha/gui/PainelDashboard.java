@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class PainelDashboard extends PainelFilho {
 
-    public PainelDashboard(MainFrame mainFrame, Perfil player) {
+    public PainelDashboard(mainFrame mainFrame, Perfil player) {
         this.player = player;
         this.mainFrame = mainFrame;
         this.painelPrincipal = mainFrame.getPainelPrincipal();

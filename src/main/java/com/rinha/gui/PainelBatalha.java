@@ -7,7 +7,7 @@ import javax.swing.JProgressBar;
 public class PainelBatalha extends PainelFilho{
     int usuarioAtq = 0;
     
-    public PainelBatalha(MainFrame mainFrame, Perfil player) {
+    public PainelBatalha(mainFrame mainFrame, Perfil player) {
         this.mainFrame = mainFrame;
         this.painelPrincipal = this.mainFrame.getPainelPrincipal();
         this.player = player;

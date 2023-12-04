@@ -10,7 +10,7 @@ public class PainelBemVindo extends PainelFilho {
     Galinheiro galinheiro = new Galinheiro();
     ArrayList<Galo> galosIniciais = galinheiro.gerarGalosIniciais();
     
-    public PainelBemVindo(MainFrame mainFrame, Perfil player){
+    public PainelBemVindo(mainFrame mainFrame, Perfil player){
         this.mainFrame = mainFrame;
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         this.player = player;

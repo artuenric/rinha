@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 public class PainelLoja extends PainelFilho {
     Loja loja;
     
-    public PainelLoja(MainFrame mainFrame, Perfil player, Loja loja) {
+    public PainelLoja(mainFrame mainFrame, Perfil player, Loja loja) {
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         this.player = player;
         this.loja = loja;

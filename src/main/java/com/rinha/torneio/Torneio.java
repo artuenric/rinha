@@ -19,11 +19,16 @@ public class Torneio {
     protected String campeaoTorneio;
     protected int rodadaAtual = 0;
     
+    protected Galo galoPremio;
+    
     public Torneio(Perfil player, Galo primeiroInimigo, Galo segundoInimigo, Galo terceiroInimigo){
         this.player = player;
         this.inimigos.add(primeiroInimigo);
         this.inimigos.add(segundoInimigo);
         this.inimigos.add( terceiroInimigo);
+        
+        this.galoPremio = terceiroInimigo;
+        
         this.vitorias = 0;
     }   
     
@@ -85,6 +90,11 @@ public class Torneio {
             }
             
             this.setCampeaoTorneio(batalhaTorneio.getVencedor());
+            
+            if (this.getCampeaoTorneio().equals(this.player.getGaloDex().getAtacante().getApelido())){
+                this.player.getGaloDex().addGalo(this.galoPremio);
+                System.out.println("Parabéns, você foi campeão e ganhou o galo: " + this.galoPremio.getNome());
+            } 
         }
         
     }

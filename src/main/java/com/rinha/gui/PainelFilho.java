@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 // Painel com as propriedades e funções necessárias para os painéis que pertencerão ao cardlayout do painel principal do MainFrame
 public abstract class PainelFilho extends javax.swing.JPanel{
-    protected MainFrame mainFrame;
+    protected mainFrame mainFrame;
     protected JPanel painelPrincipal;
     protected Perfil player;
     

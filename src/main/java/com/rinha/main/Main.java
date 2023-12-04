@@ -1,7 +1,7 @@
 package com.rinha.main;
 import com.rinha.batalha.BatalhaRapida;
 import com.rinha.galos.*;
-import com.rinha.gui.MainFrame;
+import com.rinha.gui.mainFrame;
 import com.rinha.loja.Loja;
 import com.rinha.loja.Milho;
 import com.rinha.torneio.Torneio;
