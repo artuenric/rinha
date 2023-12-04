@@ -1,22 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.rinha.gui;
 
-/**
- *
- * @author ratolar
- */
-public class Loja extends javax.swing.JPanel {
+import com.rinha.perfil.Perfil;
+import java.awt.CardLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+public class Store extends javax.swing.JPanel {
+    private JPanel painelPrincipal;
+    private Perfil perfil;
+    
     /**
      * Creates new form Dashboard
      */
-    public Loja() {
+    public Store(JPanel painelPrincipal, Perfil perfil) {
+        this.painelPrincipal = painelPrincipal;
+        this.perfil = perfil;
         initComponents();
     }
-
+    
+    public void trocarTela(String cardName){
+        CardLayout cl = (CardLayout) this.painelPrincipal.getLayout();
+        cl.show(this.painelPrincipal, cardName);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +39,11 @@ public class Loja extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(720, 480));
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -51,6 +62,10 @@ public class Loja extends javax.swing.JPanel {
                 .addContainerGap(268, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        trocarTela("dashboard");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

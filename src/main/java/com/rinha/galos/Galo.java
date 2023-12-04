@@ -349,15 +349,23 @@ public class Galo {
     // Métodos para evolução e recuperação
     public void alimentar(Milho milho){
         this.xp += milho.getXp();
-
-
+        System.out.println(this.apelido + " comeu e está com o xp em " + this.xp);
+        // Checa se é possível evoluir
+        if (this.xp >= 100){
+            this.evoluir();
+        }
     }
     public void evoluir(){
+        // Aumenta o nível
         this.nivel += 1;
-        this.agilidade *= 0.2f;
-        this.forca *= 0.2f;
-        this.defesa *= 0.2f;
-        this.vida *= 0.1f;
+        // Evoluindo seus atributos
+        this.agilidade = (int) (this.agilidade * 0.2f + this.agilidade);
+        this.forca = (int) (this.forca * 0.1f + this.forca);
+        this.defesa = (int) (this.defesa * 0.1f + this.defesa);
+        this.vida = (int) (this.vida * 0.1f + this.vida);
+        // Reinicia a contagem de xp para o próximo nível.
+        this.xp = 0;
+        System.out.println("Opa! O galo evoluiu!");
     }
 
 }

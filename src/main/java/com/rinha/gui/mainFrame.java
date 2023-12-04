@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class mainFrame extends javax.swing.JFrame {
+    
+    // Interface
+    Store store;
+    Dashboard dashboard;
+    
     // Informações do PLayer
     Perfil player = new Perfil("Desafiante");
         
@@ -27,6 +32,11 @@ public class mainFrame extends javax.swing.JFrame {
     // Construtor
     public mainFrame() {
         initComponents();
+        this.store = new Store(this.painelPrincipal, this.player);
+        this.dashboard = new Dashboard();
+        
+        this.painelPrincipal.add(store, "store");
+        this.painelPrincipal.add(dashboard, "dashboard");
     }
     
     /*
@@ -739,7 +749,8 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
         // botaoPlay encaminha a tela para o dashboard
-        trocarTela("telaBemVindo");
+        //trocarTela("telaBemVindo");
+        this.trocarTela("store");
         galosIniciais = galinheiro.gerarGalosIniciais();
         
     }//GEN-LAST:event_botaoPlayActionPerformed
