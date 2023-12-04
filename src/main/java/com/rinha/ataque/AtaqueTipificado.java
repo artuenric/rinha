@@ -1,12 +1,13 @@
 
 package com.rinha.ataque;
 import com.rinha.ataque.efeito.Efeito;
+import com.rinha.ataque.efeito.SemEfeito;
 import java.util.Random;
 
 
 public class AtaqueTipificado extends Ataque implements Golpe {
     
-    public AtaqueTipificado(String nomeAtaque, int forca, int nivel, int agilidade, Efeito efeito){
+    public AtaqueTipificado(String nomeAtaque, int forca, int nivel, int agilidade){
            this.nomeAtaque = nomeAtaque;
            this.forca = forca;
            this.nivel = nivel;
@@ -14,7 +15,6 @@ public class AtaqueTipificado extends Ataque implements Golpe {
            this.defineDano();
            this.definePontosDePoder();
            this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
-           this.setEfeitoAtaque(efeito);
     }
     
     @Override

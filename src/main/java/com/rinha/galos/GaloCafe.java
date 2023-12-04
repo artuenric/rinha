@@ -11,7 +11,7 @@ public class GaloCafe extends Galo{
         setNome("Galo Cafe");
         setNivel(nivel);
         setTipo("C");
-        setVantagem();
+       
         
         // Raridade e atributos
         Raro raridade = new Raro(nivel);

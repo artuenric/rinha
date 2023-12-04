@@ -77,7 +77,9 @@ public class Torneio {
             this.inimigos.remove(0);
             
             if (batalhaTorneio.getVencedor().equals(this.player.getGaloDex().getAtacante().getApelido())){
+                
                 System.out.println("\n  Parabéns voce venceu a Batalha do torneio");
+                
             } else {
                 System.out.println("\n  Você Perdeu a batalha, o Torneio ACABOU");
             }

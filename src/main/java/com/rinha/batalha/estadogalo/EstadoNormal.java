@@ -10,7 +10,7 @@ public class EstadoNormal implements EstadoGalo{
     private String nomeEstado = "Normal";
 
     @Override
-    public void aplicaEfeito(Galo contexto) {
+    public void aplicaEfeito(Galo contexto, int rodadaBatalha) {
         System.out.println("Efeito Normal Aplicado à "+ contexto.getNome());
     }
 
@@ -18,7 +18,5 @@ public class EstadoNormal implements EstadoGalo{
     public String getNomeEstadoAtual() {
         return this.nomeEstado;
     }
-    
-    
-    
+       
 }

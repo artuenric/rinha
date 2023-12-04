@@ -12,7 +12,6 @@ public class GaloBMW extends Galo {
         setNome("Galo BMW");
         setNivel(nivel);
         setTipo("B");
-        setVantagem();
         
         // Raridade e atributos
         Epico raridade = new Epico(nivel);

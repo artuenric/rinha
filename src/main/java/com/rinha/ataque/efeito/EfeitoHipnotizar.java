@@ -3,6 +3,8 @@ package com.rinha.ataque.efeito;
 import com.rinha.batalha.estadogalo.EstadoHipnotizado;
 import com.rinha.galos.Galo;
 
+//Proximo ataque do galo volta contra ele mesmo
+
 public class EfeitoHipnotizar extends Efeito{
     
     private EstadoHipnotizado estado = new EstadoHipnotizado();
@@ -13,9 +15,9 @@ public class EfeitoHipnotizar extends Efeito{
     }
     
     @Override
-    public void aplicaEfeito(Galo galo) {
+    public void aplicaEstado(Galo galo, int rodadaBatalha) {
         galo.setEstadoAtual(estado);
-        galo.getEstadoAtual().aplicaEfeito(galo);
+        galo.getEstadoAtual().aplicaEfeito(galo, rodadaBatalha);
     }
 
     

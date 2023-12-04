@@ -16,7 +16,6 @@ public abstract class Efeito {
         return this.nomeEfeito;
     }
     
-    public abstract void aplicaEfeito(Galo galo);
-    
+    public abstract void aplicaEstado(Galo galo, int rodadaBatalha);
     
 }

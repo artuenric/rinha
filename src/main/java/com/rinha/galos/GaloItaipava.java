@@ -12,7 +12,6 @@ public class GaloItaipava extends Galo{
         setNome("Galo Itaipava");
         setNivel(nivel);
         setTipo("B");
-        setVantagem();
         
         // Raridade e atributos
         Lendario raridade = new Lendario(nivel);

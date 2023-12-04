@@ -11,7 +11,7 @@ public class GaloDeFralda extends Galo{
         setNome("Galo de Fralda");
         setNivel(nivel);
         setTipo("A");
-        setVantagem();
+        
         
         // Raridade e atributos
         Raro raridade = new Raro(nivel);

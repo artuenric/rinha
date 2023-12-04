@@ -7,7 +7,7 @@ import com.rinha.ataque.efeito.Efeito;
 
 public class AtaqueAgil extends Ataque implements Golpe{
 
-    public AtaqueAgil(String nomeAtaque, int forca, int nivel, int agilidade, Efeito efeito){
+    public AtaqueAgil(String nomeAtaque, int forca, int nivel, int agilidade){
         this.nomeAtaque = nomeAtaque;
         this.forca = forca;
         this.nivel = nivel;
@@ -15,7 +15,6 @@ public class AtaqueAgil extends Ataque implements Golpe{
         this.defineDano();
         this.definePontosDePoder();
         this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
-        this.setEfeitoAtaque(efeito); // Efeito mandela: envenenar
     }
     
     @Override

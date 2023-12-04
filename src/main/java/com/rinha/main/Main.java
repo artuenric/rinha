@@ -15,32 +15,30 @@ public class Main {
         Galinheiro gl = new Galinheiro();
 
         Perfil meuPerfil = new Perfil("Caiola");
-        
-        GaloItaipava galoCharlie = new GaloItaipava(4, "Chorao", gl.flyWeightFotos.getItaipava());
-        Loja loja = new Loja(20);
 
-        for (int i=0; i<30; i++){
-            Milho mi = new Milho();
-            galoCharlie.alimentar(mi);
-            System.out.println(galoCharlie.getStatus());
-        }
-
-
-//        meuPerfil.getGaloDex().setAtacante(galoCharlie);
-//
-//        GaloAgiota galoAgiota = new GaloAgiota(3, "Agioter", gl.flyWeightFotos.getAgiota());
-//        GaloBMW galoBmw = new GaloBMW(3, "Bmwabler", gl.flyWeightFotos.getBmw());
-//        GaloCAM galoMineiro = new GaloCAM(3,  "Galoucura", gl.flyWeightFotos.getCam());
-//
-//         //Teste Torneio
-//
-//        Torneio torneioTeste = new Torneio(meuPerfil, galoAgiota, galoBmw, galoMineiro);
-//
-//        for (int i = 0; i < 3; i++){
-//            torneioTeste.combateTorneio();
+//        for (int i=0; i<30; i++){
+//            Milho mi = new Milho();
+//            galoCharlie.alimentar(mi);
+//            System.out.println(galoCharlie.getStatus());
 //        }
+        
+        GaloItaipava galoCharlie = new GaloItaipava(19, "Coringar", gl.flyWeightFotos.getItaipava());
+        
+        meuPerfil.getGaloDex().setAtacante(galoCharlie);
 //
-//        System.out.println("O Campeão do torneio foi: " + torneioTeste.getCampeaoTorneio());
+        GaloAgiota galoAgiota = new GaloAgiota(10, "Agioter", gl.flyWeightFotos.getAgiota());
+        GaloBMW galoBmw = new GaloBMW(3, "Bmwabler", gl.flyWeightFotos.getBmw());
+        GaloCAM galoMineiro = new GaloCAM(3,  "Galoucura", gl.flyWeightFotos.getCam());
+//
+         //Teste Torneio
+//
+        Torneio torneioTeste = new Torneio(meuPerfil, galoAgiota, galoBmw, galoMineiro);
+
+        for (int i = 0; i < 3; i++){
+            torneioTeste.combateTorneio();
+        }
+//
+        System.out.println("O Campeão do torneio foi: " + torneioTeste.getCampeaoTorneio());
 //
         
         /* //Teste Batalha Rápida

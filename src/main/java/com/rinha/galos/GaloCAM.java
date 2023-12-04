@@ -11,7 +11,7 @@ public class GaloCAM extends Galo{
         setNome("Galo CAM");
         setNivel(nivel);
         setTipo("B");
-        setVantagem();
+       
         
         // Raridade e atributos
         Raro raridade = new Raro(nivel);

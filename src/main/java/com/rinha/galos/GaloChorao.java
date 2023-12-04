@@ -11,7 +11,7 @@ public class GaloChorao extends Galo{
         setNome("Galo Chorão");
         setNivel(nivel);
         setTipo("B");
-        setVantagem();
+        
         
         // Raridade e atributos
         Raro raridade = new Raro(nivel);

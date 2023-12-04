@@ -12,7 +12,6 @@ public class GaloFebem extends Galo{
     setNome("Galo Policial Federal");
     setNivel(nivel);
     setTipo("A");
-    setVantagem();
 
     // Raridade e atributos
     Lendario raridade = new Lendario(nivel);

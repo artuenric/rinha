@@ -12,7 +12,7 @@ public class GaloCiborg extends Galo {
         setNome("Galo Ciborg");
         setNivel(nivel);
         setTipo("A");
-        setVantagem();
+        
         
         // Raridade e atributos
         Epico raridade = new Epico(nivel);

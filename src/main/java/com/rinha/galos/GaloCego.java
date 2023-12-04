@@ -12,7 +12,7 @@ public class GaloCego extends Galo{
         setNome("Galo Cego");
         setNivel(nivel);
         setTipo("C");
-        setVantagem();
+        
         
         // Raridade e atributos
         Lendario raridade = new Lendario(nivel);

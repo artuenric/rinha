@@ -13,6 +13,7 @@ public abstract class Batalha {
     protected Galo player;
     protected Galo maquina;
     protected Carteira carteiraPlayer;
+    protected int rodadaBatalha = 0;
     
     protected Galo atacante;
     protected Galo atacado;
@@ -24,6 +25,15 @@ public abstract class Batalha {
     protected boolean aberto;
     
     // Modificadores e Acessores
+    
+    public int getRodadaBatalha(){
+        return this.rodadaBatalha;
+    }
+    
+    public void setRodadaBatalha(){
+        this.rodadaBatalha += 1;
+    }
+    
     public void setAtacante(Galo atacante){
         this.atacante = atacante;
     }    
@@ -90,6 +100,9 @@ public abstract class Batalha {
     }
     
     public boolean nextTurno(Galo atacante, Galo atacado, int ataqueId){
+        
+        this.setRodadaBatalha();
+        
         boolean concluido = false;
         int pp = atacante.getAtaque(ataqueId).getPontosDePoderAtual();
         int dano;
@@ -100,7 +113,7 @@ public abstract class Batalha {
                 concluido = true;
             }
             else {
-                dano = atacante.atacar(atacado,ataqueId);
+                dano = atacante.atacar(atacado,ataqueId, this.rodadaBatalha);
                 atacado.setVidaAtual(atacado.getVidaAtual() - dano);
                 concluido = true;
                 

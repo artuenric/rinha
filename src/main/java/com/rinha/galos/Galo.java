@@ -25,7 +25,12 @@ public class Galo {
     protected int agilidade;           // 1  - 100
     protected int vida;                // 10 - 1.000
     protected int vidaAtual;
-    protected EstadoGalo estado = new EstadoNormal(); 
+    protected EstadoGalo estado = new EstadoNormal();
+    
+    
+    //Contadores de Rodadas de Efeitos
+    protected int contadorEstado = 0;
+    
     //ATAQUES
     protected AtaqueBasico atqBasico;
     protected AtaqueTipificado atqTipificado;
@@ -43,11 +48,22 @@ public class Galo {
         return this.estado;
     }
     
+    public int getContadorEstado(){
+        return this.contadorEstado;
+    }
+    
+    public void setContadorEstado(){
+        this.contadorEstado++;
+    }
+    
+    public void zeraContadorEstado(){
+        this.contadorEstado = 0;
+    }
+    
     // Manipulação de estado do bic
     public void setEstadoAtual(EstadoGalo novoEstado){
         this.estado = novoEstado;
     }
-    
     
     public void setFotoBatalha(ImageIcon fotoBatalha) {
         this.fotoBatalha = fotoBatalha;
@@ -94,10 +110,11 @@ public class Galo {
      
     public void setAtaques(String nomeAtaqueBasico, String nomeAtaqueTipificado, String nomeAtaqueAgil, String nomeAtaqueUltimate){
         // Define os ataques e seus nomes
-        this.atqBasico = new AtaqueBasico(nomeAtaqueBasico, this.forca, this.nivel, this.agilidade, new semEfeito());
-        this.atqTipificado = new AtaqueTipificado(nomeAtaqueTipificado, this.nivel, this.defesa, this.agilidade, new EfeitoAtordoar());
-        this.atqAgil = new AtaqueAgil(nomeAtaqueAgil, this.forca, this.nivel, this.agilidade, new EfeitoEnvenenar());
-        this.atqUltimate = new AtaqueUltimate(nomeAtaqueUltimate, this.forca, this.nivel, this.agilidade, new EfeitoHipnotizar());
+        this.atqBasico = new AtaqueBasico(nomeAtaqueBasico, this.forca, this.nivel, this.agilidade);
+        this.atqTipificado = new AtaqueTipificado(nomeAtaqueTipificado, this.nivel, this.defesa, this.agilidade);
+        this.atqAgil = new AtaqueAgil(nomeAtaqueAgil, this.forca, this.nivel, this.agilidade);
+        this.atqUltimate = new AtaqueUltimate(nomeAtaqueUltimate, this.forca, this.nivel, this.agilidade);
+        this.setVantagem();
     }
     
     // Para efeito de log
@@ -194,14 +211,20 @@ public class Galo {
         switch(this.tipo){
             case "A": {
                 this.vantagem = "B";
+                this.atqAgil.setEfeitoAtaque(new EfeitoEnvenenar());
+                this.atqTipificado.setEfeitoAtaque(new EfeitoAtordoar());
             break;
             }
             case "B": {
                 this.vantagem = "C";
+                this.atqAgil.setEfeitoAtaque(new EfeitoAtordoar());
+                this.atqTipificado.setEfeitoAtaque(new EfeitoHipnotizar());
             break;
             }
             case "C": {
                 this.vantagem = "A";
+                this.atqAgil.setEfeitoAtaque(new EfeitoHipnotizar());
+                this.atqTipificado.setEfeitoAtaque(new EfeitoEnvenenar());
             break;
             }
         }
@@ -271,7 +294,7 @@ public class Galo {
     /* Métodos para a batalha */
     // Esses métodos definem a lógica das ações realizadas no combate, que serão utilizadas na classe Batalha.
 
-    public int atacar(Galo adversario, int ataque){
+    public int atacar(Galo adversario, int ataque, int rodadaBatalha){
         // Tira um certo dano da vida do galo adversário de acordo com o ataque escolhido.
         int dano = 0;
         
@@ -284,14 +307,14 @@ public class Galo {
             case 1: { 
                 // Ataque básico baseado em força
                 dano = atqBasico.getDanoBase() - (adversario.getDefesa()/2);
-                atqBasico.getEfeito().aplicaEfeito(adversario);
+                atqBasico.getEfeito().aplicaEstado(adversario, rodadaBatalha);
             break;
             }
             case 2 : {
                 //Ataque Tipificado
                 // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
                 dano = (atqTipificado.getDanoBase()) - (adversario.getDefesa());
-                atqTipificado.getEfeito().aplicaEfeito(adversario);
+                atqTipificado.getEfeito().aplicaEstado(adversario, rodadaBatalha);
                 if (tipo_adversario.equals(this.vantagem)){
                     System.out.println("ENTROU NO IF");
                     dano += (atqTipificado.getBonus() / 100) * this.forca;
@@ -303,13 +326,13 @@ public class Galo {
                 // Ataque baseado na agilidade, mesma lógica do baseado em força
                 System.out.println("ENTROU NO 3");
                 dano =  atqAgil.getDanoBase() - (adversario.getDefesa()/2);
-                atqAgil.getEfeito().aplicaEfeito(adversario);
+                atqAgil.getEfeito().aplicaEstado(adversario, rodadaBatalha);
             break;
             }
             case 4: {
                 //Ultimate
                 dano = (atqUltimate.getDanoBase() - adversario.getDefesa()/3);
-                atqUltimate.getEfeito().aplicaEfeito(adversario);
+                atqUltimate.getEfeito().aplicaEstado(adversario, rodadaBatalha);
             break;
             }
             
