@@ -1,5 +1,5 @@
 
-package com.rinha.ataque.Efeito;
+package com.rinha.ataque.efeito;
 
 import com.rinha.galos.Galo;
 

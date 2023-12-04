@@ -2,8 +2,10 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Raro;
 
+import javax.swing.ImageIcon;
+
 public class GaloDeFralda extends Galo{
-    public GaloDeFralda(int nivel, String apelido){
+    public GaloDeFralda(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo de Fralda");
@@ -17,6 +19,6 @@ public class GaloDeFralda extends Galo{
         // Ataques
         setAtaques("Fralda Suja", "Número 3(?)", "Incontinência","Geriatricamente");
         // Foto
-        setFotoBatalha("/imgs/galos/galodefralda.png");
+        setFotoBatalha(foto);
     }
 }

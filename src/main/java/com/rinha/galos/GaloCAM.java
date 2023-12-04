@@ -2,8 +2,10 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Raro;
 
+import javax.swing.*;
+
 public class GaloCAM extends Galo{
-    public GaloCAM(int nivel, String apelido){
+    public GaloCAM(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo CAM");
@@ -17,6 +19,6 @@ public class GaloCAM extends Galo{
         // Ataques
         setAtaques("Galoucura", "Eu ACREDITO!", "Mineirada","Furar Bloqueio");
         // Foto
-        setFotoBatalha("/imgs/galos/galocam.png");
+        setFotoBatalha(foto);
     }
 }

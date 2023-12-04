@@ -1,6 +1,6 @@
-package com.rinha.ataque.Efeito;
+package com.rinha.ataque.efeito;
 
-import com.rinha.batalha.EstadoGalo.EstadoAtordoado;
+import com.rinha.batalha.estadogalo.EstadoAtordoado;
 import com.rinha.galos.Galo;
 
 public class EfeitoAtordoar extends Efeito {

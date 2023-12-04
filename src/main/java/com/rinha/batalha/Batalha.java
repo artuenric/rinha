@@ -1,6 +1,6 @@
 package com.rinha.batalha;
 import com.rinha.ataque.Ataque;
-import com.rinha.ataque.Efeito.Efeito;
+import com.rinha.ataque.efeito.Efeito;
 import com.rinha.galos.Galo;
 import com.rinha.interfaceusuario.InterfaceUsuario;
 import com.rinha.perfil.Carteira;

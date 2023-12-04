@@ -1,6 +1,6 @@
-package com.rinha.ataque.Efeito;
+package com.rinha.ataque.efeito;
 
-import com.rinha.batalha.EstadoGalo.EstadoHipnotizado;
+import com.rinha.batalha.estadogalo.EstadoHipnotizado;
 import com.rinha.galos.Galo;
 
 public class EfeitoHipnotizar extends Efeito{

@@ -2,9 +2,11 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Lendario;
 
+import javax.swing.ImageIcon;
+
 public class GaloFebem extends Galo{
     
-    public GaloFebem(int nivel, String apelido){
+    public GaloFebem(int nivel, String apelido, ImageIcon foto){
     // Definindo informações básicas
     setApelido(apelido);
     setNome("Galo Policial Federal");
@@ -18,6 +20,6 @@ public class GaloFebem extends Galo{
     // Ataques
     setAtaques("Piu", "Tiro de doze", "Sujar a fralda", "Chamar a mãe");
     // Foto
-    setFotoBatalha("/imgs/galos/galofebem.png");
+    setFotoBatalha(foto);
     }
 }

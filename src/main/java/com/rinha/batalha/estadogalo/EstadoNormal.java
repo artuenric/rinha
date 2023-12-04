@@ -1,5 +1,5 @@
 
-package com.rinha.batalha.EstadoGalo;
+package com.rinha.batalha.estadogalo;
 
 // Galo esta normal
 

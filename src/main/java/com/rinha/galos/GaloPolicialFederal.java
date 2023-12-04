@@ -2,6 +2,8 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Lendario;
 
+import javax.swing.*;
+
 public class GaloPolicialFederal extends Galo{
     
     public GaloPolicialFederal(int nivel, String apelido){

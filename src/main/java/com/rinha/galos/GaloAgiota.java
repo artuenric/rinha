@@ -2,8 +2,10 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Raro;
 
+import javax.swing.ImageIcon;
+
 public class GaloAgiota extends Galo {
-        public GaloAgiota(int nivel, String apelido){
+        public GaloAgiota(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo Agiota");
@@ -17,6 +19,6 @@ public class GaloAgiota extends Galo {
         // Ataques
         setAtaques("Me paga", "Ameaça", "Aumentar os Juros", "Estelionato");
         // Foto
-        setFotoBatalha("/imgs/galos/galoagiota.png");
+        setFotoBatalha(foto);
     }    
 }

@@ -2,8 +2,10 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Raro;
 
+import javax.swing.*;
+
 public class GaloCafe extends Galo{
-    public GaloCafe(int nivel, String apelido){
+    public GaloCafe(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo Cafe");
@@ -17,6 +19,6 @@ public class GaloCafe extends Galo{
         // Ataques
         setAtaques("Fefeti", "Grãos selecionados", "Três Corações","Café?");
         // Foto
-        setFotoBatalha("/imgs/galos/galocafe.png");
+        setFotoBatalha(foto);
     }
 }

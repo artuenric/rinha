@@ -4,37 +4,33 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Galinheiro {
-    ArrayList<Galo> galosEpicos;
-    ArrayList<Galo> galosRaro;
-    ArrayList<Galo> galosLendarios;
-    // Lista com nomes legais
-    ArrayList<String> nomes;
-    
+    public FlyWeightFotos flyWeightFotos = new FlyWeightFotos();
+
     public ArrayList<Galo> gerarGalosEpicos(int nivel){
         ArrayList<Galo> galosGerados = new ArrayList<>();
         // Adicionar Galos Raros
-        galosGerados.add(new GaloBMW(nivel, "Apelido"));
+        galosGerados.add(new GaloBMW(nivel, "Apelido", flyWeightFotos.getBmw()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosRaros(int nivel){
         ArrayList<Galo> galosGerados = new ArrayList<>();
         // Adicionar Galos Raros
-        galosGerados.add(new GaloBMW(nivel, "Apelido"));
+        galosGerados.add(new GaloBMW(nivel, "Apelido", flyWeightFotos.getBmw()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosLendarios(int nivel){
         ArrayList<Galo> galosGerados = new ArrayList<>();
         // Adicionar Galos Raros
-        galosGerados.add(new GaloBMW(nivel, "Apelido"));
+        galosGerados.add(new GaloBMW(nivel, "Apelido", flyWeightFotos.getBmw()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosIniciais(){
         // Gera 3 galos iniciais padrão
         ArrayList<Galo> galosIniciais = new ArrayList<>();
         String apelidoInicial = "First";
-        galosIniciais.add(new GaloAgiota(1, apelidoInicial));
-        galosIniciais.add(new GaloCafe(1, apelidoInicial));
-        galosIniciais.add(new GaloCiborg(1, apelidoInicial));
+        galosIniciais.add(new GaloAgiota(1, apelidoInicial, flyWeightFotos.getAgiota()));
+        galosIniciais.add(new GaloCafe(1, apelidoInicial, flyWeightFotos.getCafe()));
+        galosIniciais.add(new GaloCiborg(1, apelidoInicial, flyWeightFotos.getCiborg()));
         return galosIniciais;
     }
     public Galo getRandomGaloEpico(int nivel){

@@ -1,7 +1,7 @@
 
 package com.rinha.ataque;
-import com.rinha.ataque.Efeito.Efeito;
-import com.rinha.ataque.Efeito.semEfeito;
+import com.rinha.ataque.efeito.Efeito;
+import com.rinha.ataque.efeito.semEfeito;
 import java.util.Random;
 
 public abstract class Ataque {

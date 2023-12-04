@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.rinha.ataque;
-import com.rinha.ataque.Efeito.Efeito;
+import com.rinha.ataque.efeito.Efeito;
 
 public class AtaqueAgil extends Ataque implements Golpe{
 

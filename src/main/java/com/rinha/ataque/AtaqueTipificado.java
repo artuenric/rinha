@@ -1,6 +1,6 @@
 
 package com.rinha.ataque;
-import com.rinha.ataque.Efeito.Efeito;
+import com.rinha.ataque.efeito.Efeito;
 import java.util.Random;
 
 

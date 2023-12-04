@@ -2,8 +2,10 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Raro;
 
+import javax.swing.ImageIcon;
+
 public class GaloChorao extends Galo{
-        public GaloChorao(int nivel, String apelido){
+        public GaloChorao(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo Chorão");
@@ -17,6 +19,6 @@ public class GaloChorao extends Galo{
         // Ataques
         setAtaques("Front Back-Ollie Noise Side 380", "Charlie Brown Jr", "O que os loucos sabem","Natural luz do dia");
         // Foto
-        setFotoBatalha("/imgs/galos/galochorao.png");
+        setFotoBatalha(foto);
     }
 }

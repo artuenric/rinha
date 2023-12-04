@@ -2,9 +2,11 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Epico;
 
+import javax.swing.ImageIcon;
+
 public class GaloCiborg extends Galo {
     
-    public GaloCiborg(int nivel, String apelido){
+    public GaloCiborg(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo Ciborg");
@@ -18,6 +20,6 @@ public class GaloCiborg extends Galo {
         // Ataques
         setAtaques("Curso do SENAI", "Curto circuito", "Chute mecânico", "Raio laser");
         // Foto
-        setFotoBatalha("/imgs/galos/galociborg.png");
+        setFotoBatalha(foto);
     }
 }

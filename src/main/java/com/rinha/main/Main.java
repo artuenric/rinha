@@ -10,14 +10,16 @@ import com.rinha.perfil.Perfil;
 public class Main {
     public static void main(String[] args) {
         //new mainFrame().setVisible(true);
+        Galinheiro gl = new Galinheiro();
+
         Perfil meuPerfil = new Perfil("Caiola");
         
-        GaloItaipava galoCharlie = new GaloItaipava(4, "Chorao");
+        GaloItaipava galoCharlie = new GaloItaipava(4, "Chorao", gl.flyWeightFotos.getItaipava());
         meuPerfil.getGaloDex().setAtacante(galoCharlie);
         
-        GaloAgiota galoAgiota = new GaloAgiota(3, "Agioter");
-        GaloBMW galoBmw = new GaloBMW(3, "Bmwabler");
-        GaloCAM galoMineiro = new GaloCAM(3,  "Galoucura");
+        GaloAgiota galoAgiota = new GaloAgiota(3, "Agioter", gl.flyWeightFotos.getAgiota());
+        GaloBMW galoBmw = new GaloBMW(3, "Bmwabler", gl.flyWeightFotos.getBmw());
+        GaloCAM galoMineiro = new GaloCAM(3,  "Galoucura", gl.flyWeightFotos.getCam());
         
          //Teste Torneio
         

@@ -2,9 +2,11 @@ package com.rinha.galos;
 
 import com.rinha.galos.raridade.Lendario;
 
+import javax.swing.*;
+
 public class GaloCego extends Galo{
     
-    public GaloCego(int nivel, String apelido){
+    public GaloCego(int nivel, String apelido, ImageIcon foto){
         // Definindo informações básicas
         setApelido(apelido);
         setNome("Galo Cego");
@@ -18,6 +20,6 @@ public class GaloCego extends Galo{
         // Ataques
         setAtaques("5 Reais", "Midnight Club", "Sol da Meia Noite","Comprar Alimento");
         // Foto
-        setFotoBatalha("/imgs/galos/galocego.png");
+        setFotoBatalha(foto);
     }
 }

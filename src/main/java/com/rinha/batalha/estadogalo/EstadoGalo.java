@@ -1,4 +1,4 @@
-package com.rinha.batalha.EstadoGalo;
+package com.rinha.batalha.estadogalo;
 
 import com.rinha.batalha.Batalha;
 

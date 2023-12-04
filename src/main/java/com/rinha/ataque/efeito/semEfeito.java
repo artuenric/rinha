@@ -1,6 +1,6 @@
-package com.rinha.ataque.Efeito;
+package com.rinha.ataque.efeito;
 
-import com.rinha.batalha.EstadoGalo.EstadoNormal;
+import com.rinha.batalha.estadogalo.EstadoNormal;
 import com.rinha.galos.Galo;
 
 public class semEfeito extends Efeito{

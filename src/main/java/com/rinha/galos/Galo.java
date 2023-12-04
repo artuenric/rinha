@@ -1,23 +1,15 @@
 package com.rinha.galos;
-import com.rinha.ataque.Ataque;
-import com.rinha.ataque.AtaqueBasico;
-import com.rinha.ataque.AtaqueTipificado;
-import com.rinha.ataque.AtaqueAgil;
-import com.rinha.ataque.AtaqueUltimate;
-import com.rinha.ataque.Efeito.EfeitoAtordoar;
-import com.rinha.ataque.Efeito.EfeitoEnvenenar;
-import com.rinha.ataque.Efeito.EfeitoHipnotizar;
-import com.rinha.ataque.Efeito.semEfeito;
-import com.rinha.batalha.EstadoGalo.EstadoGalo;
-import com.rinha.batalha.EstadoGalo.EstadoNormal;
+import com.rinha.batalha.estadogalo.EstadoNormal;
+import com.rinha.batalha.estadogalo.EstadoGalo;
+import com.rinha.ataque.*;
+import com.rinha.ataque.efeito.*;
 import com.rinha.galos.raridade.Raridade;
-import java.awt.Image;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class Galo {
     
-    // Propriedades do Galo - 03/10/2023
+    // Propriedades Básicas do Galo
     protected String apelido;          // Nome personalizado para o Galo
     protected String nome;             // Galo Alguma Coisa
     protected String raridade;         // Lendário, Épico, Raro
@@ -32,33 +24,31 @@ public class Galo {
     protected int vidaAtual;
     protected boolean inGaloDex;       // Está ou não na sua GaloDex
     protected EstadoGalo estado = new EstadoNormal(); 
-    
     //ATAQUES
     protected AtaqueBasico atqBasico;
     protected AtaqueTipificado atqTipificado;
     protected AtaqueAgil atqAgil;
     protected AtaqueUltimate atqUltimate;
-    
     // Interface
     protected ImageIcon fotoBatalha;
     
+    // Getters e Setters
     public ImageIcon getFotoBatalha() {
         return fotoBatalha;
     }
-    
+
     public EstadoGalo getEstadoAtual(){
         return this.estado;
     }
     
-    //Manipulação de estado do bic
+    // Manipulação de estado do bic
     public void setEstadoAtual(EstadoGalo novoEstado){
         this.estado = novoEstado;
     }
     
     
-    public void setFotoBatalha(String path){
-        // Por padrão, as fotos dos galos estão no caminho /imgs/galos/nomedogalo.png
-        this.fotoBatalha = new ImageIcon(getClass().getResource(path));
+    public void setFotoBatalha(ImageIcon fotoBatalha) {
+        this.fotoBatalha = fotoBatalha;
     }
     
     public AtaqueBasico getAtqBasico(){

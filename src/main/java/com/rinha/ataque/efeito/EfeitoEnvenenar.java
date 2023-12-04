@@ -1,6 +1,6 @@
-package com.rinha.ataque.Efeito;
+package com.rinha.ataque.efeito;
 
-import com.rinha.batalha.EstadoGalo.EstadoEnvenenado;
+import com.rinha.batalha.estadogalo.EstadoEnvenenado;
 import com.rinha.galos.Galo;
 
 public class EfeitoEnvenenar extends Efeito{
