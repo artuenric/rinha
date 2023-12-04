@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.rinha.gui;
 
-/**
- *
- * @author ratolar
- */
-public class Play extends javax.swing.JPanel {
+import com.rinha.perfil.Perfil;
 
-    /**
-     * Creates new form Dashboard
-     */
-    public Play() {
+public class PainelPlay extends PainelFilho{
+    
+    public PainelPlay(MainFrame mainFrame, Perfil player) {
+        this.mainFrame = mainFrame;
+        this.painelPrincipal = mainFrame.getPainelPrincipal();
+        this.player = player;
         initComponents();
     }
 
@@ -57,11 +51,7 @@ public class Play extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPlayActionPerformed
-        // botaoPlay encaminha a tela para o dashboard
-        //trocarTela("telaBemVindo");
-        this.trocarTela("store");
-        galosIniciais = galinheiro.gerarGalosIniciais();
-
+        trocarTela("bemvindo");
     }//GEN-LAST:event_botaoPlayActionPerformed
 
 

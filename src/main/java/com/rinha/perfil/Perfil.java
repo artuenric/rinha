@@ -1,6 +1,7 @@
 package com.rinha.perfil;
 
 import com.rinha.loja.Item;
+import com.rinha.loja.Loja;
 import com.rinha.loja.Milho;
 import com.rinha.loja.PocaoCura;
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ public class Perfil {
     private Carteira carteira;
     private ArrayList<PocaoCura> pocoes;
     private ArrayList<Milho> milhos;
-
+    private Loja loja;
+    
     public String getNome() {
         return nome;
     }
@@ -45,6 +47,14 @@ public class Perfil {
     public ArrayList<Milho> getMilhos() {
         return milhos;
     }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
+        this.loja = loja;
+    }
     
     public boolean comprarItem(Item item){
         if (this.carteira.solicitacao(item.getPreco())){
@@ -67,5 +77,6 @@ public class Perfil {
         this.galoDex = new GaloDex();
         this.milhos = new ArrayList<>();
         this.pocoes = new ArrayList<>();
+        this.loja = new Loja(20);
     }
 }

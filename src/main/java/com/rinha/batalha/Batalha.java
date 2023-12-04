@@ -152,6 +152,13 @@ public abstract class Batalha {
         }
     }
     
+    public void desistir(){
+        System.out.println("Desistiu da batallha");
+        this.player.regeneraVidaAtual();
+        this.player.regeneraPontosDePoderOriginal();
+        this.setAberto(false); 
+    }
+    
     // Para efeito de log
     public void batalhar(){
         Random random = new Random();
