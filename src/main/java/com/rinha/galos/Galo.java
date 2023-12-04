@@ -4,6 +4,8 @@ import com.rinha.batalha.estadogalo.EstadoGalo;
 import com.rinha.ataque.*;
 import com.rinha.ataque.efeito.*;
 import com.rinha.galos.raridade.Raridade;
+import com.rinha.loja.Milho;
+
 import java.util.Random;
 import javax.swing.ImageIcon;
 
@@ -14,6 +16,7 @@ public class Galo {
     protected String nome;             // Galo Alguma Coisa
     protected String raridade;         // Lendário, Épico, Raro
     protected int nivel;               // ⭐⭐⭐⭐⭐
+    protected int xp;
     protected String tipo;             // 3 tipos: A, B e C
     protected String vantagem;         // A bate em B, B bate em C, C bate em A
     protected int valor;               // Preço de venda
@@ -22,7 +25,6 @@ public class Galo {
     protected int agilidade;           // 1  - 100
     protected int vida;                // 10 - 1.000
     protected int vidaAtual;
-    protected boolean inGaloDex;       // Está ou não na sua GaloDex
     protected EstadoGalo estado = new EstadoNormal(); 
     //ATAQUES
     protected AtaqueBasico atqBasico;
@@ -253,13 +255,6 @@ public class Galo {
             this.vidaAtual = vidaAtual;
         }
     }
-
-    public boolean isInGaloDex() {
-        return inGaloDex;
-    }
-    public void setInGaloDex(boolean inGaloDex) {
-        this.inGaloDex = inGaloDex;
-    }
     
     public void defineAtributos(Raridade raridade){
         // Define os atributos de um galo a partir de sua raridade;
@@ -350,4 +345,19 @@ public class Galo {
         int percent = (this.getVidaAtual()*100) / getVida();
         return percent;
     }
+
+    // Métodos para evolução e recuperação
+    public void alimentar(Milho milho){
+        this.xp += milho.getXp();
+
+
+    }
+    public void evoluir(){
+        this.nivel += 1;
+        this.agilidade *= 0.2f;
+        this.forca *= 0.2f;
+        this.defesa *= 0.2f;
+        this.vida *= 0.1f;
+    }
+
 }
