@@ -11,7 +11,7 @@ public class EstadoNormal implements EstadoGalo{
 
     @Override
     public void aplicaEfeito(Galo contexto, int rodadaBatalha) {
-        System.out.println("Efeito Normal Aplicado à "+ contexto.getNome());
+        System.out.println("Galo: "+ contexto.getNome()+ " esta normal (sem efeito algum)");
     }
 
     @Override

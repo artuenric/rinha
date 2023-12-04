@@ -15,20 +15,20 @@ public class Galo {
     protected String apelido;          // Nome personalizado para o Galo
     protected String nome;             // Galo Alguma Coisa
     protected String raridade;         // Lendário, Épico, Raro
-    protected int nivel;               // ⭐⭐⭐⭐⭐
-    protected int xp;
+    protected int nivel;               // Nivel do galo
+    protected int xp;                   // Experiência para evolução
     protected String tipo;             // 3 tipos: A, B e C
     protected String vantagem;         // A bate em B, B bate em C, C bate em A
     protected int valor;               // Preço de venda
-    protected int forca;               // 1  - 100
-    protected int defesa;              // 1  - 100
-    protected int agilidade;           // 1  - 100
-    protected int vida;                // 10 - 1.000
-    protected int vidaAtual;
-    protected EstadoGalo estado = new EstadoNormal();
+    protected int forca;               // Força do galo: 1  - 100
+    protected int defesa;              // Defesa do galo:  1  - 100
+    protected int agilidade;           // Agilidade do galo: 1  - 100
+    protected int vida;                // Vida Original do galo: 10 - 1.000
+    protected int vidaAtual;            // Vida atual do gal. Finalidade: Alteração de vida na batalha
+    protected EstadoGalo estado = new EstadoNormal(); //Estado atual do galo.
     
     
-    //Contadores de Rodadas de Efeitos
+    //Contador de quantas rodadas o Galo está com o mesmo Estado, finalidade é o controle de estado
     protected int contadorEstado = 0;
     
     //ATAQUES
@@ -36,6 +36,7 @@ public class Galo {
     protected AtaqueTipificado atqTipificado;
     protected AtaqueAgil atqAgil;
     protected AtaqueUltimate atqUltimate;
+    
     // Interface
     protected ImageIcon fotoBatalha;
     
@@ -47,6 +48,8 @@ public class Galo {
     public EstadoGalo getEstadoAtual(){
         return this.estado;
     }
+    
+    //Modificadores e Acessores do contador de estado do galo 
     
     public int getContadorEstado(){
         return this.contadorEstado;
@@ -60,7 +63,7 @@ public class Galo {
         this.contadorEstado = 0;
     }
     
-    // Manipulação de estado do bic
+    // Manipulação de estado do galo
     public void setEstadoAtual(EstadoGalo novoEstado){
         this.estado = novoEstado;
     }
@@ -68,6 +71,8 @@ public class Galo {
     public void setFotoBatalha(ImageIcon fotoBatalha) {
         this.fotoBatalha = fotoBatalha;
     }
+    
+    //Modificadores e Acessores dos ataques
     
     public AtaqueBasico getAtqBasico(){
         return atqBasico;
@@ -147,10 +152,8 @@ public class Galo {
     }
     
     
-    /*
-    Métodos Acessores e Modificadores:
-    Esses métodos pegam e alteram, obviamente, as propriedades dos galos.
-    */
+    
+    //1Modificadores e Acessores gerais de galo:
     
     public void regeneraPontosDePoderOriginal(){
         this.atqBasico.recuperaPontosDePoderOriginal();
@@ -163,7 +166,7 @@ public class Galo {
         this.vidaAtual = this.vida; //Destinada a regenerar a vida ao final da batalha
     }
     
-    public String getApelido(){
+    public String getApelido(){ 
         return apelido;
     }
     
@@ -258,15 +261,9 @@ public class Galo {
     public int getVida() {
         return vida;
     }
-    
-    public void setVida(int vida) {
-        if (vida <= 0 ){
-            this.vida = 0;
-        } else{
-            this.vida = vida;
-        }
-    }
 
+    //Modificar vida atual sem alterar valor da vida original do galo
+    
     public int getVidaAtual() {
         return vidaAtual;
     }
@@ -291,7 +288,7 @@ public class Galo {
     }
     
     
-    /* Métodos para a batalha */
+    // Métodos para a batalha 
     // Esses métodos definem a lógica das ações realizadas no combate, que serão utilizadas na classe Batalha.
 
     public int atacar(Galo adversario, int ataque, int rodadaBatalha){
