@@ -35,7 +35,6 @@ public class mainFrame extends javax.swing.JFrame {
     
     // Informações da PainelBatalha
     BatalhaRapida batalhaAtual;
-    int usuarioAtq = 0;
     
     // Construtor
     public mainFrame() {

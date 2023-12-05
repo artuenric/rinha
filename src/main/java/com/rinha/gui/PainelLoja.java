@@ -12,6 +12,7 @@ public class PainelLoja extends PainelFilho {
     Loja loja;
     
     public PainelLoja(mainFrame mainFrame, Perfil player) {
+        this.mainFrame = mainFrame;
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         this.player = player;
         this.loja = mainFrame.loja;
@@ -246,6 +247,7 @@ public class PainelLoja extends PainelFilho {
     private void botaoVoltarLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarLojaActionPerformed
         // Volta da loja pro Dashboard
         trocarTela("dashboard");
+        this.mainFrame.painelDashboard.updateTelaDashboard();
         this.loja = new Loja(20);
         this.botaoComprarGalo.setVisible(true);
     }//GEN-LAST:event_botaoVoltarLojaActionPerformed

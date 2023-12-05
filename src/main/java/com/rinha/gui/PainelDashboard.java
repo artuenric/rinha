@@ -12,7 +12,20 @@ public class PainelDashboard extends PainelFilho {
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         initComponents();
     }
- 
+    
+    public void updateLabelNomeNivel(){
+        this.labelNomeNivel.setText(this.player.getNome()+" nível "+this.player.getNivel());
+    }
+    public void updateStorage(){
+        this.labelPocoes.setText("Poções de cura: " + this.player.getPocoes().size());
+        this.labelMilhos.setText("Milhos: " + this.player.getMilhos().size());
+    }
+    public void updateTelaDashboard(){
+        this.updateLabelNomeNivel();
+        this.updateStorage();
+    }
+    
+    
     public void updateTableGaloDex(){
         DefaultTableModel table = (DefaultTableModel) this.mainFrame.getTableGaloDex().getModel();
         table.setRowCount(0);
@@ -53,9 +66,9 @@ public class PainelDashboard extends PainelFilho {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        labelNomeNivel = new javax.swing.JLabel();
+        labelMilhos = new javax.swing.JLabel();
+        labelPocoes = new javax.swing.JLabel();
         botaoTorneios = new javax.swing.JButton();
         botaoLoja = new javax.swing.JButton();
         botaoPerfil = new javax.swing.JButton();
@@ -68,23 +81,23 @@ public class PainelDashboard extends PainelFilho {
         setPreferredSize(new java.awt.Dimension(720, 480));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nome do Desafiante 3");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 280, -1));
+        labelNomeNivel.setBackground(new java.awt.Color(255, 255, 255));
+        labelNomeNivel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelNomeNivel.setForeground(new java.awt.Color(255, 255, 255));
+        labelNomeNivel.setText("Nome do Desafiante 3");
+        add(labelNomeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 280, -1));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Milhos:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        labelMilhos.setBackground(new java.awt.Color(255, 255, 255));
+        labelMilhos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelMilhos.setForeground(new java.awt.Color(255, 255, 255));
+        labelMilhos.setText("Milhos:");
+        add(labelMilhos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Poções de Cura:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        labelPocoes.setBackground(new java.awt.Color(255, 255, 255));
+        labelPocoes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPocoes.setForeground(new java.awt.Color(255, 255, 255));
+        labelPocoes.setText("Poções de Cura:");
+        add(labelPocoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         botaoTorneios.setBackground(new java.awt.Color(255, 135, 30));
         botaoTorneios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -190,9 +203,9 @@ public class PainelDashboard extends PainelFilho {
     private javax.swing.JButton botaoPartidaRapida;
     private javax.swing.JButton botaoPerfil;
     private javax.swing.JButton botaoTorneios;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel labelBackgroundDashBoard;
+    private javax.swing.JLabel labelMilhos;
+    private javax.swing.JLabel labelNomeNivel;
+    private javax.swing.JLabel labelPocoes;
     // End of variables declaration//GEN-END:variables
 }

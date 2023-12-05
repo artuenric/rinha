@@ -266,6 +266,7 @@ public class PainelBatalha extends PainelFilho{
     private void botaoDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDesistirActionPerformed
         // Sai da tela de batalha para tela dashboard
         this.trocarTela("dashboard");
+        this.mainFrame.painelDashboard.updateTelaDashboard();
         this.mainFrame.batalhaAtual.desistir();
     }//GEN-LAST:event_botaoDesistirActionPerformed
 

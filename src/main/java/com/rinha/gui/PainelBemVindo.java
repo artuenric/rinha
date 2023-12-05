@@ -79,18 +79,21 @@ public class PainelBemVindo extends PainelFilho {
         // TODO add your handling code here:
         player.getGaloDex().addGalo(galosIniciais.get(2));
         trocarTela("dashboard");
+        this.mainFrame.painelDashboard.updateTelaDashboard();
     }//GEN-LAST:event_botaoInicial2ActionPerformed
 
     private void botaoInicial0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicial0ActionPerformed
         // TODO add your handling code here:
         player.getGaloDex().addGalo(galosIniciais.get(0));
         trocarTela("dashboard");
+        this.mainFrame.painelDashboard.updateTelaDashboard();
     }//GEN-LAST:event_botaoInicial0ActionPerformed
 
     private void botaoInicial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicial1ActionPerformed
         // TODO add your handling code here:
         player.getGaloDex().addGalo(galosIniciais.get(1));
         trocarTela("dashboard");
+        this.mainFrame.painelDashboard.updateTelaDashboard();
     }//GEN-LAST:event_botaoInicial1ActionPerformed
 
 
