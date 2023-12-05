@@ -16,7 +16,7 @@ public class Galo {
     protected String nome;             // Galo Alguma Coisa
     protected String raridade;         // Lendário, Épico, Raro
     protected int nivel;               // Nivel do galo
-    protected int xp;                   // Experiência para evolução
+    protected int xp;                  // Experiência para evolução
     protected String tipo;             // 3 tipos: A, B e C
     protected String vantagem;         // A bate em B, B bate em C, C bate em A
     protected int valor;               // Preço de venda
@@ -153,17 +153,9 @@ public class Galo {
     
     
     
-    //1Modificadores e Acessores gerais de galo:
-    
-    public void regeneraPontosDePoderOriginal(){
-        this.atqBasico.recuperaPontosDePoderOriginal();
-        this.atqTipificado.recuperaPontosDePoderOriginal();
-        this.atqAgil.recuperaPontosDePoderOriginal();
-        this.atqUltimate.recuperaPontosDePoderOriginal();
-    }
-    
-    public void regeneraVidaAtual(){
-        this.vidaAtual = this.vida; //Destinada a regenerar a vida ao final da batalha
+    // Getters e Setters gerais do galo:
+    public int getXp(){
+        return xp;
     }
     
     public String getApelido(){ 
@@ -366,6 +358,17 @@ public class Galo {
         return percent;
     }
 
+    public void regeneraPontosDePoderOriginal() {
+        this.atqBasico.recuperaPontosDePoderOriginal();
+        this.atqTipificado.recuperaPontosDePoderOriginal();
+        this.atqAgil.recuperaPontosDePoderOriginal();
+        this.atqUltimate.recuperaPontosDePoderOriginal();
+    }
+    
+    public void regeneraVidaAtual(){
+        this.vidaAtual = this.vida; //Destinada a regenerar a vida ao final da batalha
+    }
+    
     // Métodos para evolução e recuperação
     public void alimentar(Milho milho){
         this.xp += milho.getXp();

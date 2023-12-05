@@ -2,7 +2,6 @@ package com.rinha.perfil;
 
 import com.rinha.galos.Galo;
 import com.rinha.loja.Item;
-import com.rinha.loja.Loja;
 import com.rinha.loja.Milho;
 import com.rinha.loja.PocaoCura;
 import java.util.ArrayList;
@@ -67,6 +66,24 @@ public class Perfil {
         if (this.carteira.solicitacao(galo.getValor())){
             this.galoDex.addGalo(galo);
             this.carteira.saque(galo.getValor());
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean venderGalo(Galo galo){
+        if (this.galoDex.getTamanho()>1){
+            this.galoDex.removeGalo(galo);
+            this.carteira.deposito(galo.getValor());
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean alimentarGalo(Galo galo){
+        if (milhos.size() > 0){
+            galo.alimentar(milhos.get(0));
+            milhos.remove(0);
             return true;
         }
         return false;

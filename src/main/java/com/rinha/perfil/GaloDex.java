@@ -40,8 +40,11 @@ public class GaloDex {
         this.galos.add(galo);
     }
     
-    public void removeGalo(int index){
-        this.galos.remove(index); 
+    public void removeGalo(Galo galo){
+        this.galos.remove(galo);
+        if (galo == this.atacante){
+            this.atacante = null;
+        }
     }
     
 }
