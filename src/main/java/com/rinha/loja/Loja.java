@@ -1,15 +1,19 @@
 package com.rinha.loja;
 
+import com.rinha.galos.Galinheiro;
+import com.rinha.galos.Galo;
 import com.rinha.perfil.Perfil;
 import java.util.ArrayList;
 
 public class Loja {
     ArrayList <PocaoCura> pocoes;
     ArrayList <Milho> milhos;
+    Galo galo;
     
     public Loja(int nItens){
         this.pocoes = this.gerarPocaoCura(nItens);
         this.milhos = this.gerarMilho(nItens);
+        this.galo = new Galinheiro().getRandomGaloLendario(1);
     }
     
     private ArrayList gerarPocaoCura(int quantidade){
@@ -36,6 +40,13 @@ public class Loja {
         return milhosGerados;
     }
     
+    public boolean venderGalo(Perfil cliente){
+        if (cliente.comprarGalo(galo)){
+            return true;
+        }
+        return false;
+    }
+    
     public boolean venderMilho(Perfil cliente, int indexMilho){
         Milho milho = milhos.get(indexMilho);
         if (cliente.comprarItem(milho)){
@@ -55,6 +66,11 @@ public class Loja {
     }
     
     // Métodos para a loja
+
+    public Galo getGalo() {
+        return galo;
+    }
+    
     public Milho getMilho(int index){
         return this.milhos.get(index);
     }

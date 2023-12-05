@@ -2,7 +2,6 @@ package com.rinha.gui;
 
 import com.rinha.batalha.BatalhaRapida;
 import com.rinha.perfil.Perfil;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 public class PainelDashboard extends PainelFilho {
@@ -13,33 +12,8 @@ public class PainelDashboard extends PainelFilho {
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         initComponents();
     }
-    public void updateTablePocoesLoja(){
-        DefaultTableModel table = (DefaultTableModel) this.mainFrame.getPainelLoja().getTablePocoesLoja().getModel();
-        table.setRowCount(0);
-        int tamanho = this.player.getLoja().getQuantidadePocoes();
-        for (int index = 0; index < tamanho; index++){
-            Object[] dados = this.player.getLoja().getInfoPocoes(index);
-            table.addRow(dados);
-        }
-    }
-    
-    public void updateTableMilhosLoja(){
-        DefaultTableModel table = (DefaultTableModel) this.mainFrame.getPainelLoja().getTableMilhosLoja().getModel();
-        table.setRowCount(0);
-        int tamanho = player.getLoja().getQuantidadeMilhos();
-        for (int index = 0; index < tamanho; index++){
-            Object[] dados = player.getLoja().getInfoMilhos(index);
-            table.addRow(dados);
-        }
-    }
-    
-    public void updateInfoTelaLoja(){
-        this.updateTableMilhosLoja();
-        this.updateTablePocoesLoja();
-        this.mainFrame.getPainelLoja().getLabelSaldoCarteira().setText(Integer.toString(player.getCarteira().getSaldo()));
-    }
-    
-        public void updateTableGaloDex(){
+ 
+    public void updateTableGaloDex(){
         DefaultTableModel table = (DefaultTableModel) this.mainFrame.getTableGaloDex().getModel();
         table.setRowCount(0);
         int tamanho = player.getGaloDex().getTamanho();
@@ -182,7 +156,7 @@ public class PainelDashboard extends PainelFilho {
     private void botaoLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLojaActionPerformed
         // Vai para tela da loja
         trocarTela("loja");
-        this.updateInfoTelaLoja();
+        this.mainFrame.painelLoja.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoLojaActionPerformed
 
     private void botaoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPerfilActionPerformed

@@ -31,7 +31,7 @@ public class mainFrame extends javax.swing.JFrame {
     ArrayList<Galo> galosIniciais = galinheiro.gerarGalosIniciais();
     
     // Informações da Loja
-    Loja loja = player.getLoja();
+    Loja loja = new Loja(20);
     
     // Informações da PainelBatalha
     BatalhaRapida batalhaAtual;
@@ -44,7 +44,7 @@ public class mainFrame extends javax.swing.JFrame {
         this.painelPlay = new PainelPlay(this, this.player);
         this.painelBemVindo = new PainelBemVindo(this, this.player);
         this.painelDashboard = new PainelDashboard(this, this.player);
-        this.painelLoja = new PainelLoja(this, this.player, this.loja);
+        this.painelLoja = new PainelLoja(this, this.player);
         this.painelBatalha = new PainelBatalha(this, this.player);
         // Adicionando ao painel principal com o nome do card
         this.painelPrincipal.add(painelPlay, "play");

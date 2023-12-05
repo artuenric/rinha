@@ -11,10 +11,10 @@ import javax.swing.table.DefaultTableModel;
 public class PainelLoja extends PainelFilho {
     Loja loja;
     
-    public PainelLoja(mainFrame mainFrame, Perfil player, Loja loja) {
+    public PainelLoja(mainFrame mainFrame, Perfil player) {
         this.painelPrincipal = mainFrame.getPainelPrincipal();
         this.player = player;
-        this.loja = loja;
+        this.loja = mainFrame.loja;
         initComponents();
     }
     
@@ -58,6 +58,11 @@ public class PainelLoja extends PainelFilho {
     
     
     // Atualizações da interface
+    public void updateInfoGalo(){
+        this.labelFotoGaloLoja.setIcon(this.loja.getGalo().getFotoBatalha());
+        this.labelInfoGaloLoja.setText(this.loja.getGalo().getNome()+ " R$ " + this.loja.getGalo().getValor());
+    }
+    
     public void updateTablePocoesLoja(){
         DefaultTableModel table = (DefaultTableModel) this.tablePocoesLoja.getModel();
         table.setRowCount(0);
@@ -78,10 +83,15 @@ public class PainelLoja extends PainelFilho {
         }
     }
     
+    public void updateSaldo(){
+        this.labelSaldoCarteira.setText(Integer.toString(player.getCarteira().getSaldo()));
+    }
+    
     public void updateInfoTelaLoja(){
+        this.updateSaldo();
+        this.updateInfoGalo();
         this.updateTableMilhosLoja();
         this.updateTablePocoesLoja();
-        this.labelSaldoCarteira.setText(Integer.toString(player.getCarteira().getSaldo()));
     }
     
     /**
@@ -225,12 +235,19 @@ public class PainelLoja extends PainelFilho {
         add(labelInfoGaloLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 250, -1));
 
         botaoComprarGalo.setText("Comprar");
+        botaoComprarGalo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoComprarGaloActionPerformed(evt);
+            }
+        });
         add(botaoComprarGalo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 250, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVoltarLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarLojaActionPerformed
         // Volta da loja pro Dashboard
         trocarTela("dashboard");
+        this.loja = new Loja(20);
+        this.botaoComprarGalo.setVisible(true);
     }//GEN-LAST:event_botaoVoltarLojaActionPerformed
 
     private void botaoComprarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoComprarPocaoActionPerformed
@@ -248,6 +265,16 @@ public class PainelLoja extends PainelFilho {
         System.out.println(sucess);
         this.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoComprarMilhoActionPerformed
+
+    private void botaoComprarGaloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoComprarGaloActionPerformed
+        // Botao para comprar o galo
+        boolean sucess = this.loja.venderGalo(player);
+        if (sucess){
+            this.botaoComprarGalo.setVisible(false);
+        }
+        this.labelSaldoCarteira.setText(Integer.toString(player.getCarteira().getSaldo()));
+        System.out.println(sucess);
+    }//GEN-LAST:event_botaoComprarGaloActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
