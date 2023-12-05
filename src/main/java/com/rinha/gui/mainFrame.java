@@ -19,6 +19,7 @@ public class mainFrame extends javax.swing.JFrame {
     public PainelDashboard painelDashboard;
     public PainelLoja painelLoja;
     public PainelBatalha painelBatalha;
+    public PainelProximaBatalha painelProximaBatalha;
     
     
     // Informações do PLayer
@@ -39,12 +40,14 @@ public class mainFrame extends javax.swing.JFrame {
         this.painelDashboard = new PainelDashboard(this, this.player);
         this.painelLoja = new PainelLoja(this, this.player);
         this.painelBatalha = new PainelBatalha(this, this.player);
+        this.painelProximaBatalha = new PainelProximaBatalha(this, this.player);
         // Adicionando ao painel principal com o nome do card
         this.painelPrincipal.add(painelPlay, "play");
         this.painelPrincipal.add(painelBemVindo, "bemvindo");
         this.painelPrincipal.add(painelDashboard, "dashboard");
         this.painelPrincipal.add(painelLoja, "loja");
         this.painelPrincipal.add(painelBatalha, "batalha");
+        this.painelPrincipal.add(painelProximaBatalha, "proxima");
     }
     
     // Para a batalha rápida
@@ -189,6 +192,7 @@ public class mainFrame extends javax.swing.JFrame {
         labelValorGaloDex = new javax.swing.JLabel();
         labelXPGaloDex = new javax.swing.JLabel();
         dialogFimBatalha = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
         labelFimdaBatalha = new javax.swing.JLabel();
         labelXPFimBatalha = new javax.swing.JLabel();
         labelPremioFimBatalha = new javax.swing.JLabel();
@@ -277,58 +281,35 @@ public class mainFrame extends javax.swing.JFrame {
         dialogGaloDex.getContentPane().add(labelXPGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         dialogFimBatalha.setTitle("K.O.");
+        dialogFimBatalha.setMaximumSize(new java.awt.Dimension(400, 300));
         dialogFimBatalha.setMinimumSize(new java.awt.Dimension(400, 300));
         dialogFimBatalha.setResizable(false);
         dialogFimBatalha.setLocationRelativeTo(null);
+        dialogFimBatalha.getContentPane().setLayout(new javax.swing.BoxLayout(dialogFimBatalha.getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelFimdaBatalha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelFimdaBatalha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFimdaBatalha.setText("<html><p align=\"center\">Fim da Batalha</p></html>");
+        jPanel1.add(labelFimdaBatalha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, 33));
 
         labelXPFimBatalha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelXPFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelXPFimBatalha.setText("XP: 0");
+        jPanel1.add(labelXPFimBatalha, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, -1));
 
         labelPremioFimBatalha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPremioFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelPremioFimBatalha.setText("Prêmio: 150");
+        jPanel1.add(labelPremioFimBatalha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
 
         labelGanhadorFimBatalha.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         labelGanhadorFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGanhadorFimBatalha.setText("Galo ganhou!");
+        jPanel1.add(labelGanhadorFimBatalha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 58));
 
-        javax.swing.GroupLayout dialogFimBatalhaLayout = new javax.swing.GroupLayout(dialogFimBatalha.getContentPane());
-        dialogFimBatalha.getContentPane().setLayout(dialogFimBatalhaLayout);
-        dialogFimBatalhaLayout.setHorizontalGroup(
-            dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogFimBatalhaLayout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
-                .addGroup(dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogFimBatalhaLayout.createSequentialGroup()
-                        .addGroup(dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dialogFimBatalhaLayout.createSequentialGroup()
-                                .addComponent(labelPremioFimBatalha)
-                                .addGap(67, 67, 67)
-                                .addComponent(labelXPFimBatalha))
-                            .addComponent(labelGanhadorFimBatalha))
-                        .addGap(95, 95, 95))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogFimBatalhaLayout.createSequentialGroup()
-                        .addComponent(labelFimdaBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(135, 135, 135))))
-        );
-        dialogFimBatalhaLayout.setVerticalGroup(
-            dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogFimBatalhaLayout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(labelFimdaBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelGanhadorFimBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPremioFimBatalha)
-                    .addComponent(labelXPFimBatalha))
-                .addGap(87, 87, 87))
-        );
+        dialogFimBatalha.getContentPane().add(jPanel1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -425,69 +406,6 @@ public class mainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -503,6 +421,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton botaoVenderGaloDex;
     private javax.swing.JDialog dialogFimBatalha;
     private javax.swing.JDialog dialogGaloDex;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAgilidadeAtacanteGaloDex;
     private javax.swing.JLabel labelApelidoAtacanteGaloDex;

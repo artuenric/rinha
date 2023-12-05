@@ -71,7 +71,6 @@ public class PainelDashboard extends PainelFilho {
         labelPocoes = new javax.swing.JLabel();
         botaoTorneios = new javax.swing.JButton();
         botaoLoja = new javax.swing.JButton();
-        botaoPerfil = new javax.swing.JButton();
         botaoPartidaRapida = new javax.swing.JButton();
         botaoGaloDex = new javax.swing.JButton();
         labelBackgroundDashBoard = new javax.swing.JLabel();
@@ -121,18 +120,6 @@ public class PainelDashboard extends PainelFilho {
         });
         add(botaoLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 386, 182, 54));
 
-        botaoPerfil.setBackground(new java.awt.Color(228, 56, 82));
-        botaoPerfil.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        botaoPerfil.setForeground(new java.awt.Color(255, 255, 255));
-        botaoPerfil.setText("Perfil");
-        botaoPerfil.setAlignmentY(0.0F);
-        botaoPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPerfilActionPerformed(evt);
-            }
-        });
-        add(botaoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 100, 31));
-
         botaoPartidaRapida.setBackground(new java.awt.Color(255, 135, 30));
         botaoPartidaRapida.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoPartidaRapida.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,7 +141,7 @@ public class PainelDashboard extends PainelFilho {
                 botaoGaloDexActionPerformed(evt);
             }
         });
-        add(botaoGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 83, 100, 31));
+        add(botaoGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 100, 31));
 
         labelBackgroundDashBoard.setForeground(new java.awt.Color(255, 255, 255));
         labelBackgroundDashBoard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telaDashboard.png"))); // NOI18N
@@ -172,18 +159,14 @@ public class PainelDashboard extends PainelFilho {
         this.mainFrame.painelLoja.updateInfoTelaLoja();
     }//GEN-LAST:event_botaoLojaActionPerformed
 
-    private void botaoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPerfilActionPerformed
-        // Abre o perfil
-    }//GEN-LAST:event_botaoPerfilActionPerformed
-
     private void botaoPartidaRapidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPartidaRapidaActionPerformed
         // botaoPartidaRapida gera e encaminha para uma partida aleatória
         if (player.getGaloDex().getAtacante() == null){
             this.abrirGaloDex();
         }
         else {
-            trocarTela("batalha");
             criarBatalhaRapida();
+            this.mainFrame.painelProximaBatalha.abrirProximaBatalha();
             mainFrame.getPainelBatalha().updateInfoTelaBatalha();
             // Informações adicionais para a batalha rápida
             this.mainFrame.getPainelBatalha().getBarraVidaMaquina().setValue(100);
@@ -201,7 +184,6 @@ public class PainelDashboard extends PainelFilho {
     private javax.swing.JButton botaoGaloDex;
     private javax.swing.JButton botaoLoja;
     private javax.swing.JButton botaoPartidaRapida;
-    private javax.swing.JButton botaoPerfil;
     private javax.swing.JButton botaoTorneios;
     private javax.swing.JLabel labelBackgroundDashBoard;
     private javax.swing.JLabel labelMilhos;
