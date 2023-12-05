@@ -25,10 +25,6 @@ public class mainFrame extends javax.swing.JFrame {
     
     // Informações do PLayer
     Perfil player = new Perfil("Desafiante");
-        
-    // Informações dos Galos
-    Galinheiro galinheiro = new Galinheiro();
-    ArrayList<Galo> galosIniciais = galinheiro.gerarGalosIniciais();
     
     // Informações da Loja
     Loja loja = new Loja(20);
