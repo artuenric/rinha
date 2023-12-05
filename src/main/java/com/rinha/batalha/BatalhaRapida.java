@@ -6,6 +6,7 @@ import com.rinha.perfil.Perfil;
 public class BatalhaRapida extends Batalha{
     
     public BatalhaRapida(Perfil perfil){ //Batalha Rápida
+        this.tipoBatalha = "Rapida";
         this.player = perfil.getGaloDex().getAtacante();
         this.carteiraPlayer = perfil.getCarteira();
         int nivelPlayer = player.getNivel();
@@ -14,14 +15,17 @@ public class BatalhaRapida extends Batalha{
         switch (player.getRaridade()){
             case "Raro":{
                 this.maquina = galinheiro.getRandomGaloRaro(nivelPlayer);
+                this.premio = 50;
                 break;
             }
             case "Epico":{
                 this.maquina = galinheiro.getRandomGaloEpico(nivelPlayer);
+                this.premio = 100;
                 break;
             }
             case "Lendario":{
                 this.maquina = galinheiro.getRandomGaloLendario(nivelPlayer);
+                this.premio = 150;
                 break;
             }
         }
@@ -29,5 +33,5 @@ public class BatalhaRapida extends Batalha{
         // Batalha aberta
         this.aberto = true;
     }
-    
+
 }

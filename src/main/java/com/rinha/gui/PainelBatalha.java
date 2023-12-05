@@ -77,6 +77,25 @@ public class PainelBatalha extends PainelFilho{
         this.updateBarrasVida();
     }
     
+    public void checaFimBatalha(){
+        // Checa se a batalha está aberta
+        if (!this.mainFrame.batalhaAtual.isAberto()){
+            // Checa o tipo da batalha
+            if (this.mainFrame.batalhaAtual.getTipoBatalha().equals("Rapida")){
+                trocarTela("dashboard");
+                this.mainFrame.abrirFimBatalha();
+            }
+            
+            else if (this.mainFrame.batalhaAtual.getTipoBatalha().equals("Torneio")){
+                // Checa se o torneio está aberto
+                if (this.mainFrame.torneioAtual.isAberto()){
+                    this.mainFrame.torneioAtual.nextRodada();
+                    this.mainFrame.batalhaAtual = this.mainFrame.getBatalhaAtual();
+                    this.mainFrame.painelProximaBatalha.abrirProximaBatalha();
+                }   
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -261,10 +280,9 @@ public class PainelBatalha extends PainelFilho{
         // Atualiza as informações
         this.usuarioAtq = 0;
         updateInfoTelaBatalha();
-        if (!this.mainFrame.batalhaAtual.isAberto()){
-            this.mainFrame.abrirFimBatalha();
-            trocarTela("dashboard");
-        }
+        
+        this.checaFimBatalha();
+        
     }//GEN-LAST:event_botaoAtacarActionPerformed
 
     private void botaoDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDesistirActionPerformed

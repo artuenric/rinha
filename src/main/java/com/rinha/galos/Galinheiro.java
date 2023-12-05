@@ -4,31 +4,36 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Galinheiro {
-    public FlyWeightFotos flyWeightFotos = new FlyWeightFotos();
+    private FlyWeightFotos flyWeightFotos = new FlyWeightFotos();
+    private String nome = "Máquina";
 
+    public FlyWeightFotos getFlyWeightFotos() {
+        return flyWeightFotos;
+    }
+    
     public ArrayList<Galo> gerarGalosEpicos(int nivel){
         ArrayList<Galo> galosGerados = new ArrayList<>();
         // Adicionar Galos Épicos
-        galosGerados.add(new GaloBMW(nivel, "Apelido", this.flyWeightFotos.getBmw()));
-        galosGerados.add(new GaloCiborg(nivel, "Apelido", this.flyWeightFotos.getCiborg()));
+        galosGerados.add(new GaloBMW(nivel, nome, this.flyWeightFotos.getBmw()));
+        galosGerados.add(new GaloCiborg(nivel, nome, this.flyWeightFotos.getCiborg()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosRaros(int nivel){
         ArrayList<Galo> galosGerados = new ArrayList<>();
         // Adicionar Galos Raros
-        galosGerados.add(new GaloCAM(nivel, "Apelido", this.flyWeightFotos.getCam()));
-        galosGerados.add(new GaloCafe(nivel, "Apelido", this.flyWeightFotos.getCafe()));
-        galosGerados.add(new GaloChorao(nivel, "Apelido", this.flyWeightFotos.getChorao()));
-        galosGerados.add(new GaloDeFralda(nivel, "Apelido", this.flyWeightFotos.getDefralda()));
-        galosGerados.add(new GaloChorao(nivel, "Apelido", this.flyWeightFotos.getChorao()));
+        galosGerados.add(new GaloCAM(nivel, nome, this.flyWeightFotos.getCam()));
+        galosGerados.add(new GaloCafe(nivel, nome, this.flyWeightFotos.getCafe()));
+        galosGerados.add(new GaloChorao(nivel, nome, this.flyWeightFotos.getChorao()));
+        galosGerados.add(new GaloDeFralda(nivel, nome, this.flyWeightFotos.getDefralda()));
+        galosGerados.add(new GaloChorao(nivel, nome, this.flyWeightFotos.getChorao()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosLendarios(int nivel){
         ArrayList<Galo> galosGerados = new ArrayList<>();
         // Adicionar Galos Lendarios
-        galosGerados.add(new GaloCego(nivel, "Apelido", this.flyWeightFotos.getCego()));
-        galosGerados.add(new GaloFebem(nivel, "Apelido", this.flyWeightFotos.getFebem()));
-        galosGerados.add(new GaloItaipava(nivel, "Apelido", this.flyWeightFotos.getItaipava()));
+        galosGerados.add(new GaloCego(nivel, nome, this.flyWeightFotos.getCego()));
+        galosGerados.add(new GaloFebem(nivel, nome, this.flyWeightFotos.getFebem()));
+        galosGerados.add(new GaloItaipava(nivel, nome, this.flyWeightFotos.getItaipava()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosIniciais(){

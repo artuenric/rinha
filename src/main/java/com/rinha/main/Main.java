@@ -1,9 +1,5 @@
 package com.rinha.main;
-import com.rinha.batalha.BatalhaRapida;
 import com.rinha.galos.*;
-import com.rinha.gui.mainFrame;
-import com.rinha.loja.Loja;
-import com.rinha.loja.Milho;
 import com.rinha.torneio.Torneio;
 import com.rinha.perfil.Perfil;
 
@@ -22,13 +18,13 @@ public class Main {
 //            System.out.println(galoCharlie.getStatus());
 //        }
         
-        GaloItaipava galoCharlie = new GaloItaipava(19, "Coringar", gl.flyWeightFotos.getItaipava());
+        GaloItaipava galoCharlie = new GaloItaipava(19, "Coringar", gl.getFlyWeightFotos().getItaipava());
         
         meuPerfil.getGaloDex().setAtacante(galoCharlie);
 //
-        GaloAgiota galoAgiota = new GaloAgiota(10, "Agioter", gl.flyWeightFotos.getAgiota());
-        GaloBMW galoBmw = new GaloBMW(3, "Bmwabler", gl.flyWeightFotos.getBmw());
-        GaloCAM galoMineiro = new GaloCAM(3,  "Galoucura", gl.flyWeightFotos.getCam());
+        GaloAgiota galoAgiota = new GaloAgiota(10, "Agioter", gl.getFlyWeightFotos().getAgiota());
+        GaloBMW galoBmw = new GaloBMW(3, "Bmwabler", gl.getFlyWeightFotos().getBmw());
+        GaloCAM galoMineiro = new GaloCAM(3,  "Galoucura", gl.getFlyWeightFotos().getCam());
 //
          //Teste Torneio
 //

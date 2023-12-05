@@ -52,12 +52,14 @@ public class PainelProximaBatalha extends PainelFilho {
         labelFotoPlayer.setPreferredSize(new java.awt.Dimension(150, 150));
         add(labelFotoPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
-        labelNomePlayer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelNomePlayer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNomePlayer.setForeground(new java.awt.Color(255, 255, 255));
         labelNomePlayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNomePlayer.setText("Nome Player");
         add(labelNomePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 150, -1));
 
-        labelNomeMaquina.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelNomeMaquina.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNomeMaquina.setForeground(new java.awt.Color(255, 255, 255));
         labelNomeMaquina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNomeMaquina.setText("NomeMaquina");
         labelNomeMaquina.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);

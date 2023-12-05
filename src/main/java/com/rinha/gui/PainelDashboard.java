@@ -150,7 +150,7 @@ public class PainelDashboard extends PainelFilho {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoTorneiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneiosActionPerformed
-
+        trocarTela("torneios");
     }//GEN-LAST:event_botaoTorneiosActionPerformed
 
     private void botaoLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLojaActionPerformed

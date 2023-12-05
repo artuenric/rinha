@@ -5,6 +5,8 @@ import com.rinha.batalha.BatalhaRapida;
 import com.rinha.galos.Galo;
 import com.rinha.loja.Loja;
 import com.rinha.perfil.Perfil;
+import com.rinha.torneio.Torneio;
+
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +22,7 @@ public class mainFrame extends javax.swing.JFrame {
     public PainelLoja painelLoja;
     public PainelBatalha painelBatalha;
     public PainelProximaBatalha painelProximaBatalha;
+    public PainelTorneios painelTorneios;
     
     
     // Informações do PLayer
@@ -28,8 +31,11 @@ public class mainFrame extends javax.swing.JFrame {
     // Informações da Loja
     Loja loja = new Loja(20);
     
-    // Informações da PainelBatalha
+    // Informações da Batalha
     Batalha batalhaAtual;
+
+    // Informações dos Torneios
+    Torneio torneioAtual;
     
     // Construtor
     public mainFrame() {
@@ -41,6 +47,7 @@ public class mainFrame extends javax.swing.JFrame {
         this.painelLoja = new PainelLoja(this, this.player);
         this.painelBatalha = new PainelBatalha(this, this.player);
         this.painelProximaBatalha = new PainelProximaBatalha(this, this.player);
+        this.painelTorneios = new PainelTorneios(this, this.player);
         // Adicionando ao painel principal com o nome do card
         this.painelPrincipal.add(painelPlay, "play");
         this.painelPrincipal.add(painelBemVindo, "bemvindo");
@@ -48,6 +55,7 @@ public class mainFrame extends javax.swing.JFrame {
         this.painelPrincipal.add(painelLoja, "loja");
         this.painelPrincipal.add(painelBatalha, "batalha");
         this.painelPrincipal.add(painelProximaBatalha, "proxima");
+        this.painelPrincipal.add(painelTorneios, "torneios");
     }
     
     // Para a batalha rápida
@@ -162,8 +170,8 @@ public class mainFrame extends javax.swing.JFrame {
     
     public void abrirFimBatalha(){
         this.dialogFimBatalha.setVisible(true);
-        this.labelGanhadorFimBatalha.setText(this.batalhaAtual.getVencedor()+" ganhou!!");
-        this.labelPremioFimBatalha.setText("Prêmio: "+this.batalhaAtual.getPremio());
+        this.labelGanhadorFimBatalha.setText(this.batalhaAtual.getApelidoVencedor()+" ganhou!!");
+        this.labelPremioFimBatalha.setText("Prêmio: "+ this.batalhaAtual.getPremio());
         //this.labelXPFimBatalha.setText("XP: "+this.batalhaAtual.getXP());
     }
     
