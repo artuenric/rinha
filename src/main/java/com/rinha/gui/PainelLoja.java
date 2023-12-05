@@ -93,36 +93,38 @@ public class PainelLoja extends PainelFilho {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablePocoesLoja = new javax.swing.JTable();
+        botaoVoltarLoja = new javax.swing.JButton();
+        labelSaldoCarteira = new javax.swing.JLabel();
+        tabbedMilhoePocaoLoja = new javax.swing.JTabbedPane();
+        painelMilhosLoja = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableMilhosLoja = new javax.swing.JTable();
-        botaoVoltarLoja = new javax.swing.JButton();
-        botaoComprarPocao = new javax.swing.JButton();
         botaoComprarMilho = new javax.swing.JButton();
-        labelSaldoCarteira = new javax.swing.JLabel();
+        painelPocoesLoja = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablePocoesLoja = new javax.swing.JTable();
+        botaoComprarPocao = new javax.swing.JButton();
+        labelFotoGaloLoja = new javax.swing.JLabel();
+        labelInfoGaloLoja = new javax.swing.JLabel();
+        botaoComprarGalo = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
         setPreferredSize(new java.awt.Dimension(720, 480));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablePocoesLoja.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Restauração", "Preço"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        botaoVoltarLoja.setText("Voltar");
+        botaoVoltarLoja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarLojaActionPerformed(evt);
             }
         });
-        jScrollPane2.setViewportView(tablePocoesLoja);
+        add(botaoVoltarLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        labelSaldoCarteira.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelSaldoCarteira.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelSaldoCarteira.setText("Tua Grana");
+        add(labelSaldoCarteira, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 110, -1));
 
         tableMilhosLoja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,12 +144,47 @@ public class PainelLoja extends PainelFilho {
         });
         jScrollPane3.setViewportView(tableMilhosLoja);
 
-        botaoVoltarLoja.setText("Voltar");
-        botaoVoltarLoja.addActionListener(new java.awt.event.ActionListener() {
+        botaoComprarMilho.setText("Comprar");
+        botaoComprarMilho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoVoltarLojaActionPerformed(evt);
+                botaoComprarMilhoActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout painelMilhosLojaLayout = new javax.swing.GroupLayout(painelMilhosLoja);
+        painelMilhosLoja.setLayout(painelMilhosLojaLayout);
+        painelMilhosLojaLayout.setHorizontalGroup(
+            painelMilhosLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(botaoComprarMilho, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        );
+        painelMilhosLojaLayout.setVerticalGroup(
+            painelMilhosLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelMilhosLojaLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(botaoComprarMilho, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        tabbedMilhoePocaoLoja.addTab("Milhos", painelMilhosLoja);
+
+        tablePocoesLoja.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Restauração", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablePocoesLoja);
 
         botaoComprarPocao.setText("Comprar");
         botaoComprarPocao.setToolTipText("");
@@ -157,60 +194,38 @@ public class PainelLoja extends PainelFilho {
             }
         });
 
-        botaoComprarMilho.setText("Comprar");
-        botaoComprarMilho.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoComprarMilhoActionPerformed(evt);
-            }
-        });
-
-        labelSaldoCarteira.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelSaldoCarteira.setText("Tua Grana");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoComprarMilho))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoComprarPocao)))
-                        .addContainerGap(412, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botaoVoltarLoja)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelSaldoCarteira, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))))
+        javax.swing.GroupLayout painelPocoesLojaLayout = new javax.swing.GroupLayout(painelPocoesLoja);
+        painelPocoesLoja.setLayout(painelPocoesLojaLayout);
+        painelPocoesLojaLayout.setHorizontalGroup(
+            painelPocoesLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(botaoComprarPocao, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoComprarMilho, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoVoltarLoja)
-                            .addComponent(labelSaldoCarteira))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoComprarPocao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(78, 78, 78))
+        painelPocoesLojaLayout.setVerticalGroup(
+            painelPocoesLojaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelPocoesLojaLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(botaoComprarPocao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        tabbedMilhoePocaoLoja.addTab("Poções de Cura", painelPocoesLoja);
+
+        add(tabbedMilhoePocaoLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 250, 270));
+
+        labelFotoGaloLoja.setMaximumSize(new java.awt.Dimension(150, 150));
+        labelFotoGaloLoja.setMinimumSize(new java.awt.Dimension(150, 150));
+        labelFotoGaloLoja.setPreferredSize(new java.awt.Dimension(150, 150));
+        add(labelFotoGaloLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
+
+        labelInfoGaloLoja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelInfoGaloLoja.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelInfoGaloLoja.setText("Nome Galo e Preço");
+        labelInfoGaloLoja.setToolTipText("");
+        add(labelInfoGaloLoja, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 250, -1));
+
+        botaoComprarGalo.setText("Comprar");
+        add(botaoComprarGalo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 250, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVoltarLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarLojaActionPerformed
@@ -236,12 +251,18 @@ public class PainelLoja extends PainelFilho {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoComprarGalo;
     private javax.swing.JButton botaoComprarMilho;
     private javax.swing.JButton botaoComprarPocao;
     private javax.swing.JButton botaoVoltarLoja;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelFotoGaloLoja;
+    private javax.swing.JLabel labelInfoGaloLoja;
     private javax.swing.JLabel labelSaldoCarteira;
+    private javax.swing.JPanel painelMilhosLoja;
+    private javax.swing.JPanel painelPocoesLoja;
+    private javax.swing.JTabbedPane tabbedMilhoePocaoLoja;
     private javax.swing.JTable tableMilhosLoja;
     private javax.swing.JTable tablePocoesLoja;
     // End of variables declaration//GEN-END:variables
