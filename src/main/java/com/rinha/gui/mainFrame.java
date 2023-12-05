@@ -1,12 +1,9 @@
 package com.rinha.gui;
 
-import com.rinha.ataque.Ataque;
+import com.rinha.batalha.Batalha;
 import com.rinha.batalha.BatalhaRapida;
-import com.rinha.galos.*;
 import com.rinha.loja.Loja;
 import com.rinha.perfil.Perfil;
-import java.awt.CardLayout;
-import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,7 +27,7 @@ public class mainFrame extends javax.swing.JFrame {
     Loja loja = new Loja(20);
     
     // Informações da PainelBatalha
-    BatalhaRapida batalhaAtual;
+    Batalha batalhaAtual;
     
     // Construtor
     public mainFrame() {
@@ -51,7 +48,7 @@ public class mainFrame extends javax.swing.JFrame {
     
     // Para a batalha rápida
 
-    public BatalhaRapida getBatalhaAtual() {
+    public Batalha getBatalhaAtual() {
         return batalhaAtual;
     }
 
@@ -114,9 +111,13 @@ public class mainFrame extends javax.swing.JFrame {
     public JLabel getLabelNomeAtacanteGaloDex() {
         return labelNomeAtacanteGaloDex;
     }
+
+    public JDialog getDialogFimBatalha() {
+        return dialogFimBatalha;
+    }
     
-    // Interface
-            public void updateTableGaloDex(){
+    // Interface para Diaog
+    public void updateTableGaloDex(){
         DefaultTableModel table = (DefaultTableModel) this.tableGaloDex.getModel();
         table.setRowCount(0);
         int tamanho = player.getGaloDex().getTamanho();
@@ -141,7 +142,14 @@ public class mainFrame extends javax.swing.JFrame {
         this.dialogGaloDex.setVisible(true);
         this.updateTableGaloDex();
     }
-
+    
+    public void abrirFimBatalha(){
+        this.dialogFimBatalha.setVisible(true);
+        this.labelGanhadorFimBatalha.setText(this.batalhaAtual.getVencedor()+" ganhou!!");
+        this.labelPremioFimBatalha.setText("Prêmio: "+this.batalhaAtual.getPremio());
+        //this.labelXPFimBatalha.setText("XP: "+this.batalhaAtual.getXP());
+    }
+    
     
     /*
      * This method is called from within the constructor to initialize the form.
@@ -163,6 +171,11 @@ public class mainFrame extends javax.swing.JFrame {
         labelAgilidadeAtacanteGaloDex = new javax.swing.JLabel();
         labelDefesaAtacanteGaloDex = new javax.swing.JLabel();
         labelNomeAtacanteGaloDex = new javax.swing.JLabel();
+        dialogFimBatalha = new javax.swing.JDialog();
+        labelFimdaBatalha = new javax.swing.JLabel();
+        labelXPFimBatalha = new javax.swing.JLabel();
+        labelPremioFimBatalha = new javax.swing.JLabel();
+        labelGanhadorFimBatalha = new javax.swing.JLabel();
         painelPrincipal = new javax.swing.JPanel();
 
         dialogGaloDex.setMinimumSize(dialogGaloDex.getPreferredSize());
@@ -229,6 +242,61 @@ public class mainFrame extends javax.swing.JFrame {
 
         labelNomeAtacanteGaloDex.setText("Galo Alguma Coisa");
         dialogGaloDex.getContentPane().add(labelNomeAtacanteGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+
+        dialogFimBatalha.setTitle("K.O.");
+        dialogFimBatalha.setMaximumSize(new java.awt.Dimension(400, 300));
+        dialogFimBatalha.setMinimumSize(new java.awt.Dimension(400, 300));
+        dialogFimBatalha.setResizable(false);
+        dialogFimBatalha.setLocationRelativeTo(null);
+
+        labelFimdaBatalha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelFimdaBatalha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelFimdaBatalha.setText("<html><p align=\"center\">Fim da Batalha</p></html>");
+
+        labelXPFimBatalha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelXPFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelXPFimBatalha.setText("XP: 0");
+
+        labelPremioFimBatalha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelPremioFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelPremioFimBatalha.setText("Prêmio: 150");
+
+        labelGanhadorFimBatalha.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        labelGanhadorFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelGanhadorFimBatalha.setText("Galo ganhou!");
+
+        javax.swing.GroupLayout dialogFimBatalhaLayout = new javax.swing.GroupLayout(dialogFimBatalha.getContentPane());
+        dialogFimBatalha.getContentPane().setLayout(dialogFimBatalhaLayout);
+        dialogFimBatalhaLayout.setHorizontalGroup(
+            dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogFimBatalhaLayout.createSequentialGroup()
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addGroup(dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogFimBatalhaLayout.createSequentialGroup()
+                        .addGroup(dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dialogFimBatalhaLayout.createSequentialGroup()
+                                .addComponent(labelPremioFimBatalha)
+                                .addGap(67, 67, 67)
+                                .addComponent(labelXPFimBatalha))
+                            .addComponent(labelGanhadorFimBatalha))
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogFimBatalhaLayout.createSequentialGroup()
+                        .addComponent(labelFimdaBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135))))
+        );
+        dialogFimBatalhaLayout.setVerticalGroup(
+            dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogFimBatalhaLayout.createSequentialGroup()
+                .addContainerGap(67, Short.MAX_VALUE)
+                .addComponent(labelFimdaBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelGanhadorFimBatalha, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(dialogFimBatalhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPremioFimBatalha)
+                    .addComponent(labelXPFimBatalha))
+                .addGap(87, 87, 87))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("rinha");
@@ -375,15 +443,20 @@ public class mainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSelecionarAtacante;
+    private javax.swing.JDialog dialogFimBatalha;
     private javax.swing.JDialog dialogGaloDex;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAgilidadeAtacanteGaloDex;
     private javax.swing.JLabel labelApelidoAtacanteGaloDex;
     private javax.swing.JLabel labelDefesaAtacanteGaloDex;
+    private javax.swing.JLabel labelFimdaBatalha;
     private javax.swing.JLabel labelForcaAtacanteGaloDex;
     private javax.swing.JLabel labelFotoAtacanteGaloDex;
+    private javax.swing.JLabel labelGanhadorFimBatalha;
     private javax.swing.JLabel labelNomeAtacanteGaloDex;
+    private javax.swing.JLabel labelPremioFimBatalha;
     private javax.swing.JLabel labelSelecione;
+    private javax.swing.JLabel labelXPFimBatalha;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JTable tableGaloDex;
     // End of variables declaration//GEN-END:variables

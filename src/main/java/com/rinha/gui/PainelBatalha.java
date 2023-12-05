@@ -261,6 +261,10 @@ public class PainelBatalha extends PainelFilho{
         // Atualiza as informações
         this.usuarioAtq = 0;
         updateInfoTelaBatalha();
+        if (!this.mainFrame.batalhaAtual.isAberto()){
+            this.mainFrame.abrirFimBatalha();
+            trocarTela("dashboard");
+        }
     }//GEN-LAST:event_botaoAtacarActionPerformed
 
     private void botaoDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDesistirActionPerformed

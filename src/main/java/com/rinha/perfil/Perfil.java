@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Perfil {
     private String nome;
     private int nivel;
+    private int xp;
     private GaloDex galoDex;
     private Carteira carteira;
     private ArrayList<PocaoCura> pocoes;
@@ -74,6 +75,7 @@ public class Perfil {
     public Perfil(String nome){
         this.nome = nome;
         this.nivel = 0;
+        this.xp = 0;
         this.carteira = new Carteira(1000);
         this.galoDex = new GaloDex();
         this.milhos = new ArrayList<>();
