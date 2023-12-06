@@ -122,6 +122,7 @@ public class PainelBemVindo extends PainelFilho {
         if (this.galoEscolhido != 10){
             // Definindo informações iniciais
             player.getGaloDex().addGalo(this.galosIniciais.get(galoEscolhido));
+            player.getGaloDex().setAtacante(this.galosIniciais.get(galoEscolhido));
             player.setNome(this.textFieldNomePlayer.getText());
             // Trcando de tela e atualizando
             trocarTela("dashboard");
