@@ -1,8 +1,10 @@
 package com.rinha.gui;
 
 import com.rinha.galos.Galinheiro;
+import com.rinha.galos.Galo;
 import com.rinha.perfil.Perfil;
 import com.rinha.torneio.Torneio;
+import java.util.ArrayList;
 
 public class PainelTorneios extends PainelFilho {
     public PainelTorneios(mainFrame mainFrame, Perfil player){
@@ -12,7 +14,14 @@ public class PainelTorneios extends PainelFilho {
         
         initComponents();
     }
-
+    
+    public void iniciarNovoTorneio(ArrayList<Galo> inimigos){
+        this.mainFrame.torneioAtual = new Torneio(this.mainFrame.player, inimigos);
+        this.mainFrame.torneioAtual.nextRodada();
+        this.mainFrame.batalhaAtual = this.mainFrame.torneioAtual.getBatalhaAtual();
+        this.mainFrame.painelProximaBatalha.abrirProximaBatalha();
+        this.mainFrame.painelBatalha.updateInfoTelaBatalha();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,11 +70,8 @@ public class PainelTorneios extends PainelFilho {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoTorneioRaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneioRaroActionPerformed
-        Torneio torneio = new Torneio(this.mainFrame.player, new Galinheiro().gerarGalosRaros(2));
-        this.mainFrame.torneioAtual = torneio;
-        this.mainFrame.torneioAtual.nextRodada();
-        this.mainFrame.batalhaAtual = this.mainFrame.getBatalhaAtual();
-        this.mainFrame.painelProximaBatalha.abrirProximaBatalha();
+        ArrayList<Galo> inimigos = new Galinheiro().gerarGalosRaros(2);
+        this.iniciarNovoTorneio(inimigos);
     }//GEN-LAST:event_botaoTorneioRaroActionPerformed
 
 

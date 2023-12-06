@@ -1,7 +1,6 @@
 package com.rinha.gui;
 
 import com.rinha.batalha.Batalha;
-import com.rinha.batalha.BatalhaRapida;
 import com.rinha.galos.Galo;
 import com.rinha.loja.Loja;
 import com.rinha.perfil.Perfil;
@@ -58,17 +57,24 @@ public class mainFrame extends javax.swing.JFrame {
         this.painelPrincipal.add(painelTorneios, "torneios");
     }
     
-    // Para a batalha rápida
-
+    
+    // Para a interface
     public Batalha getBatalhaAtual() {
         return batalhaAtual;
     }
-
-    public void setBatalhaAtual(BatalhaRapida batalhaAtual) {
+    
+    public void setBatalhaAtual(Batalha batalhaAtual) {
         this.batalhaAtual = batalhaAtual;
     }
+
+    public Torneio getTorneioAtual() {
+        return torneioAtual;
+    }
     
-    // Para a interface
+    public void setTorneioAtual(Torneio torneioAtual) {    
+        this.torneioAtual = torneioAtual;
+    }
+
     public PainelPlay getPainelPlay() {
         return painelPlay;
     }

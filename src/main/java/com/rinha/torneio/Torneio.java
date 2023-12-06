@@ -7,7 +7,6 @@ import com.rinha.batalha.BatalhaRapida;
 import com.rinha.batalha.Batalha;
 import com.rinha.perfil.Perfil;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Torneio {
 
@@ -77,26 +76,30 @@ public class Torneio {
         }
     }
 
-    public void nextRodada(){
+    public boolean nextRodada(){
         if (this.aberto){
             if (this.rodada == 0){
                 // Primeira batalha rodada = 0
+                System.out.println("Primeira rodada.");
                 this.nextBatalha();
                 this.rodada += 1;
             }
             else if (this.batalhaAtual.getVencedor() == this.player.getGaloDex().getAtacante()){
                 // Caso tenha ganhado a última batalha
+                System.out.println("Rodada subsequente.");
                 this.atualizarPremio();
                 this.nextBatalha();
                 this.rodada += 1;
             }
             else {
                 // Não ganhou a última batalha, o torneio encerra
+                System.out.println("Perdeu o torneio");
                 this.premiar();
                 this.aberto = false;
             }
         }
         this.fechar();
+        return aberto;
     }
 
     public void nextBatalha(){

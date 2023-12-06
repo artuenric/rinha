@@ -83,16 +83,22 @@ public class PainelBatalha extends PainelFilho{
             // Checa o tipo da batalha
             if (this.mainFrame.batalhaAtual.getTipoBatalha().equals("Rapida")){
                 trocarTela("dashboard");
+                System.out.println("Fim da batalha rápida.");
                 this.mainFrame.abrirFimBatalha();
             }
             
             else if (this.mainFrame.batalhaAtual.getTipoBatalha().equals("Torneio")){
                 // Checa se o torneio está aberto
                 if (this.mainFrame.torneioAtual.isAberto()){
+                    System.out.println("Nova rodada do torneio");
                     this.mainFrame.torneioAtual.nextRodada();
                     this.mainFrame.batalhaAtual = this.mainFrame.getBatalhaAtual();
                     this.mainFrame.painelProximaBatalha.abrirProximaBatalha();
                 }   
+                else {
+                    // O torneio foi fechado, volta para o dashboard
+                    trocarTela("dashboard");
+                }
             }
         }
     }

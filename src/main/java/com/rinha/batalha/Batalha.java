@@ -56,13 +56,15 @@ public abstract class Batalha {
     }
 
     public void setVencedor() {
-
         if (this.player.getVidaAtual() <= 0) {
+            System.out.println("O vencedor é a máquina!");
             this.apelidoVencedor = this.maquina.getApelido();
+            this.vencedor = this.maquina;
+            
         } else if (this.maquina.getVidaAtual() <= 0) {
+            System.out.println("O vencedor é o player!");
             this.apelidoVencedor = this.player.getApelido();
-        } else {
-            this.apelidoVencedor = null;
+            this.vencedor = this.player;
         }
     }
 
@@ -155,12 +157,10 @@ public abstract class Batalha {
 
     private void fechar() {
         if (this.getApelidoVencedor() != null) {
-
             if (this.apelidoVencedor.equals(player.getApelido())) {
                 this.carteiraPlayer.deposito(premio);
                 System.out.println("Voce possui: " + this.carteiraPlayer.getSaldo()); // Para efeito de log
             }
-
             System.out.println("Entrou em fechar");
             this.player.regeneraVidaAtual();
             this.player.regeneraPontosDePoderOriginal();

@@ -18,6 +18,21 @@ public class PainelProximaBatalha extends PainelFilho {
         this.labelNomeMaquina.setText(this.mainFrame.batalhaAtual.getMaquina().getNome());
     }
     
+    public void irBatalhaTorneio(){
+        // Se o torneio está aberto
+        this.mainFrame.getTorneioAtual().nextRodada();
+        this.mainFrame.setBatalhaAtual(this.mainFrame.torneioAtual.getBatalhaAtual());
+        this.updateInfoTelaProximaBatalha();
+        trocarTela("batalha");
+    }
+    
+    public void irBatalhaRpida(){
+        // Vai para batalha rápida
+        this.updateInfoTelaProximaBatalha();
+        trocarTela("batalha");
+    }
+    
+    
     public void abrirProximaBatalha(){
         this.updateInfoTelaProximaBatalha();
         trocarTela("proxima");
@@ -83,7 +98,12 @@ public class PainelProximaBatalha extends PainelFilho {
 
     private void botaoBatalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBatalharActionPerformed
         // Troca a tela para a batalha
-        trocarTela("batalha");
+        if (this.mainFrame.getBatalhaAtual().getTipoBatalha().equals("Torneio")){
+            this.irBatalhaTorneio();
+        } 
+        else {
+            this.irBatalhaRpida();
+        }
     }//GEN-LAST:event_botaoBatalharActionPerformed
 
 
