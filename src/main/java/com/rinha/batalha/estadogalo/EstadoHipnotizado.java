@@ -10,11 +10,11 @@ public class EstadoHipnotizado implements EstadoGalo{
     
     //Efeito
     @Override
-    public void aplicaEfeito(Galo contexto, int rodadaBatalha) {
+    public void aplicarEfeito(Galo contexto, int rodadaBatalha) {
         
         //Efeito da batalha 
-        
-        System.out.println("Efeito Hipnotizado Aplicado à "+ contexto.getNome());
+        contexto.setEstadoAtual(this);
+        System.out.println("Galo: "+ contexto.getNome()+ " esta Hipnotizado");
     }
 
     @Override

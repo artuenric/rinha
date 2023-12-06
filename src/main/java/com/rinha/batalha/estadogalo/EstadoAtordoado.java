@@ -7,11 +7,11 @@ public class EstadoAtordoado implements EstadoGalo{
     private String nomeEstado = "Atordoado";
    
     @Override
-    public void aplicaEfeito(Galo contexto, int rodadaBatalha) {
+    public void aplicarEfeito(Galo contexto, int rodadaBatalha) {
         
         //Efeito do estado
-        
-        System.out.println("Efeito Atordoado Aplicado à "+ contexto.getNome());
+        contexto.setEstadoAtual(this);
+        System.out.println("Galo: "+ contexto.getNome()+ " esta Atordoado");
     }
 
     @Override

@@ -1,7 +1,6 @@
 
 package com.rinha.ataque;
-import com.rinha.ataque.efeito.Efeito;
-import com.rinha.ataque.efeito.SemEfeito;
+import com.rinha.batalha.estadogalo.EstadoNormal;
 import java.util.Random;
 
 public class AtaqueUltimate extends Ataque implements Golpe {
@@ -14,7 +13,7 @@ public class AtaqueUltimate extends Ataque implements Golpe {
            this.defineDano();
            this.definePontosDePoder();
            this.setPontosDePoderAtual(this.getPontosDePoderOriginal());
-           this.setEfeitoAtaque(new SemEfeito());
+           this.setEstadoAtaque(new EstadoNormal());
     }
     
     @Override

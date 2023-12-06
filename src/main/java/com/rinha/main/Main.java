@@ -1,5 +1,6 @@
 package com.rinha.main;
 import com.rinha.galos.*;
+import com.rinha.gui.mainFrame;
 import com.rinha.torneio.Torneio;
 import com.rinha.perfil.Perfil;
 
@@ -7,7 +8,7 @@ import com.rinha.perfil.Perfil;
 
 public class Main {
     public static void main(String[] args) {
-        //new MainFrame().setVisible(true);
+        new mainFrame().setVisible(true);
         Galinheiro gl = new Galinheiro();
 
         Perfil meuPerfil = new Perfil("Caiola");

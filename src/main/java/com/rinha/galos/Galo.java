@@ -1,8 +1,6 @@
 package com.rinha.galos;
-import com.rinha.batalha.estadogalo.EstadoNormal;
-import com.rinha.batalha.estadogalo.EstadoGalo;
+import com.rinha.batalha.estadogalo.*;
 import com.rinha.ataque.*;
-import com.rinha.ataque.efeito.*;
 import com.rinha.galos.raridade.Raridade;
 import com.rinha.loja.Milho;
 
@@ -206,20 +204,20 @@ public class Galo {
         switch(this.tipo){
             case "A": {
                 this.vantagem = "B";
-                this.atqAgil.setEfeitoAtaque(new EfeitoEnvenenar());
-                this.atqTipificado.setEfeitoAtaque(new EfeitoAtordoar());
+                this.atqAgil.setEstadoAtaque(new EstadoEnvenenado());
+                this.atqTipificado.setEstadoAtaque(new EstadoAtordoado());
             break;
             }
             case "B": {
                 this.vantagem = "C";
-                this.atqAgil.setEfeitoAtaque(new EfeitoAtordoar());
-                this.atqTipificado.setEfeitoAtaque(new EfeitoHipnotizar());
+                this.atqAgil.setEstadoAtaque(new EstadoAtordoado());
+                this.atqTipificado.setEstadoAtaque(new EstadoHipnotizado());
             break;
             }
             case "C": {
                 this.vantagem = "A";
-                this.atqAgil.setEfeitoAtaque(new EfeitoHipnotizar());
-                this.atqTipificado.setEfeitoAtaque(new EfeitoEnvenenar());
+                this.atqAgil.setEstadoAtaque(new EstadoHipnotizado());
+                this.atqTipificado.setEstadoAtaque(new EstadoEnvenenado());
             break;
             }
         }
@@ -296,14 +294,14 @@ public class Galo {
             case 1: { 
                 // Ataque básico baseado em força
                 dano = atqBasico.getDanoBase() - (adversario.getDefesa()/2);
-                atqBasico.getEfeito().aplicaEstado(adversario, rodadaBatalha);
+                atqBasico.getEstadoAtaque().aplicarEfeito(adversario, rodadaBatalha);
             break;
             }
             case 2 : {
                 //Ataque Tipificado
                 // Dano recebe a lógica base do ataque, caso o tipo do adversário seja o tipo que o galo tem vantagem, é adicionado um bonûs de 50% a 75% da sua força.
                 dano = (atqTipificado.getDanoBase()) - (adversario.getDefesa());
-                atqTipificado.getEfeito().aplicaEstado(adversario, rodadaBatalha);
+                atqTipificado.getEstadoAtaque().aplicarEfeito(adversario, rodadaBatalha);
                 if (tipo_adversario.equals(this.vantagem)){
                     System.out.println("ENTROU NO IF");
                     dano += (atqTipificado.getBonus() / 100) * this.forca;
@@ -315,13 +313,13 @@ public class Galo {
                 // Ataque baseado na agilidade, mesma lógica do baseado em força
                 System.out.println("ENTROU NO 3");
                 dano =  atqAgil.getDanoBase() - (adversario.getDefesa()/2);
-                atqAgil.getEfeito().aplicaEstado(adversario, rodadaBatalha);
+                atqAgil.getEstadoAtaque().aplicarEfeito(adversario, rodadaBatalha);
             break;
             }
             case 4: {
                 //Ultimate
                 dano = (atqUltimate.getDanoBase() - adversario.getDefesa()/3);
-                atqUltimate.getEfeito().aplicaEstado(adversario, rodadaBatalha);
+                atqUltimate.getEstadoAtaque().aplicarEfeito(adversario, rodadaBatalha);
             break;
             }
             

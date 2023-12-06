@@ -1,8 +1,7 @@
 
 package com.rinha.ataque;
-import com.rinha.ataque.efeito.Efeito;
-import com.rinha.ataque.efeito.SemEfeito;
-import java.util.Random;
+import com.rinha.batalha.estadogalo.EstadoGalo;
+
 
 public abstract class Ataque {
     
@@ -14,14 +13,14 @@ public abstract class Ataque {
     protected int bonusAtq;
     protected int pontosDePoderOriginal;
     protected int pontosDePoderAtual;
-    protected Efeito efeitoAtaque;
+    protected EstadoGalo estadoAtaque;
             
-    public void setEfeitoAtaque(Efeito efeito){
-        this.efeitoAtaque = efeito;
+    public void setEstadoAtaque(EstadoGalo estadoAtaque){
+        this.estadoAtaque = estadoAtaque;
     }
     
-    public Efeito getEfeito(){
-        return this.efeitoAtaque;
+    public EstadoGalo getEstadoAtaque(){
+        return this.estadoAtaque;
     }
 
     public String getNomeAtaque(){

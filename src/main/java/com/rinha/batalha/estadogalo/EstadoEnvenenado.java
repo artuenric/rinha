@@ -10,17 +10,11 @@ public class EstadoEnvenenado implements EstadoGalo {
 
     //Efeito
     @Override
-    public void aplicaEfeito(Galo contexto, int rodadaBatalha) {
+    public void aplicarEfeito(Galo contexto, int rodadaBatalha) {
         
         //Efeito do estado
-        
-        if (contexto.getContadorEstado() < 2){
-            contexto.setVidaAtual(contexto.getVidaAtual() - 10);
-            System.out.println("Galo: "+ contexto.getNome() + " esta envenenado, sofreu dano de 10 por envenenamento");
-        } else {
-            contexto.zeraContadorEstado();
-            contexto.setEstadoAtual(new EstadoNormal());
-        }
+        contexto.setEstadoAtual(this);
+        System.out.println("Galo: "+ contexto.getNome()+ " esta Envenenado");
         
     }
 
