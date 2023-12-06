@@ -62,17 +62,24 @@ public class Torneio {
         this.dinheiroPremio = this.batalhaAtual.getPremio() * this.rodada;
     }
 
-    public void fechar(){
+    public void encerrar(){
         if (this.rodada == inimigos.size()){
             this.aberto = false;
             this.defineCampeao();
-            this.premiar();
+            this.premiarCampeao();
         }
     }
 
+    
+    public void premiarCampeao(){
+        this.player.getGaloDex().addGalo(this.galoPremio);
+        this.player.getCarteira().deposito(this.dinheiroPremio);
+    }
+    
     public void defineCampeao(){
         if (this.batalhaAtual.getVencedor() == player.getGaloDex().getAtacante()){
             this.campeao = player.getGaloDex().getAtacante();
+            this.premiarCampeao();
         }
     }
 
@@ -94,23 +101,16 @@ public class Torneio {
             else {
                 // Não ganhou a última batalha, o torneio encerra
                 System.out.println("Perdeu o torneio");
-                this.premiar();
                 this.aberto = false;
             }
         }
-        this.fechar();
+        System.out.println("Torneio aberto?" + this.aberto);
+        this.encerrar();
         return aberto;
     }
 
     public void nextBatalha(){
         this.batalhaAtual = new BatalhaTorneio(this.player, this.inimigos.get(this.rodada));
-    }
-
-    public void premiar(){
-        if (this.campeao == this.player.getGaloDex().getAtacante()){
-            this.player.getGaloDex().addGalo(this.galoPremio);
-        }
-        this.player.getCarteira().deposito(this.dinheiroPremio);
     }
 
 

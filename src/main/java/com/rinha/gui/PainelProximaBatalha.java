@@ -20,15 +20,16 @@ public class PainelProximaBatalha extends PainelFilho {
     
     public void irBatalhaTorneio(){
         // Se o torneio está aberto
-        this.mainFrame.getTorneioAtual().nextRodada();
         this.mainFrame.setBatalhaAtual(this.mainFrame.torneioAtual.getBatalhaAtual());
         this.updateInfoTelaProximaBatalha();
+        this.mainFrame.painelBatalha.updateInfoTelaBatalha();
         trocarTela("batalha");
     }
     
     public void irBatalhaRpida(){
         // Vai para batalha rápida
         this.updateInfoTelaProximaBatalha();
+        this.mainFrame.painelBatalha.updateInfoTelaBatalha();                
         trocarTela("batalha");
     }
     

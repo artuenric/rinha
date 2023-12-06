@@ -134,7 +134,7 @@ public class mainFrame extends javax.swing.JFrame {
         return dialogFimBatalha;
     }
     
-    // Interface para Diaog
+    // Interface para Dialog
     public void updateTableGaloDex(){
         DefaultTableModel table = (DefaultTableModel) this.tableGaloDex.getModel();
         table.setRowCount(0);
@@ -295,7 +295,6 @@ public class mainFrame extends javax.swing.JFrame {
         dialogGaloDex.getContentPane().add(labelXPGaloDex, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         dialogFimBatalha.setTitle("K.O.");
-        dialogFimBatalha.setMaximumSize(new java.awt.Dimension(400, 300));
         dialogFimBatalha.setMinimumSize(new java.awt.Dimension(400, 300));
         dialogFimBatalha.setResizable(false);
         dialogFimBatalha.setLocationRelativeTo(null);
@@ -321,7 +320,7 @@ public class mainFrame extends javax.swing.JFrame {
         labelGanhadorFimBatalha.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         labelGanhadorFimBatalha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGanhadorFimBatalha.setText("Galo ganhou!");
-        jPanel1.add(labelGanhadorFimBatalha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 58));
+        jPanel1.add(labelGanhadorFimBatalha, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 100, 380, 58));
 
         dialogFimBatalha.getContentPane().add(jPanel1);
 
