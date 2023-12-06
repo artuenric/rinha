@@ -13,4 +13,4 @@ Este projeto visa aplicar os conceitos de Programação Orientada a Objetos. A e
 - Interface gráfica com JForm no NetBeans;
 
 ## Especificações
-Utiliza-se o JDK 17 e, para desenvolvimento e escrita do código, o NetBeans, ou seja, o JForm para interface gráfica foi construído com esta IDE. Até o momento não há dependências adicionais além das básicas do Java.
+Utiliza-se o JDK 1.8 e, para desenvolvimento e escrita do código, o NetBeans, ou seja, o JForm para interface gráfica foi construído com esta IDE. Até o momento não há dependências adicionais além das básicas do Java.
