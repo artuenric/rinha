@@ -33,11 +33,11 @@ public class PainelTorneios extends PainelFilho {
     private void initComponents() {
 
         botaoTorneioRaro = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        botaoTorneioCampeoes = new javax.swing.JButton();
+        botaoTorneioEpico = new javax.swing.JButton();
+        botaoTorneioLendario = new javax.swing.JButton();
+        botaoTorneioFofa = new javax.swing.JButton();
+        botaoTorneioFinal = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
@@ -52,21 +52,31 @@ public class PainelTorneios extends PainelFilho {
         });
         add(botaoTorneioRaro, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 280, 80));
 
-        jButton2.setText("Torneio dos Campeões");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 280, 80));
+        botaoTorneioCampeoes.setText("Torneio dos Campeões");
+        add(botaoTorneioCampeoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 280, 80));
 
-        jButton3.setText("Torneio Épico");
-        jButton3.setAlignmentY(0.0F);
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 280, 80));
+        botaoTorneioEpico.setText("Torneio Épico");
+        botaoTorneioEpico.setAlignmentY(0.0F);
+        botaoTorneioEpico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTorneioEpicoActionPerformed(evt);
+            }
+        });
+        add(botaoTorneioEpico, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 280, 80));
 
-        jButton4.setText("Torneio Lendário");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 280, 80));
+        botaoTorneioLendario.setText("Torneio Lendário");
+        botaoTorneioLendario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTorneioLendarioActionPerformed(evt);
+            }
+        });
+        add(botaoTorneioLendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 280, 80));
 
-        jButton5.setText("Torneio Fofa");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 280, 80));
+        botaoTorneioFofa.setText("Torneio Fofa");
+        add(botaoTorneioFofa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 280, 80));
 
-        jButton6.setText("Torneio Final");
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 280, 80));
+        botaoTorneioFinal.setText("Torneio Final");
+        add(botaoTorneioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 280, 80));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoTorneioRaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneioRaroActionPerformed
@@ -74,13 +84,23 @@ public class PainelTorneios extends PainelFilho {
         this.iniciarNovoTorneio(inimigos);
     }//GEN-LAST:event_botaoTorneioRaroActionPerformed
 
+    private void botaoTorneioEpicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneioEpicoActionPerformed
+        ArrayList<Galo> inimigos = new Galinheiro().gerarGalosEpicos(2);
+        this.iniciarNovoTorneio(inimigos);
+    }//GEN-LAST:event_botaoTorneioEpicoActionPerformed
+
+    private void botaoTorneioLendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTorneioLendarioActionPerformed
+        ArrayList<Galo> inimigos = new Galinheiro().gerarGalosLendarios(2);
+        this.iniciarNovoTorneio(inimigos);
+    }//GEN-LAST:event_botaoTorneioLendarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoTorneioCampeoes;
+    private javax.swing.JButton botaoTorneioEpico;
+    private javax.swing.JButton botaoTorneioFinal;
+    private javax.swing.JButton botaoTorneioFofa;
+    private javax.swing.JButton botaoTorneioLendario;
     private javax.swing.JButton botaoTorneioRaro;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     // End of variables declaration//GEN-END:variables
 }

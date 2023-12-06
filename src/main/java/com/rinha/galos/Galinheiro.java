@@ -16,6 +16,11 @@ public class Galinheiro {
         // Adicionar Galos Épicos
         galosGerados.add(new GaloBMW(nivel, nome, this.flyWeightFotos.getBmw()));
         galosGerados.add(new GaloCiborg(nivel, nome, this.flyWeightFotos.getCiborg()));
+        galosGerados.add(new GaloGol(nivel, nome, this.flyWeightFotos.getGol()));
+        galosGerados.add(new GaloMecatronico(nivel, nome, this.flyWeightFotos.getMecatronico()));
+        galosGerados.add(new GaloPistoleiro(nivel, nome, this.flyWeightFotos.getPistoleiro()));
+        galosGerados.add(new GaloRikixa(nivel, nome, this.flyWeightFotos.getRikixa()));
+        galosGerados.add(new GaloSniper(nivel, nome, this.flyWeightFotos.getSniper()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosRaros(int nivel){
@@ -26,6 +31,8 @@ public class Galinheiro {
         galosGerados.add(new GaloChorao(nivel, nome, this.flyWeightFotos.getChorao()));
         galosGerados.add(new GaloDeFralda(nivel, nome, this.flyWeightFotos.getDefralda()));
         galosGerados.add(new GaloChorao(nivel, nome, this.flyWeightFotos.getChorao()));
+        galosGerados.add(new GaloFino(nivel, nome, this.flyWeightFotos.getFino()));
+        galosGerados.add((new GaloWhatsapp(nivel, nome, this.flyWeightFotos.getWhatsapp())));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosLendarios(int nivel){
@@ -34,6 +41,7 @@ public class Galinheiro {
         galosGerados.add(new GaloCego(nivel, nome, this.flyWeightFotos.getCego()));
         galosGerados.add(new GaloFebem(nivel, nome, this.flyWeightFotos.getFebem()));
         galosGerados.add(new GaloItaipava(nivel, nome, this.flyWeightFotos.getItaipava()));
+        galosGerados.add(new GaloGalinhaPerdeu(nivel, nome, this.flyWeightFotos.getGalinhaperdeu()));
         return galosGerados;
     }
     public ArrayList<Galo> gerarGalosIniciais(){
